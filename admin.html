@@ -1,1 +1,2438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Koma Star Plus Admin</title>
 
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#080808;
+  color:#fff;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* LOGIN */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top,#351010 0,#080808 45%);
+}
+
+.loginBox{
+  width:100%;
+  max-width:420px;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 20px 60px #000;
+}
+
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.logo span{
+  color:#ff1e2d;
+}
+
+.loginSubtitle{
+  text-align:center;
+  color:#999;
+  margin-bottom:28px;
+}
+
+.inputGroup{
+  margin-bottom:16px;
+}
+
+.inputGroup label{
+  display:block;
+  color:#bbb;
+  margin-bottom:7px;
+  font-size:14px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px 14px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#0e0e0e;
+  color:#fff;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#e21b2d;
+}
+
+textarea{
+  resize:vertical;
+  min-height:90px;
+}
+
+.primaryBtn{
+  width:100%;
+  border:0;
+  padding:14px;
+  border-radius:10px;
+  background:#e50914;
+  color:#fff;
+  font-weight:bold;
+}
+
+.primaryBtn:hover{
+  background:#ff1824;
+}
+
+.message{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+  color:#ff7777;
+}
+
+/* APP */
+
+#adminApp{
+  min-height:100vh;
+}
+
+.topbar{
+  height:65px;
+  background:#101010;
+  border-bottom:1px solid #292929;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.brand{
+  font-size:21px;
+  font-weight:900;
+}
+
+.brand span{
+  color:#e50914;
+}
+
+.logoutBtn{
+  background:#222;
+  border:1px solid #444;
+  color:#fff;
+  padding:9px 14px;
+  border-radius:8px;
+}
+
+/* LAYOUT */
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 65px);
+}
+
+.sidebar{
+  width:235px;
+  background:#101010;
+  border-right:1px solid #292929;
+  padding:18px 12px;
+}
+
+.navBtn{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  color:#bbb;
+  padding:13px 14px;
+  border-radius:9px;
+  margin-bottom:6px;
+}
+
+.navBtn:hover,
+.navBtn.active{
+  background:#e50914;
+  color:#fff;
+}
+
+.main{
+  flex:1;
+  padding:22px;
+  min-width:0;
+}
+
+/* DASHBOARD */
+
+.pageTitle{
+  font-size:27px;
+  margin-bottom:20px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:#151515;
+  border:1px solid #292929;
+  border-radius:15px;
+  padding:20px;
+}
+
+.statTitle{
+  color:#999;
+  font-size:14px;
+}
+
+.statValue{
+  font-size:30px;
+  font-weight:900;
+  margin-top:8px;
+}
+
+.card{
+  background:#151515;
+  border:1px solid #292929;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.cardTitle{
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:17px;
+}
+
+/* FORM */
+
+.formGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.fileBox{
+  background:#0e0e0e;
+  border:1px dashed #444;
+  padding:15px;
+  border-radius:10px;
+}
+
+.fileBox small{
+  display:block;
+  color:#888;
+  margin-top:7px;
+}
+
+.uploadProgress{
+  width:100%;
+  height:8px;
+  background:#292929;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.progressBar{
+  width:0%;
+  height:100%;
+  background:#e50914;
+  transition:.2s;
+}
+
+.submitRow{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.submitRow button{
+  padding:12px 20px;
+  border-radius:9px;
+  border:0;
+  font-weight:bold;
+}
+
+.saveBtn{
+  background:#e50914;
+  color:#fff;
+}
+
+.clearBtn{
+  background:#292929;
+  color:#fff;
+}
+
+/* CONTENT */
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.toolbar input{
+  flex:1;
+}
+
+.contentGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.contentCard{
+  background:#111;
+  border:1px solid #292929;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.contentCard img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  display:block;
+  background:#222;
+}
+
+.contentInfo{
+  padding:14px;
+}
+
+.contentTitle{
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.meta{
+  color:#999;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:6px;
+  font-size:11px;
+  margin-top:8px;
+  font-weight:bold;
+}
+
+.free{
+  background:#123d20;
+  color:#5cff85;
+}
+
+.premium{
+  background:#47350b;
+  color:#ffd45c;
+}
+
+.cardActions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.cardActions button{
+  flex:1;
+  padding:9px;
+  border-radius:7px;
+  border:0;
+}
+
+.editBtn{
+  background:#292929;
+  color:#fff;
+}
+
+.deleteBtn{
+  background:#5b1117;
+  color:#ff8790;
+}
+
+/* NOTICE */
+
+.notice{
+  background:#1d1400;
+  border:1px solid #5a4200;
+  color:#e7c76c;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .contentGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    overflow-x:auto;
+    border-right:0;
+    border-bottom:1px solid #292929;
+    padding:8px;
+  }
+
+  .navBtn{
+    width:auto;
+    min-width:max-content;
+    margin:0 4px 0 0;
+    padding:10px 13px;
+  }
+
+  .main{
+    padding:15px;
+  }
+
+  .formGrid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .contentGrid{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    padding:0 12px;
+  }
+
+  .brand{
+    font-size:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="loginScreen">
+
+  <div class="loginBox">
+
+    <div class="logo">
+      Koma <span>Star Plus</span>
+    </div>
+
+    <div class="loginSubtitle">
+      Admin Panel
+    </div>
+
+    <div class="inputGroup">
+      <label>Admin Email</label>
+      <input id="email" type="email" placeholder="Enter admin email">
+    </div>
+
+    <div class="inputGroup">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Enter password">
+    </div>
+
+    <button class="primaryBtn" id="loginBtn">
+      Login
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN APP -->
+
+<section id="adminApp" class="hidden">
+
+  <header class="topbar">
+
+    <div class="brand">
+      Koma <span>Star Plus</span> Admin
+    </div>
+
+    <button class="logoutBtn" id="logoutBtn">
+      Logout
+    </button>
+
+  </header>
+
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <button class="navBtn active" data-page="dashboard">
+        📊 Dashboard
+      </button>
+
+      <button class="navBtn" data-page="add">
+        ➕ Add Content
+      </button>
+
+      <button class="navBtn" data-page="content">
+        🎬 Content
+      </button>
+
+      <button class="navBtn" data-page="episodes">
+        📚 Episodes
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <!-- DASHBOARD -->
+
+      <section id="dashboardPage">
+
+        <h1 class="pageTitle">
+          Dashboard
+        </h1>
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="statTitle">Total Content</div>
+            <div class="statValue" id="totalContent">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="statTitle">Free Watch</div>
+            <div class="statValue" id="freeContent">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="statTitle">Premium</div>
+            <div class="statValue" id="premiumContent">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="statTitle">Episodes</div>
+            <div class="statValue" id="totalEpisodes">0</div>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="cardTitle">
+            Koma Star Plus Content System
+          </div>
+
+          <p style="color:#aaa;line-height:1.7">
+            এখান থেকে Movie, Serial, Reality Show এবং Episode
+            পরিচালনা করতে পারবে। প্রতিটি content-এর জন্য
+            Free Watch অথবা Premium access নির্বাচন করা যাবে।
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- ADD CONTENT -->
+
+      <section id="addPage" class="hidden">
+
+        <h1 class="pageTitle">
+          Add Content
+        </h1>
+
+        <div class="notice">
+          ⚠️ Video এবং thumbnail upload করতে Firebase Storage
+          এবং Firestore rules ঠিকভাবে configured থাকতে হবে।
+        </div>
+
+        <div class="card">
+
+          <div class="cardTitle">
+            Content Information
+          </div>
+
+          <div class="formGrid">
+
+            <div class="inputGroup">
+              <label>Title *</label>
+              <input id="title" placeholder="Movie / Show name">
+            </div>
+
+            <div class="inputGroup">
+              <label>Content Type *</label>
+
+              <select id="type">
+
+                <option value="Movie">
+                  Movie
+                </option>
+
+                <option value="Serial">
+                  Serial
+                </option>
+
+                <option value="Reality Show">
+                  Reality Show
+                </option>
+
+                <option value="Sports">
+                  Sports
+                </option>
+
+                <option value="Live TV">
+                  Live TV
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Category</label>
+
+              <input id="category"
+                     placeholder="Action, Comedy, Drama...">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Access</label>
+
+              <select id="access">
+
+                <option value="free">
+                  🆓 Free Watch
+                </option>
+
+                <option value="premium">
+                  ⭐ Premium
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Year</label>
+
+              <input id="year"
+                     type="number"
+                     placeholder="2026">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Duration</label>
+
+              <input id="duration"
+                     placeholder="2h 10m">
+
+            </div>
+
+
+            <div class="inputGroup full">
+
+              <label>Description</label>
+
+              <textarea id="description"
+                        placeholder="Write content description..."></textarea>
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Thumbnail *</label>
+
+              <div class="fileBox">
+
+                <input id="thumbnailFile"
+                       type="file"
+                       accept="image/*">
+
+                <small>
+                  JPG / PNG / WEBP recommended
+                </small>
+
+              </div>
+
+            </div>
+
+
+            <div class="inputGroup">
+
+              <label>Video *</label>
+
+              <div class="fileBox">
+
+                <input id="videoFile"
+                       type="file"
+                       accept="video/*">
+
+                <small>
+                  MP4 recommended
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="uploadProgress">
+            <div id="progressBar"
+                 class="progressBar"></div>
+          </div>
+
+          <div id="uploadStatus"
+               style="color:#999;margin-top:8px">
+          </div>
+
+
+          <div class="submitRow">
+
+            <button class="saveBtn"
+                    id="saveBtn">
+              🚀 Publish Content
+            </button>
+
+            <button class="clearBtn"
+                    id="clearBtn">
+              Clear
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONTENT PAGE -->
+
+      <section id="contentPage" class="hidden">
+
+        <h1 class="pageTitle">
+          Content Library
+        </h1>
+
+        <div class="toolbar">
+
+          <input id="searchContent"
+                 placeholder="Search movies, shows...">
+
+        </div>
+
+        <div id="contentGrid"
+             class="contentGrid">
+        </div>
+
+      </section>
+
+
+      <!-- EPISODES -->
+
+      <section id="episodesPage" class="hidden">
+
+        <h1 class="pageTitle">
+          Seasons & Episodes
+        </h1>
+
+        <div class="card">
+
+          <div class="cardTitle">
+            Episode Management
+          </div>
+
+          <p style="color:#999;line-height:1.7">
+            Series-এর জন্য Season এবং Episode management
+            এখানে করা যাবে। প্রথমে একটি Serial/Series Content
+            তৈরি করার পরে Episode যোগ করা যাবে।
+          </p>
+
+          <br>
+
+          <button class="saveBtn"
+                  style="padding:12px 18px;border:0;border-radius:8px;color:white"
+                  onclick="openEpisodeForm()">
+            ➕ Add Episode
+          </button>
+
+        </div>
+
+
+        <div id="episodeForm"
+             class="card hidden">
+
+          <div class="cardTitle">
+            Add Episode
+          </div>
+
+          <div class="formGrid">
+
+            <div class="inputGroup">
+
+              <label>Series</label>
+
+              <select id="episodeSeries">
+              </select>
+
+            </div>
+
+            <div class="inputGroup">
+
+              <label>Season Number</label>
+
+              <input id="seasonNumber"
+                     type="number"
+                     value="1"
+                     min="1">
+
+            </div>
+
+            <div class="inputGroup">
+
+              <label>Episode Number</label>
+
+              <input id="episodeNumber"
+                     type="number"
+                     value="1"
+                     min="1">
+
+            </div>
+
+            <div class="inputGroup">
+
+              <label>Episode Title</label>
+
+              <input id="episodeTitle"
+                     placeholder="Episode title">
+
+            </div>
+
+            <div class="inputGroup">
+
+              <label>Access</label>
+
+              <select id="episodeAccess">
+
+                <option value="free">
+                  🆓 Free Watch
+                </option>
+
+                <option value="premium">
+                  ⭐ Premium
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="inputGroup">
+
+              <label>Episode Thumbnail</label>
+
+              <input id="episodeThumbnail"
+                     type="file"
+                     accept="image/*">
+
+            </div>
+
+            <div class="inputGroup full">
+
+              <label>Episode Video</label>
+
+              <input id="episodeVideo"
+                     type="file"
+                     accept="video/*">
+
+            </div>
+
+          </div>
+
+          <div class="uploadProgress">
+            <div id="episodeProgress"
+                 class="progressBar">
+            </div>
+          </div>
+
+          <div id="episodeStatus"
+               style="color:#999;margin-top:8px">
+          </div>
+
+          <br>
+
+          <button class="saveBtn"
+                  id="saveEpisodeBtn"
+                  style="padding:12px 20px;border:0;border-radius:8px;color:white">
+            Publish Episode
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="cardTitle">
+            Episode List
+          </div>
+
+          <div id="episodeList">
+            Loading...
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</section>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+
+  authDomain:
+  "koma-star.firebaseapp.com",
+
+  projectId:
+  "koma-star",
+
+  storageBucket:
+  "koma-star.firebasestorage.app",
+
+  messagingSenderId:
+  "314141087569",
+
+  appId:
+  "1:314141087569:web:e1861e72db4f9ef5b12570",
+
+  measurementId:
+  "G-HYF2PZY5GR"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+
+/* ADMIN UID */
+
+const ADMIN_UID =
+"U0zwU0uKWuMER6t2xc5V65bD4xk2";
+
+
+/* ELEMENTS */
+
+const loginScreen =
+document.getElementById("loginScreen");
+
+const adminApp =
+document.getElementById("adminApp");
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+
+/* LOGIN */
+
+document
+.getElementById("loginBtn")
+.addEventListener("click", async()=>{
+
+  const email =
+  document.getElementById("email").value.trim();
+
+  const password =
+  document.getElementById("password").value;
+
+  if(!email || !password){
+
+    loginMessage.textContent =
+    "Email and password required.";
+
+    return;
+  }
+
+  loginMessage.textContent =
+  "Logging in...";
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    loginMessage.textContent =
+    getFirebaseError(error);
+
+  }
+
+});
+
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,(user)=>{
+
+  if(user && user.uid === ADMIN_UID){
+
+    loginScreen.classList.add("hidden");
+
+    adminApp.classList.remove("hidden");
+
+    loadDashboard();
+
+  }else{
+
+    adminApp.classList.add("hidden");
+
+    loginScreen.classList.remove("hidden");
+
+    if(user){
+
+      signOut(auth);
+
+      loginMessage.textContent =
+      "This account is not an authorized admin.";
+
+    }
+
+  }
+
+});
+
+
+/* LOGOUT */
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click",()=>{
+
+  signOut(auth);
+
+});
+
+
+/* NAVIGATION */
+
+document
+.querySelectorAll(".navBtn")
+.forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+
+    document
+    .querySelectorAll(".navBtn")
+    .forEach(x=>x.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    showPage(btn.dataset.page);
+
+  });
+
+});
+
+
+function showPage(page){
+
+  const pages = {
+
+    dashboard:
+    "dashboardPage",
+
+    add:
+    "addPage",
+
+    content:
+    "contentPage",
+
+    episodes:
+    "episodesPage"
+
+  };
+
+  Object.values(pages)
+  .forEach(id=>{
+    document
+    .getElementById(id)
+    .classList.add("hidden");
+  });
+
+  document
+  .getElementById(pages[page])
+  .classList.remove("hidden");
+
+
+  if(page === "content"){
+    loadContent();
+  }
+
+  if(page === "episodes"){
+    loadEpisodes();
+    loadSeriesSelect();
+  }
+
+}
+
+
+/* DASHBOARD */
+
+async function loadDashboard(){
+
+  try{
+
+    const contentSnap =
+    await getDocs(collection(db,"videos"));
+
+    const episodeSnap =
+    await getDocs(collection(db,"episodes"));
+
+    let free = 0;
+
+    let premium = 0;
+
+    contentSnap.forEach(item=>{
+
+      const data = item.data();
+
+      if(data.access === "free"){
+        free++;
+      }else{
+        premium++;
+      }
+
+    });
+
+    document
+    .getElementById("totalContent")
+    .textContent =
+    contentSnap.size;
+
+    document
+    .getElementById("freeContent")
+    .textContent =
+    free;
+
+    document
+    .getElementById("premiumContent")
+    .textContent =
+    premium;
+
+    document
+    .getElementById("totalEpisodes")
+    .textContent =
+    episodeSnap.size;
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* UPLOAD FUNCTION */
+
+function uploadFile(file,path,onProgress){
+
+  return new Promise((resolve,reject)=>{
+
+    const storageRef =
+    ref(storage,path);
+
+    const uploadTask =
+    uploadBytesResumable(
+      storageRef,
+      file
+    );
+
+    uploadTask.on(
+
+      "state_changed",
+
+      snapshot=>{
+
+        const percent =
+        Math.round(
+          snapshot.bytesTransferred /
+          snapshot.totalBytes * 100
+        );
+
+        if(onProgress){
+          onProgress(percent);
+        }
+
+      },
+
+      error=>{
+        reject(error);
+      },
+
+      async()=>{
+
+        const url =
+        await getDownloadURL(
+          uploadTask.snapshot.ref
+        );
+
+        resolve({
+
+          url:url,
+
+          path:path
+
+        });
+
+      }
+
+    );
+
+  });
+
+}
+
+
+/* SAVE CONTENT */
+
+document
+.getElementById("saveBtn")
+.addEventListener("click",saveContent);
+
+
+async function saveContent(){
+
+  const title =
+  document.getElementById("title")
+  .value.trim();
+
+  const type =
+  document.getElementById("type")
+  .value;
+
+  const category =
+  document.getElementById("category")
+  .value.trim();
+
+  const access =
+  document.getElementById("access")
+  .value;
+
+  const year =
+  document.getElementById("year")
+  .value;
+
+  const duration =
+  document.getElementById("duration")
+  .value.trim();
+
+  const description =
+  document.getElementById("description")
+  .value.trim();
+
+  const thumbnailFile =
+  document.getElementById("thumbnailFile")
+  .files[0];
+
+  const videoFile =
+  document.getElementById("videoFile")
+  .files[0];
+
+
+  if(!title){
+
+    alert("Please enter content title.");
+
+    return;
+
+  }
+
+  if(!thumbnailFile){
+
+    alert("Please select thumbnail.");
+
+    return;
+
+  }
+
+  if(!videoFile){
+
+    alert("Please select video.");
+
+    return;
+
+  }
+
+
+  const user = auth.currentUser;
+
+  if(!user || user.uid !== ADMIN_UID){
+
+    alert("Admin authentication required.");
+
+    return;
+
+  }
+
+
+  const saveBtn =
+  document.getElementById("saveBtn");
+
+  saveBtn.disabled = true;
+
+  saveBtn.textContent =
+  "Uploading...";
+
+
+  try{
+
+    const id =
+    Date.now().toString();
+
+
+    /* THUMBNAIL */
+
+    document
+    .getElementById("uploadStatus")
+    .textContent =
+    "Uploading thumbnail...";
+
+
+    const thumbnail =
+    await uploadFile(
+
+      thumbnailFile,
+
+      `thumbnails/${user.uid}/${id}_${thumbnailFile.name}`,
+
+      percent=>{
+
+        document
+        .getElementById("progressBar")
+        .style.width =
+        percent + "%";
+
+      }
+
+    );
+
+
+    /* VIDEO */
+
+    document
+    .getElementById("uploadStatus")
+    .textContent =
+    "Uploading video...";
+
+
+    const video =
+    await uploadFile(
+
+      videoFile,
+
+      `videos/${user.uid}/${id}_${videoFile.name}`,
+
+      percent=>{
+
+        document
+        .getElementById("progressBar")
+        .style.width =
+        percent + "%";
+
+      }
+
+    );
+
+
+    /* FIRESTORE */
+
+    document
+    .getElementById("uploadStatus")
+    .textContent =
+    "Saving content information...";
+
+
+    await addDoc(
+
+      collection(db,"videos"),
+
+      {
+
+        title:title,
+
+        type:type,
+
+        category:category,
+
+        access:access,
+
+        isFree:
+        access === "free",
+
+        year:year || "",
+
+        duration:duration || "",
+
+        description:description,
+
+        thumbnail:
+        thumbnail.url,
+
+        thumbnailPath:
+        thumbnail.path,
+
+        video:
+        video.url,
+
+        videoPath:
+        video.path,
+
+        uid:user.uid,
+
+        createdAt:
+        serverTimestamp(),
+
+        published:true
+
+      }
+
+    );
+
+
+    document
+    .getElementById("uploadStatus")
+    .textContent =
+    "✅ Content published successfully!";
+
+
+    document
+    .getElementById("progressBar")
+    .style.width =
+    "100%";
+
+
+    clearForm();
+
+    await loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    document
+    .getElementById("uploadStatus")
+    .textContent =
+    "Upload failed: " +
+    getFirebaseError(error);
+
+  }
+
+
+  saveBtn.disabled = false;
+
+  saveBtn.textContent =
+  "🚀 Publish Content";
+
+}
+
+
+/* CLEAR FORM */
+
+document
+.getElementById("clearBtn")
+.addEventListener("click",clearForm);
+
+
+function clearForm(){
+
+  document
+  .getElementById("title")
+  .value = "";
+
+  document
+  .getElementById("category")
+  .value = "";
+
+  document
+  .getElementById("year")
+  .value = "";
+
+  document
+  .getElementById("duration")
+  .value = "";
+
+  document
+  .getElementById("description")
+  .value = "";
+
+  document
+  .getElementById("thumbnailFile")
+  .value = "";
+
+  document
+  .getElementById("videoFile")
+  .value = "";
+
+  document
+  .getElementById("progressBar")
+  .style.width = "0%";
+
+}
+
+
+/* LOAD CONTENT */
+
+let allContent = [];
+
+
+async function loadContent(){
+
+  const grid =
+  document.getElementById("contentGrid");
+
+  grid.innerHTML =
+  "Loading...";
+
+
+  try{
+
+    const snap =
+    await getDocs(collection(db,"videos"));
+
+    allContent = [];
+
+    snap.forEach(item=>{
+
+      allContent.push({
+
+        id:item.id,
+
+        ...item.data()
+
+      });
+
+    });
+
+
+    renderContent(allContent);
+
+  }catch(error){
+
+    console.error(error);
+
+    grid.innerHTML =
+    "<p>Unable to load content.</p>";
+
+  }
+
+}
+
+
+/* RENDER CONTENT */
+
+function renderContent(list){
+
+  const grid =
+  document.getElementById("contentGrid");
+
+  if(!list.length){
+
+    grid.innerHTML =
+    "<p style='color:#888'>No content found.</p>";
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+  list.map(item=>`
+
+    <div class="contentCard">
+
+      <img
+        src="${escapeHtml(item.thumbnail || "")}"
+        alt=""
+      >
+
+      <div class="contentInfo">
+
+        <div class="contentTitle">
+          ${escapeHtml(item.title || "Untitled")}
+        </div>
+
+        <div class="meta">
+          ${escapeHtml(item.type || "")}
+          ${item.category ? " • " + escapeHtml(item.category) : ""}
+          ${item.year ? " • " + escapeHtml(item.year) : ""}
+        </div>
+
+        <span class="badge ${item.access === "free" ? "free" : "premium"}">
+
+          ${
+            item.access === "free"
+            ? "🆓 FREE WATCH"
+            : "⭐ PREMIUM"
+          }
+
+        </span>
+
+        <div class="cardActions">
+
+          <button
+            class="editBtn"
+            onclick="editContent('${item.id}')">
+
+            ✏️ Edit
+
+          </button>
+
+          <button
+            class="deleteBtn"
+            onclick="deleteContent('${item.id}')">
+
+            🗑️ Delete
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* SEARCH */
+
+document
+.getElementById("searchContent")
+.addEventListener("input",(e)=>{
+
+  const value =
+  e.target.value.toLowerCase();
+
+  const filtered =
+  allContent.filter(item=>
+
+    (item.title || "")
+    .toLowerCase()
+    .includes(value)
+
+    ||
+
+    (item.type || "")
+    .toLowerCase()
+    .includes(value)
+
+    ||
+
+    (item.category || "")
+    .toLowerCase()
+    .includes(value)
+
+  );
+
+  renderContent(filtered);
+
+});
+
+
+/* DELETE */
+
+window.deleteContent =
+async function(id){
+
+  if(!confirm(
+    "Delete this content?"
+  )){
+    return;
+  }
+
+
+  try{
+
+    const item =
+    allContent.find(x=>x.id === id);
+
+
+    if(item){
+
+      if(item.videoPath){
+
+        try{
+
+          await deleteObject(
+            ref(storage,item.videoPath)
+          );
+
+        }catch(e){
+
+          console.warn(e);
+
+        }
+
+      }
+
+
+      if(item.thumbnailPath){
+
+        try{
+
+          await deleteObject(
+            ref(storage,item.thumbnailPath)
+          );
+
+        }catch(e){
+
+          console.warn(e);
+
+        }
+
+      }
+
+    }
+
+
+    await deleteDoc(
+      doc(db,"videos",id)
+    );
+
+
+    alert(
+      "Content deleted."
+    );
+
+
+    loadContent();
+
+    loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      getFirebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* EDIT */
+
+window.editContent =
+async function(id){
+
+  const item =
+  allContent.find(x=>x.id === id);
+
+  if(!item){
+    return;
+  }
+
+
+  const newTitle =
+  prompt(
+    "Content title:",
+    item.title || ""
+  );
+
+  if(newTitle === null){
+    return;
+  }
+
+
+  const newAccess =
+  prompt(
+    "Access: free or premium",
+    item.access || "free"
+  );
+
+  if(newAccess !== "free" &&
+     newAccess !== "premium"){
+
+    alert(
+      "Access must be free or premium."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+
+      doc(db,"videos",id),
+
+      {
+
+        title:newTitle.trim(),
+
+        access:newAccess,
+
+        isFree:
+        newAccess === "free",
+
+        updatedAt:
+        serverTimestamp()
+
+      }
+
+    );
+
+
+    alert(
+      "Content updated."
+    );
+
+
+    loadContent();
+
+    loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      getFirebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* EPISODE FORM */
+
+window.openEpisodeForm =
+function(){
+
+  document
+  .getElementById("episodeForm")
+  .classList.toggle("hidden");
+
+};
+
+
+/* LOAD SERIES */
+
+async function loadSeriesSelect(){
+
+  const select =
+  document.getElementById("episodeSeries");
+
+  select.innerHTML =
+  "<option>Loading...</option>";
+
+
+  try{
+
+    const snap =
+    await getDocs(
+      collection(db,"videos")
+    );
+
+
+    const series =
+    [];
+
+
+    snap.forEach(item=>{
+
+      const data =
+      item.data();
+
+
+      if(
+        data.type === "Serial" ||
+        data.type === "Series"
+      ){
+
+        series.push({
+
+          id:item.id,
+
+          ...data
+
+        });
+
+      }
+
+    });
+
+
+    if(!series.length){
+
+      select.innerHTML =
+      "<option value=''>No Serial found</option>";
+
+      return;
+
+    }
+
+
+    select.innerHTML =
+    series.map(item=>`
+
+      <option value="${item.id}">
+        ${escapeHtml(item.title)}
+      </option>
+
+    `).join("");
+
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* SAVE EPISODE */
+
+document
+.getElementById("saveEpisodeBtn")
+.addEventListener(
+  "click",
+  saveEpisode
+);
+
+
+async function saveEpisode(){
+
+  const seriesId =
+  document
+  .getElementById("episodeSeries")
+  .value;
+
+  const season =
+  Number(
+    document
+    .getElementById("seasonNumber")
+    .value
+  );
+
+  const episode =
+  Number(
+    document
+    .getElementById("episodeNumber")
+    .value
+  );
+
+  const title =
+  document
+  .getElementById("episodeTitle")
+  .value.trim();
+
+  const access =
+  document
+  .getElementById("episodeAccess")
+  .value;
+
+  const thumbnailFile =
+  document
+  .getElementById("episodeThumbnail")
+  .files[0];
+
+  const videoFile =
+  document
+  .getElementById("episodeVideo")
+  .files[0];
+
+
+  if(!seriesId){
+
+    alert(
+      "Please select a series."
+    );
+
+    return;
+
+  }
+
+  if(!title){
+
+    alert(
+      "Please enter episode title."
+    );
+
+    return;
+
+  }
+
+  if(!videoFile){
+
+    alert(
+      "Please select episode video."
+    );
+
+    return;
+
+  }
+
+
+  const user =
+  auth.currentUser;
+
+
+  try{
+
+    document
+    .getElementById("episodeStatus")
+    .textContent =
+    "Uploading episode...";
+
+
+    const id =
+    Date.now().toString();
+
+
+    let thumbnail = {
+
+      url:"",
+
+      path:""
+
+    };
+
+
+    if(thumbnailFile){
+
+      thumbnail =
+      await uploadFile(
+
+        thumbnailFile,
+
+        `episode-thumbnails/${user.uid}/${id}_${thumbnailFile.name}`,
+
+        percent=>{
+
+          document
+          .getElementById("episodeProgress")
+          .style.width =
+          percent + "%";
+
+        }
+
+      );
+
+    }
+
+
+    const video =
+    await uploadFile(
+
+      videoFile,
+
+      `episode-videos/${user.uid}/${id}_${videoFile.name}`,
+
+      percent=>{
+
+        document
+        .getElementById("episodeProgress")
+        .style.width =
+        percent + "%";
+
+      }
+
+    );
+
+
+    await addDoc(
+
+      collection(db,"episodes"),
+
+      {
+
+        seriesId:seriesId,
+
+        seasonNumber:season,
+
+        episodeNumber:episode,
+
+        title:title,
+
+        access:access,
+
+        isFree:
+        access === "free",
+
+        thumbnail:
+        thumbnail.url,
+
+        thumbnailPath:
+        thumbnail.path,
+
+        video:
+        video.url,
+
+        videoPath:
+        video.path,
+
+        uid:user.uid,
+
+        published:true,
+
+        createdAt:
+        serverTimestamp()
+
+      }
+
+    );
+
+
+    document
+    .getElementById("episodeStatus")
+    .textContent =
+    "✅ Episode published successfully.";
+
+
+    document
+    .getElementById("episodeProgress")
+    .style.width =
+    "100%";
+
+
+    document
+    .getElementById("episodeTitle")
+    .value = "";
+
+    document
+    .getElementById("episodeThumbnail")
+    .value = "";
+
+    document
+    .getElementById("episodeVideo")
+    .value = "";
+
+
+    loadEpisodes();
+
+    loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    document
+    .getElementById("episodeStatus")
+    .textContent =
+    getFirebaseError(error);
+
+  }
+
+}
+
+
+/* LOAD EPISODES */
+
+async function loadEpisodes(){
+
+  const box =
+  document.getElementById("episodeList");
+
+  box.innerHTML =
+  "Loading...";
+
+
+  try{
+
+    const snap =
+    await getDocs(
+      collection(db,"episodes")
+    );
+
+
+    if(snap.empty){
+
+      box.innerHTML =
+      "<span style='color:#888'>No episodes yet.</span>";
+
+      return;
+
+    }
+
+
+    const rows = [];
+
+
+    snap.forEach(item=>{
+
+      rows.push({
+
+        id:item.id,
+
+        ...item.data()
+
+      });
+
+    });
+
+
+    rows.sort((a,b)=>
+
+      (a.seasonNumber || 0) -
+      (b.seasonNumber || 0)
+
+      ||
+
+      (a.episodeNumber || 0) -
+      (b.episodeNumber || 0)
+
+    );
+
+
+    box.innerHTML =
+    rows.map(item=>`
+
+      <div style="
+        padding:13px 0;
+        border-bottom:1px solid #292929;
+      ">
+
+        <strong>
+          S${item.seasonNumber}
+          E${item.episodeNumber}
+          — ${escapeHtml(item.title)}
+        </strong>
+
+        <div style="
+          color:#999;
+          font-size:13px;
+          margin-top:5px;
+        ">
+
+          ${
+            item.access === "free"
+            ? "🆓 Free Watch"
+            : "⭐ Premium"
+          }
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+    "Unable to load episodes.";
+
+  }
+
+}
+
+
+/* ERROR MESSAGE */
+
+function getFirebaseError(error){
+
+  const code =
+  error?.code || "";
+
+  const messages = {
+
+    "auth/invalid-credential":
+    "Invalid email or password.",
+
+    "auth/invalid-login-credentials":
+    "Invalid email or password.",
+
+    "auth/user-not-found":
+    "Admin account not found.",
+
+    "auth/wrong-password":
+    "Wrong password.",
+
+    "auth/invalid-api-key":
+    "Firebase API key is invalid.",
+
+    "storage/unauthorized":
+    "Storage permission denied.",
+
+    "storage/unauthenticated":
+    "Please login again.",
+
+    "permission-denied":
+    "Firestore permission denied."
+
+  };
+
+
+  return messages[code] ||
+  error?.message ||
+  "Something went wrong.";
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
