@@ -1,1 +1,3199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<title>Koma Star Plus</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100%;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  height:64px;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  gap:20px;
+
+  padding:0 28px;
+
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.96),
+    rgba(0,0,0,.72),
+    transparent
+  );
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1px;
+  white-space:nowrap;
+
+  background:linear-gradient(
+    90deg,
+    #ff2d55,
+    #ff7a00,
+    #b52cff,
+    #3c8cff
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.desktop-nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.desktop-nav button{
+  background:none;
+  border:0;
+  color:#ccc;
+  font-size:14px;
+}
+
+.desktop-nav button:hover,
+.desktop-nav button.active{
+  color:#fff;
+}
+
+.header-right{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.search-box{
+  width:220px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:0 12px;
+
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;
+}
+
+.search-box input{
+  width:100%;
+  background:none;
+  border:0;
+  outline:0;
+  color:#fff;
+  font-size:13px;
+}
+
+.search-box input::placeholder{
+  color:#aaa;
+}
+
+.icon-btn{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.10);
+  color:#fff;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:17px;
+}
+
+.profile-mini{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:linear-gradient(135deg,#ff3158,#7228ff);
+
+  font-weight:bold;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:620px;
+  position:relative;
+
+  display:flex;
+  align-items:flex-end;
+
+  background:
+    linear-gradient(
+      90deg,
+      #050505 0%,
+      rgba(5,5,5,.82) 28%,
+      rgba(5,5,5,.25) 65%,
+      rgba(5,5,5,.65) 100%
+    ),
+    linear-gradient(
+      0deg,
+      #050505 0%,
+      transparent 35%
+    ),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1800&q=80")
+    center/cover;
+}
+
+.hero-content{
+  width:min(650px,90%);
+  margin:0 0 90px 5%;
+}
+
+.hero-tag{
+  display:inline-block;
+  padding:6px 12px;
+
+  border-radius:5px;
+
+  background:rgba(255,255,255,.13);
+
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(40px,6vw,75px);
+  line-height:.95;
+  margin-bottom:16px;
+}
+
+.hero p{
+  color:#ccc;
+  line-height:1.6;
+  font-size:15px;
+  max-width:570px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:22px;
+}
+
+.primary-btn,
+.secondary-btn{
+  border:0;
+  border-radius:6px;
+  padding:12px 20px;
+  font-weight:bold;
+}
+
+.primary-btn{
+  background:#fff;
+  color:#000;
+}
+
+.secondary-btn{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+
+/* ================= CONTENT ================= */
+
+.page{
+  padding:10px 4% 100px;
+}
+
+.section{
+  margin:28px 0;
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.section-title{
+  font-size:21px;
+  font-weight:800;
+}
+
+.see-all{
+  color:#aaa;
+  font-size:12px;
+  background:none;
+  border:0;
+}
+
+.video-row{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  padding-bottom:7px;
+  scrollbar-width:none;
+}
+
+.video-row::-webkit-scrollbar{
+  display:none;
+}
+
+.card{
+  min-width:170px;
+  width:170px;
+  position:relative;
+  cursor:pointer;
+}
+
+.poster{
+  width:100%;
+  height:245px;
+
+  object-fit:cover;
+
+  border-radius:8px;
+
+  background:#161616;
+
+  display:block;
+}
+
+.card:hover .poster{
+  transform:scale(1.015);
+}
+
+.card-title{
+  margin-top:8px;
+  font-size:13px;
+  font-weight:bold;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.card-meta{
+  margin-top:5px;
+  color:#888;
+  font-size:11px;
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+
+  padding:4px 7px;
+
+  border-radius:4px;
+
+  background:rgba(0,0,0,.75);
+
+  font-size:9px;
+  font-weight:bold;
+}
+
+/* ================= LIVE ================= */
+
+.live-card{
+  min-width:270px;
+  height:155px;
+
+  position:relative;
+
+  border-radius:9px;
+  overflow:hidden;
+
+  cursor:pointer;
+}
+
+.live-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.live-overlay{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+
+  padding:13px;
+
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.9)
+  );
+}
+
+.live-label{
+  display:inline-block;
+  width:max-content;
+
+  background:#e40032;
+
+  padding:4px 7px;
+  border-radius:3px;
+
+  font-size:9px;
+  font-weight:bold;
+
+  margin-bottom:5px;
+}
+
+/* ================= BANNER STRIP ================= */
+
+.promo{
+  margin:30px 0;
+
+  min-height:125px;
+
+  border-radius:14px;
+
+  padding:25px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:
+    radial-gradient(circle at 80% 50%,#5521a5,transparent 35%),
+    linear-gradient(110deg,#111,#241034);
+
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.promo h2{
+  font-size:24px;
+}
+
+.promo p{
+  color:#aaa;
+  margin-top:5px;
+}
+
+/* ================= GRID ================= */
+
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:22px 14px;
+}
+
+.video-grid .card{
+  width:100%;
+  min-width:0;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+  display:none;
+
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+
+  height:65px;
+
+  background:rgba(10,10,10,.96);
+
+  border-top:1px solid #222;
+
+  z-index:1000;
+
+  justify-content:space-around;
+  align-items:center;
+}
+
+.bottom-nav button{
+  background:none;
+  border:0;
+  color:#777;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+
+  font-size:10px;
+}
+
+.bottom-nav button.active{
+  color:#fff;
+}
+
+.bottom-nav span{
+  font-size:19px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  z-index:3000;
+
+  background:rgba(0,0,0,.82);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:18px;
+}
+
+.modal-box{
+  width:min(680px,100%);
+  max-height:92vh;
+  overflow:auto;
+
+  background:#111;
+  border:1px solid #292929;
+
+  border-radius:15px;
+
+  padding:22px;
+
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  top:13px;
+  right:13px;
+
+  width:35px;
+  height:35px;
+
+  border:0;
+  border-radius:50%;
+
+  background:#222;
+  color:#fff;
+}
+
+/* ================= PLAYER ================= */
+
+.player-modal{
+  background:#000;
+  padding:0;
+}
+
+.player-box{
+  width:100%;
+  height:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+}
+
+.player-box video{
+  max-width:100%;
+  max-height:100%;
+  width:100%;
+  background:#000;
+}
+
+.player-info{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+
+  padding:35px 20px 20px;
+
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.9)
+  );
+}
+
+/* ================= FORMS ================= */
+
+.form-title{
+  font-size:24px;
+  margin-bottom:20px;
+}
+
+.input{
+  width:100%;
+  height:46px;
+
+  margin-bottom:12px;
+
+  padding:0 13px;
+
+  border:1px solid #333;
+  border-radius:7px;
+
+  background:#181818;
+
+  color:#fff;
+  outline:none;
+}
+
+.input:focus{
+  border-color:#777;
+}
+
+.select{
+  appearance:auto;
+}
+
+.form-btn{
+  width:100%;
+  height:46px;
+
+  border:0;
+  border-radius:7px;
+
+  background:#fff;
+  color:#000;
+
+  font-weight:bold;
+
+  margin-top:5px;
+}
+
+.switch-text{
+  text-align:center;
+  margin-top:15px;
+  color:#999;
+  font-size:13px;
+}
+
+.switch-text button{
+  background:none;
+  border:0;
+  color:#fff;
+  text-decoration:underline;
+}
+
+/* ================= UPLOAD ================= */
+
+.upload-zone{
+  border:1px dashed #555;
+  border-radius:10px;
+
+  padding:20px;
+
+  margin-bottom:14px;
+
+  text-align:center;
+
+  background:#161616;
+}
+
+.file-btn{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;
+
+  padding:0 18px;
+
+  border-radius:7px;
+
+  background:#292929;
+  color:#fff;
+
+  cursor:pointer;
+
+  margin-top:8px;
+}
+
+.file-name{
+  margin-top:8px;
+  color:#aaa;
+  font-size:12px;
+}
+
+.progress{
+  height:7px;
+  background:#292929;
+  border-radius:10px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress-bar{
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,#ff2455,#7c2cff);
+}
+
+/* ================= PROFILE ================= */
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.profile-item{
+  text-align:center;
+  cursor:pointer;
+}
+
+.profile-avatar{
+  width:80px;
+  height:80px;
+
+  margin:auto;
+
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:30px;
+  font-weight:bold;
+
+  background:linear-gradient(
+    135deg,
+    #ff3158,
+    #6e2cff
+  );
+}
+
+.profile-item p{
+  margin-top:8px;
+  color:#ccc;
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+  padding:18px 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  border-bottom:1px solid #222;
+}
+
+.setting small{
+  display:block;
+  color:#888;
+  margin-top:4px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  bottom:85px;
+  left:50%;
+
+  transform:translateX(-50%) translateY(20px);
+
+  background:#fff;
+  color:#000;
+
+  padding:11px 17px;
+
+  border-radius:7px;
+
+  font-size:13px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.3s;
+
+  z-index:5000;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+  .header{
+    height:57px;
+    padding:0 13px;
+    gap:10px;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
+  .desktop-nav{
+    display:none;
+  }
+
+  .header-right{
+    gap:7px;
+  }
+
+  .search-box{
+    width:130px;
+    height:34px;
+  }
+
+  .icon-btn{
+    width:34px;
+    height:34px;
+  }
+
+  .profile-mini{
+    width:34px;
+    height:34px;
+  }
+
+  .hero{
+    min-height:560px;
+  }
+
+  .hero-content{
+    margin:0 18px 75px;
+  }
+
+  .hero h1{
+    font-size:45px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .page{
+    padding:5px 13px 90px;
+  }
+
+  .section-title{
+    font-size:18px;
+  }
+
+  .card{
+    min-width:135px;
+    width:135px;
+  }
+
+  .poster{
+    height:195px;
+  }
+
+  .video-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:18px 10px;
+  }
+
+  .video-grid .poster{
+    height:230px;
+  }
+
+  .bottom-nav{
+    display:flex;
+  }
+
+  .promo{
+    min-height:150px;
+    padding:20px;
+  }
+
+  .promo h2{
+    font-size:19px;
+  }
+
+  .profile-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:430px){
+
+  .search-box{
+    width:100px;
+  }
+
+  .hero{
+    min-height:520px;
+  }
+
+  .hero h1{
+    font-size:39px;
+  }
+
+  .video-grid .poster{
+    height:215px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="logo">KOMA STAR+</div>
+
+  <nav class="desktop-nav">
+
+    <button class="active" onclick="goHome()">Home</button>
+    <button onclick="showCategory('Movies')">Movies</button>
+    <button onclick="showCategory('Shows')">Shows</button>
+    <button onclick="showCategory('Reality')">Reality</button>
+    <button onclick="showCategory('Live')">Live</button>
+    <button onclick="showCategory('Sports')">Sports</button>
+
+  </nav>
+
+  <div class="header-right">
+
+    <div class="search-box">
+      🔍
+      <input
+        id="searchInput"
+        placeholder="Search"
+        oninput="searchVideos(this.value)"
+      >
+    </div>
+
+    <button class="icon-btn" onclick="openUpload()">＋</button>
+
+    <button class="icon-btn" onclick="openNotifications()">🔔</button>
+
+    <div
+      class="profile-mini"
+      id="profileMini"
+      onclick="openProfiles()"
+    >
+      K
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main id="app">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        KOMA STAR+ ORIGINAL
+      </span>
+
+      <h1>THE LAST<br>STAR</h1>
+
+      <p>
+        A cinematic journey filled with mystery,
+        adventure and unexpected turns.
+        Stream premium entertainment on Koma Star Plus.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button
+          class="primary-btn"
+          onclick="playDemoHero()"
+        >
+          ▶ Watch Now
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="addHeroToList()"
+        >
+          ＋ My List
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="page">
+
+    <!-- CONTINUE -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          Continue Watching
+        </div>
+
+        <button class="see-all">
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="continueRow"
+      ></div>
+
+    </section>
+
+
+    <!-- TRENDING -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          🔥 Trending Now
+        </div>
+
+        <button
+          class="see-all"
+          onclick="showCategory('Trending')"
+        >
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="trendingRow"
+      ></div>
+
+    </section>
+
+
+    <!-- PROMO -->
+
+    <div class="promo">
+
+      <div>
+        <h2>Unlock Koma Star+ Premium</h2>
+        <p>More entertainment. One premium experience.</p>
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="openPremium()"
+      >
+        Explore
+      </button>
+
+    </div>
+
+
+    <!-- MOVIES -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          🎬 Popular Movies
+        </div>
+
+        <button
+          class="see-all"
+          onclick="showCategory('Movies')"
+        >
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="moviesRow"
+      ></div>
+
+    </section>
+
+
+    <!-- SHOWS -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          📺 Popular Shows
+        </div>
+
+        <button
+          class="see-all"
+          onclick="showCategory('Shows')"
+        >
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="showsRow"
+      ></div>
+
+    </section>
+
+
+    <!-- REALITY -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          🎭 Reality & Entertainment
+        </div>
+
+        <button
+          class="see-all"
+          onclick="showCategory('Reality')"
+        >
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="realityRow"
+      ></div>
+
+    </section>
+
+
+    <!-- LIVE -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          🔴 Live TV
+        </div>
+
+        <button
+          class="see-all"
+          onclick="showCategory('Live')"
+        >
+          See All
+        </button>
+      </div>
+
+      <div
+        class="video-row"
+        id="liveRow"
+      ></div>
+
+    </section>
+
+
+    <!-- NEW RELEASES -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          ✨ New Releases
+        </div>
+      </div>
+
+      <div
+        class="video-row"
+        id="newRow"
+      ></div>
+
+    </section>
+
+
+    <!-- SHORTS -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div class="section-title">
+          ⚡ Koma Shorts
+        </div>
+      </div>
+
+      <div
+        class="video-row"
+        id="shortsRow"
+      ></div>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="active"
+    onclick="goHome()"
+  >
+    <span>⌂</span>
+    Home
+  </button>
+
+  <button
+    onclick="showCategory('Movies')"
+  >
+    <span>🎬</span>
+    Movies
+  </button>
+
+  <button
+    onclick="showCategory('Live')"
+  >
+    <span>🔴</span>
+    Live
+  </button>
+
+  <button
+    onclick="openMyList()"
+  >
+    <span>♡</span>
+    My List
+  </button>
+
+  <button
+    onclick="openProfiles()"
+  >
+    <span>◉</span>
+    Profile
+  </button>
+
+</nav>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<!-- ================= PLAYER MODAL ================= -->
+
+<div
+  class="modal player-modal hidden"
+  id="playerModal"
+>
+
+  <div class="player-box">
+
+    <video
+      id="mainVideo"
+      controls
+      playsinline
+    ></video>
+
+    <button
+      class="close"
+      onclick="closePlayer()"
+    >
+      ✕
+    </button>
+
+    <div class="player-info">
+
+      <h2 id="playerTitle">
+        Koma Star+
+      </h2>
+
+      <p
+        id="playerDescription"
+        style="color:#aaa;margin-top:5px"
+      ></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= AUTH MODAL ================= -->
+
+<div
+  class="modal hidden"
+  id="authModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal('authModal')"
+    >
+      ✕
+    </button>
+
+    <div id="loginForm">
+
+      <div class="form-title">
+        Welcome to Koma Star+
+      </div>
+
+      <input
+        id="loginEmail"
+        class="input"
+        type="email"
+        placeholder="Email"
+      >
+
+      <input
+        id="loginPassword"
+        class="input"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="form-btn"
+        onclick="loginUser()"
+      >
+        Login
+      </button>
+
+      <div class="switch-text">
+
+        New user?
+
+        <button onclick="showRegister()">
+          Create account
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="registerForm"
+      class="hidden"
+    >
+
+      <div class="form-title">
+        Create Koma Star+ Account
+      </div>
+
+      <input
+        id="registerEmail"
+        class="input"
+        type="email"
+        placeholder="Email"
+      >
+
+      <input
+        id="registerPassword"
+        class="input"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="form-btn"
+        onclick="registerUser()"
+      >
+        Register
+      </button>
+
+      <div class="switch-text">
+
+        Already have an account?
+
+        <button onclick="showLogin()">
+          Login
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= UPLOAD MODAL ================= -->
+
+<div
+  class="modal hidden"
+  id="uploadModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal('uploadModal')"
+    >
+      ✕
+    </button>
+
+    <div class="form-title">
+      Upload to Koma Star+
+    </div>
+
+    <div class="upload-zone">
+
+      🎬
+
+      <div>
+        Select Video from Gallery
+      </div>
+
+      <label class="file-btn">
+
+        Choose Video
+
+        <input
+          id="videoFile"
+          type="file"
+          accept="video/*"
+          hidden
+          onchange="videoSelected()"
+        >
+
+      </label>
+
+      <div
+        id="videoFileName"
+        class="file-name"
+      ></div>
+
+    </div>
+
+
+    <div class="upload-zone">
+
+      🖼️
+
+      <div>
+        Select Thumbnail
+      </div>
+
+      <label class="file-btn">
+
+        Choose Image
+
+        <input
+          id="thumbFile"
+          type="file"
+          accept="image/*"
+          hidden
+          onchange="thumbSelected()"
+        >
+
+      </label>
+
+      <div
+        id="thumbFileName"
+        class="file-name"
+      ></div>
+
+    </div>
+
+
+    <input
+      id="uploadTitle"
+      class="input"
+      placeholder="Video title"
+    >
+
+    <textarea
+      id="uploadDescription"
+      class="input"
+      style="height:90px;padding-top:12px"
+      placeholder="Description"
+    ></textarea>
+
+
+    <select
+      id="uploadCategory"
+      class="input select"
+    >
+
+      <option value="Movies">
+        Movies
+      </option>
+
+      <option value="Shows">
+        TV Shows
+      </option>
+
+      <option value="Reality">
+        Reality
+      </option>
+
+      <option value="Sports">
+        Sports
+      </option>
+
+      <option value="Shorts">
+        Shorts
+      </option>
+
+      <option value="Live">
+        Live TV
+      </option>
+
+    </select>
+
+
+    <input
+      id="seriesName"
+      class="input"
+      placeholder="Series name (optional)"
+    >
+
+    <input
+      id="seasonNumber"
+      class="input"
+      type="number"
+      min="1"
+      placeholder="Season number (optional)"
+    >
+
+    <input
+      id="episodeNumber"
+      class="input"
+      type="number"
+      min="1"
+      placeholder="Episode number (optional)"
+    >
+
+
+    <div class="progress">
+
+      <div
+        class="progress-bar"
+        id="uploadProgress"
+      ></div>
+
+    </div>
+
+
+    <button
+      class="form-btn"
+      onclick="uploadVideo()"
+    >
+      Upload Video
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PROFILES ================= -->
+
+<div
+  class="modal hidden"
+  id="profileModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal('profileModal')"
+    >
+      ✕
+    </button>
+
+    <div class="form-title">
+      Who's watching?
+    </div>
+
+    <div
+      class="profile-grid"
+      id="profileGrid"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<div
+  class="modal hidden"
+  id="notificationModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal('notificationModal')"
+    >
+      ✕
+    </button>
+
+    <div class="form-title">
+      Notifications
+    </div>
+
+    <div class="setting">
+
+      <div>
+        🔥 New releases
+        <small>
+          New movies and shows are available.
+        </small>
+      </div>
+
+    </div>
+
+    <div class="setting">
+
+      <div>
+        ⭐ Koma Star+ Premium
+        <small>
+          Discover premium entertainment.
+        </small>
+      </div>
+
+    </div>
+
+    <div class="setting">
+
+      <div>
+        🎬 Continue Watching
+        <small>
+          Your watch history is saved on this device.
+        </small>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PREMIUM ================= -->
+
+<div
+  class="modal hidden"
+  id="premiumModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal('premiumModal')"
+    >
+      ✕
+    </button>
+
+    <div class="form-title">
+      Koma Star+ Premium
+    </div>
+
+    <div
+      style="
+      background:linear-gradient(135deg,#1c102b,#111);
+      border:1px solid #3a244d;
+      padding:22px;
+      border-radius:12px;
+      "
+    >
+
+      <h2>Premium Entertainment</h2>
+
+      <p style="color:#aaa;margin:10px 0 20px">
+
+        Unlock the premium section of
+        Koma Star Plus.
+
+      </p>
+
+      <div style="line-height:2;color:#ccc">
+
+        ✓ Premium movies<br>
+        ✓ Exclusive shows<br>
+        ✓ Early releases<br>
+        ✓ Premium reality content<br>
+        ✓ Multiple profiles
+
+      </div>
+
+      <button
+        class="form-btn"
+        onclick="toast('Premium demo activated')"
+      >
+        Continue
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= CATEGORY MODAL ================= -->
+
+<div
+  class="modal hidden"
+  id="categoryModal"
+>
+
+  <div
+    class="modal-box"
+    style="width:min(1000px,100%)"
+  >
+
+    <button
+      class="close"
+      onclick="closeModal('categoryModal')"
+    >
+      ✕
+    </button>
+
+    <div
+      class="form-title"
+      id="categoryTitle"
+    >
+      Movies
+    </div>
+
+    <div
+      class="video-grid"
+      id="categoryGrid"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+
+  authDomain:
+  "koma-star.firebaseapp.com",
+
+  projectId:
+  "koma-star",
+
+  storageBucket:
+  "koma-star.firebasestorage.app",
+
+  messagingSenderId:
+  "314141087569",
+
+  appId:
+  "1:314141087569:web:e1861e72db4f9ef5b12570",
+
+  measurementId:
+  "G-HYF2PZY5GR"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+
+/* =========================================================
+   DEMO CONTENT
+========================================================= */
+
+let videos = [
+
+{
+ id:"d1",
+ title:"The Last Star",
+ category:"Movies",
+ type:"movie",
+ poster:
+ "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "A cinematic adventure from Koma Star Plus.",
+ rating:"8.7",
+ year:"2026"
+},
+
+{
+ id:"d2",
+ title:"Midnight City",
+ category:"Movies",
+ type:"movie",
+ poster:
+ "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/movie.mp4",
+ description:
+ "A mysterious night changes everything.",
+ rating:"8.4",
+ year:"2026"
+},
+
+{
+ id:"d3",
+ title:"Hidden Kingdom",
+ category:"Movies",
+ type:"movie",
+ poster:
+ "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "A fantasy adventure.",
+ rating:"8.2",
+ year:"2026"
+},
+
+{
+ id:"d4",
+ title:"City Stories",
+ category:"Shows",
+ type:"series",
+ poster:
+ "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "Stories from a changing city.",
+ rating:"8.5",
+ year:"2026",
+ series:"City Stories",
+ season:1,
+ episode:1
+},
+
+{
+ id:"d5",
+ title:"House of Stars",
+ category:"Reality",
+ type:"reality",
+ poster:
+ "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/movie.mp4",
+ description:
+ "Competition, friendship and unexpected moments.",
+ rating:"8.9",
+ year:"2026"
+},
+
+{
+ id:"d6",
+ title:"Music Live",
+ category:"Live",
+ type:"live",
+ poster:
+ "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "Live music entertainment.",
+ rating:"LIVE",
+ year:"NOW"
+},
+
+{
+ id:"d7",
+ title:"Football Live",
+ category:"Sports",
+ type:"live",
+ poster:
+ "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "Sports entertainment demo.",
+ rating:"LIVE",
+ year:"NOW"
+},
+
+{
+ id:"d8",
+ title:"Star Shorts",
+ category:"Shorts",
+ type:"short",
+ poster:
+ "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/movie.mp4",
+ description:
+ "Short-form entertainment.",
+ rating:"9.0",
+ year:"2026"
+},
+
+{
+ id:"d9",
+ title:"Beyond Tomorrow",
+ category:"Movies",
+ type:"movie",
+ poster:
+ "https://images.unsplash.com/photo-1518930259200-0e3e7b9f4f09?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/mov_bbb.mp4",
+ description:
+ "A journey beyond expectations.",
+ rating:"8.6",
+ year:"2026"
+},
+
+{
+ id:"d10",
+ title:"The Challenge",
+ category:"Reality",
+ type:"reality",
+ poster:
+ "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=700&q=80",
+ video:
+ "https://www.w3schools.com/html/movie.mp4",
+ description:
+ "A high-energy entertainment show.",
+ rating:"8.8",
+ year:"2026"
+}
+
+];
+
+
+/* =========================================================
+   LOCAL STATE
+========================================================= */
+
+let myList =
+JSON.parse(localStorage.getItem("komaMyList") || "[]");
+
+let history =
+JSON.parse(localStorage.getItem("komaHistory") || "[]");
+
+let profiles =
+JSON.parse(localStorage.getItem("komaProfiles") || "null");
+
+if(!profiles){
+
+  profiles = [
+    {
+      id:"p1",
+      name:"Main",
+      icon:"K"
+    },
+    {
+      id:"p2",
+      name:"Family",
+      icon:"F"
+    },
+    {
+      id:"p3",
+      name:"Kids",
+      icon:"★"
+    }
+  ];
+
+  localStorage.setItem(
+    "komaProfiles",
+    JSON.stringify(profiles)
+  );
+}
+
+
+let currentProfile =
+localStorage.getItem("komaCurrentProfile") ||
+"p1";
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+let currentUser = null;
+
+
+onAuthStateChanged(auth, user => {
+
+  currentUser = user;
+
+  if(user){
+
+    document.getElementById("profileMini")
+      .textContent =
+      (user.email || "K")[0].toUpperCase();
+
+  }
+
+});
+
+
+window.loginUser = async function(){
+
+  const email =
+  document.getElementById("loginEmail").value.trim();
+
+  const password =
+  document.getElementById("loginPassword").value;
+
+  if(!email || !password){
+
+    toast("Enter email and password");
+
+    return;
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    closeModal("authModal");
+
+    toast("Login successful");
+
+  }catch(error){
+
+    toast(error.message);
+
+  }
+
+};
+
+
+window.registerUser = async function(){
+
+  const email =
+  document.getElementById("registerEmail").value.trim();
+
+  const password =
+  document.getElementById("registerPassword").value;
+
+  if(!email || !password){
+
+    toast("Enter email and password");
+
+    return;
+  }
+
+  if(password.length < 6){
+
+    toast("Password must contain at least 6 characters");
+
+    return;
+  }
+
+  try{
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    closeModal("authModal");
+
+    toast("Account created");
+
+  }catch(error){
+
+    toast(error.message);
+
+  }
+
+};
+
+
+/* =========================================================
+   VIDEO CARD
+========================================================= */
+
+function videoCard(v){
+
+  return `
+
+    <div
+      class="card"
+      onclick="playVideo('${escapeAttr(v.id)}')"
+    >
+
+      <div style="position:relative">
+
+        <img
+          class="poster"
+          src="${escapeAttr(v.poster)}"
+          loading="lazy"
+          onerror="this.src='https://via.placeholder.com/500x700/151515/ffffff?text=Koma+Star%2B'"
+        >
+
+        ${
+          v.category === "Live"
+          ?
+          `<span class="badge">● LIVE</span>`
+          :
+          v.category === "Premium"
+          ?
+          `<span class="badge">★ VIP</span>`
+          :
+          ""
+        }
+
+      </div>
+
+      <div class="card-title">
+        ${escapeHTML(v.title)}
+      </div>
+
+      <div class="card-meta">
+
+        ${
+          v.rating
+          ?
+          `★ ${escapeHTML(v.rating)}`
+          :
+          ""
+        }
+
+        ${v.year ? " • " + escapeHTML(v.year) : ""}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   RENDER HOME
+========================================================= */
+
+function renderHome(){
+
+  renderRow(
+    "trendingRow",
+    videos.slice(0,8)
+  );
+
+  renderRow(
+    "moviesRow",
+    videos.filter(v => v.category === "Movies").slice(0,8)
+  );
+
+  renderRow(
+    "showsRow",
+    videos.filter(v => v.category === "Shows").slice(0,8)
+  );
+
+  renderRow(
+    "realityRow",
+    videos.filter(v => v.category === "Reality").slice(0,8)
+  );
+
+  renderRow(
+    "liveRow",
+    videos.filter(v => v.category === "Live" || v.category === "Sports").slice(0,8)
+  );
+
+  renderRow(
+    "newRow",
+    [...videos].reverse().slice(0,8)
+  );
+
+  renderRow(
+    "shortsRow",
+    videos.filter(v => v.category === "Shorts").slice(0,8)
+  );
+
+  renderContinue();
+
+}
+
+
+function renderRow(id,list){
+
+  const el =
+  document.getElementById(id);
+
+  if(!el) return;
+
+  el.innerHTML =
+  list.length
+  ?
+  list.map(videoCard).join("")
+  :
+  `<div style="color:#777;padding:20px">
+    No content available
+  </div>`;
+
+}
+
+
+function renderContinue(){
+
+  const list =
+  history
+  .map(id => videos.find(v => v.id === id))
+  .filter(Boolean);
+
+  renderRow(
+    "continueRow",
+    list
+  );
+
+}
+
+
+/* =========================================================
+   PLAY VIDEO
+========================================================= */
+
+window.playVideo = function(id){
+
+  const v =
+  videos.find(x => x.id === id);
+
+  if(!v) return;
+
+  document.getElementById("mainVideo").src =
+  v.video;
+
+  document.getElementById("playerTitle")
+    .textContent =
+    v.title;
+
+  document.getElementById("playerDescription")
+    .textContent =
+    v.description || "";
+
+  document.getElementById("playerModal")
+    .classList.remove("hidden");
+
+  document.getElementById("mainVideo")
+    .play()
+    .catch(()=>{});
+
+  history =
+  [
+    id,
+    ...history.filter(x => x !== id)
+  ].slice(0,15);
+
+  localStorage.setItem(
+    "komaHistory",
+    JSON.stringify(history)
+  );
+
+  renderContinue();
+
+};
+
+
+window.closePlayer = function(){
+
+  const video =
+  document.getElementById("mainVideo");
+
+  video.pause();
+
+  video.src = "";
+
+  document.getElementById("playerModal")
+    .classList.add("hidden");
+
+};
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+window.playDemoHero = function(){
+
+  playVideo("d1");
+
+};
+
+window.addHeroToList = function(){
+
+  if(!myList.includes("d1")){
+
+    myList.push("d1");
+
+    localStorage.setItem(
+      "komaMyList",
+      JSON.stringify(myList)
+    );
+
+    toast("Added to My List");
+
+  }else{
+
+    toast("Already in My List");
+
+  }
+
+};
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+window.showCategory = function(category){
+
+  let list;
+
+  if(category === "Trending"){
+
+    list = videos.slice(0,30);
+
+  }else{
+
+    list =
+    videos.filter(
+      v => v.category === category
+    );
+
+  }
+
+  document.getElementById("categoryTitle")
+    .textContent =
+    category;
+
+  document.getElementById("categoryGrid")
+    .innerHTML =
+    list.length
+    ?
+    list.map(videoCard).join("")
+    :
+    `
+      <div style="color:#888;padding:30px">
+        No content in ${escapeHTML(category)} yet.
+      </div>
+    `;
+
+  document.getElementById("categoryModal")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+window.searchVideos = function(text){
+
+  text =
+  text.trim().toLowerCase();
+
+  if(!text){
+
+    goHome();
+
+    return;
+  }
+
+  const results =
+  videos.filter(v =>
+    `${v.title} ${v.category} ${v.description || ""}`
+      .toLowerCase()
+      .includes(text)
+  );
+
+  document.getElementById("categoryTitle")
+    .textContent =
+    `Search results for "${text}"`;
+
+  document.getElementById("categoryGrid")
+    .innerHTML =
+    results.length
+    ?
+    results.map(videoCard).join("")
+    :
+    `
+      <div style="color:#888;padding:30px">
+        No results found.
+      </div>
+    `;
+
+  document.getElementById("categoryModal")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   MY LIST
+========================================================= */
+
+window.openMyList = function(){
+
+  const list =
+  myList
+  .map(id => videos.find(v => v.id === id))
+  .filter(Boolean);
+
+  document.getElementById("categoryTitle")
+    .textContent =
+    "My List";
+
+  document.getElementById("categoryGrid")
+    .innerHTML =
+    list.length
+    ?
+    list.map(videoCard).join("")
+    :
+    `
+      <div style="color:#888;padding:30px">
+        Your My List is empty.
+      </div>
+    `;
+
+  document.getElementById("categoryModal")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   PROFILES
+========================================================= */
+
+window.openProfiles = function(){
+
+  const grid =
+  document.getElementById("profileGrid");
+
+  grid.innerHTML =
+  profiles.map(p => `
+
+    <div
+      class="profile-item"
+      onclick="selectProfile('${p.id}')"
+    >
+
+      <div class="profile-avatar">
+        ${escapeHTML(p.icon)}
+      </div>
+
+      <p>
+        ${escapeHTML(p.name)}
+      </p>
+
+    </div>
+
+  `).join("");
+
+  document.getElementById("profileModal")
+    .classList.remove("hidden");
+
+};
+
+
+window.selectProfile = function(id){
+
+  currentProfile = id;
+
+  localStorage.setItem(
+    "komaCurrentProfile",
+    id
+  );
+
+  const p =
+  profiles.find(x => x.id === id);
+
+  if(p){
+
+    document.getElementById("profileMini")
+      .textContent =
+      p.icon;
+
+  }
+
+  closeModal("profileModal");
+
+  toast(
+    `Profile: ${p ? p.name : "Main"}`
+  );
+
+};
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+window.openNotifications = function(){
+
+  document.getElementById("notificationModal")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   PREMIUM
+========================================================= */
+
+window.openPremium = function(){
+
+  document.getElementById("premiumModal")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   AUTH UI
+========================================================= */
+
+function showAuth(){
+
+  document.getElementById("authModal")
+    .classList.remove("hidden");
+
+}
+
+
+window.showRegister = function(){
+
+  document.getElementById("loginForm")
+    .classList.add("hidden");
+
+  document.getElementById("registerForm")
+    .classList.remove("hidden");
+
+};
+
+
+window.showLogin = function(){
+
+  document.getElementById("registerForm")
+    .classList.add("hidden");
+
+  document.getElementById("loginForm")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+window.openUpload = function(){
+
+  if(!currentUser){
+
+    showAuth();
+
+    toast("Login first to upload");
+
+    return;
+  }
+
+  document.getElementById("uploadModal")
+    .classList.remove("hidden");
+
+};
+
+
+window.videoSelected = function(){
+
+  const file =
+  document.getElementById("videoFile").files[0];
+
+  document.getElementById("videoFileName")
+    .textContent =
+    file ? file.name : "";
+
+};
+
+
+window.thumbSelected = function(){
+
+  const file =
+  document.getElementById("thumbFile").files[0];
+
+  document.getElementById("thumbFileName")
+    .textContent =
+    file ? file.name : "";
+
+};
+
+
+window.uploadVideo = async function(){
+
+  if(!currentUser){
+
+    toast("Login required");
+
+    return;
+  }
+
+  const videoFile =
+  document.getElementById("videoFile").files[0];
+
+  const thumbFile =
+  document.getElementById("thumbFile").files[0];
+
+  const title =
+  document.getElementById("uploadTitle")
+  .value.trim();
+
+  const description =
+  document.getElementById("uploadDescription")
+  .value.trim();
+
+  const category =
+  document.getElementById("uploadCategory")
+  .value;
+
+  const series =
+  document.getElementById("seriesName")
+  .value.trim();
+
+  const season =
+  document.getElementById("seasonNumber")
+  .value;
+
+  const episode =
+  document.getElementById("episodeNumber")
+  .value;
+
+
+  if(!videoFile){
+
+    toast("Select a video");
+
+    return;
+  }
+
+  if(!title){
+
+    toast("Enter video title");
+
+    return;
+  }
+
+
+  try{
+
+    toast("Uploading video...");
+
+    const safeName =
+    videoFile.name
+      .replace(/[^a-zA-Z0-9._-]/g,"_");
+
+    const videoPath =
+    `videos/${currentUser.uid}/${Date.now()}_${safeName}`;
+
+    const videoRef =
+    ref(storage,videoPath);
+
+    const task =
+    uploadBytesResumable(
+      videoRef,
+      videoFile,
+      {
+        contentType:videoFile.type
+      }
+    );
+
+
+    const videoURL =
+    await new Promise((resolve,reject)=>{
+
+      task.on(
+        "state_changed",
+
+        snapshot => {
+
+          const progress =
+          snapshot.totalBytes
+          ?
+          snapshot.bytesTransferred /
+          snapshot.totalBytes * 100
+          :
+          0;
+
+          document.getElementById(
+            "uploadProgress"
+          ).style.width =
+          progress + "%";
+
+        },
+
+        error => reject(error),
+
+        async ()=>{
+
+          try{
+
+            const url =
+            await getDownloadURL(task.snapshot.ref);
+
+            resolve(url);
+
+          }catch(error){
+
+            reject(error);
+
+          }
+
+        }
+
+      );
+
+    });
+
+
+    let thumbnailURL = "";
+
+
+    if(thumbFile){
+
+      const safeThumb =
+      thumbFile.name
+        .replace(/[^a-zA-Z0-9._-]/g,"_");
+
+      const thumbPath =
+      `thumbnails/${currentUser.uid}/${Date.now()}_${safeThumb}`;
+
+      const thumbRef =
+      ref(storage,thumbPath);
+
+      const thumbTask =
+      uploadBytesResumable(
+        thumbRef,
+        thumbFile,
+        {
+          contentType:thumbFile.type
+        }
+      );
+
+      thumbnailURL =
+      await new Promise((resolve,reject)=>{
+
+        thumbTask.on(
+          "state_changed",
+          ()=>{},
+          error=>reject(error),
+          async()=>{
+
+            try{
+
+              resolve(
+                await getDownloadURL(
+                  thumbTask.snapshot.ref
+                )
+              );
+
+            }catch(error){
+
+              reject(error);
+
+            }
+
+          }
+        );
+
+      });
+
+    }
+
+
+    if(!thumbnailURL){
+
+      thumbnailURL =
+      "https://via.placeholder.com/700x1000/151515/ffffff?text=Koma+Star%2B";
+
+    }
+
+
+    const data = {
+
+      title,
+      description,
+
+      category,
+
+      series,
+
+      season:
+      season
+      ?
+      Number(season)
+      :
+      null,
+
+      episode:
+      episode
+      ?
+      Number(episode)
+      :
+      null,
+
+      videoURL,
+
+      thumbnailURL,
+
+      uid:
+      currentUser.uid,
+
+      email:
+      currentUser.email || "",
+
+      createdAt:
+      serverTimestamp(),
+
+      status:"published"
+
+    };
+
+
+    const doc =
+    await addDoc(
+      collection(db,"videos"),
+      data
+    );
+
+
+    videos.unshift({
+
+      id:doc.id,
+
+      title,
+
+      description,
+
+      category,
+
+      poster:thumbnailURL,
+
+      video:videoURL,
+
+      rating:"NEW",
+
+      year:"2026",
+
+      series,
+
+      season,
+      episode
+
+    });
+
+
+    renderHome();
+
+    closeModal("uploadModal");
+
+    clearUploadForm();
+
+    toast("Video uploaded successfully");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Upload failed: " +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   LOAD FIRESTORE VIDEOS
+========================================================= */
+
+async function loadCloudVideos(){
+
+  try{
+
+    const snapshot =
+    await getDocs(
+      collection(db,"videos")
+    );
+
+    const cloudVideos = [];
+
+    snapshot.forEach(doc => {
+
+      const d = doc.data();
+
+      if(!d.videoURL) return;
+
+      cloudVideos.push({
+
+        id:doc.id,
+
+        title:d.title || "Untitled",
+
+        description:
+        d.description || "",
+
+        category:
+        d.category || "Movies",
+
+        poster:
+        d.thumbnailURL ||
+        "https://via.placeholder.com/700x1000/151515/ffffff?text=Koma+Star%2B",
+
+        video:d.videoURL,
+
+        rating:"NEW",
+
+        year:"2026",
+
+        series:d.series || "",
+
+        season:d.season || null,
+
+        episode:d.episode || null
+
+      });
+
+    });
+
+
+    const existing =
+    new Set(
+      videos.map(v => v.id)
+    );
+
+
+    cloudVideos.forEach(v => {
+
+      if(!existing.has(v.id)){
+
+        videos.push(v);
+
+      }
+
+    });
+
+
+    renderHome();
+
+  }catch(error){
+
+    console.log(
+      "Cloud content unavailable:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SETTINGS / HOME
+========================================================= */
+
+window.goHome = function(){
+
+  document.getElementById("categoryModal")
+    .classList.add("hidden");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  renderHome();
+
+};
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+window.closeModal = function(id){
+
+  document.getElementById(id)
+    .classList.add("hidden");
+
+};
+
+
+document.querySelectorAll(".modal")
+.forEach(modal => {
+
+  modal.addEventListener(
+    "click",
+    e => {
+
+      if(e.target === modal){
+
+        modal.classList.add("hidden");
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   UPLOAD RESET
+========================================================= */
+
+function clearUploadForm(){
+
+  [
+    "videoFile",
+    "thumbFile",
+    "uploadTitle",
+    "uploadDescription",
+    "seriesName",
+    "seasonNumber",
+    "episodeNumber"
+  ].forEach(id => {
+
+    const el =
+    document.getElementById(id);
+
+    if(el){
+
+      if(el.type === "file"){
+
+        el.value = "";
+
+      }else{
+
+        el.value = "";
+
+      }
+
+    }
+
+  });
+
+
+  document.getElementById(
+    "videoFileName"
+  ).textContent = "";
+
+  document.getElementById(
+    "thumbFileName"
+  ).textContent = "";
+
+  document.getElementById(
+    "uploadProgress"
+  ).style.width = "0%";
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+window.toast = function(message){
+
+  const el =
+  document.getElementById("toast");
+
+  el.textContent =
+  message;
+
+  el.classList.add("show");
+
+  clearTimeout(
+    window.__toastTimer
+  );
+
+  window.__toastTimer =
+  setTimeout(()=>{
+
+    el.classList.remove("show");
+
+  },2500);
+
+};
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return escapeHTML(value);
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+renderHome();
+
+loadCloudVideos();
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  e => {
+
+    if(e.key === "Escape"){
+
+      closePlayer();
+
+      document.querySelectorAll(".modal")
+      .forEach(m =>
+        m.classList.add("hidden")
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
