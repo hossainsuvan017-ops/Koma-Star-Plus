@@ -3,50 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Koma Star Plus — Admin</title>
+<title>Koma Star Plus Admin</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   background:#070707;
   color:#fff;
-  font-family:Arial,Helvetica,sans-serif
+  font-family:Arial,sans-serif;
 }
+
 header{
-  background:linear-gradient(135deg,#160000,#080808);
+  background:linear-gradient(135deg,#250006,#080808);
   padding:18px;
+  border-bottom:1px solid #292929;
   position:sticky;
   top:0;
   z-index:10;
-  border-bottom:1px solid #272727
 }
-header h1{margin:0;font-size:22px}
-header p{margin:5px 0 0;color:#999;font-size:13px}
+
+header h1{
+  margin:0;
+  font-size:22px;
+}
+
+header p{
+  color:#999;
+  margin:6px 0 0;
+  font-size:13px;
+}
 
 .container{
-  width:min(1100px,94%);
-  margin:20px auto
+  width:94%;
+  max-width:1100px;
+  margin:20px auto;
 }
 
-.grid{
+.stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
-.card{
+.stat{
   background:#111;
   border:1px solid #292929;
   border-radius:14px;
-  padding:18px
+  padding:18px;
 }
-.card small{color:#999}
-.card strong{
+
+.stat small{
+  color:#999;
+}
+
+.stat b{
   display:block;
   font-size:28px;
-  margin-top:8px
+  margin-top:8px;
 }
 
 .panel{
@@ -54,147 +70,218 @@ header p{margin:5px 0 0;color:#999;font-size:13px}
   border:1px solid #292929;
   border-radius:16px;
   padding:20px;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
-h2{margin-top:0}
+h2{
+  margin-top:0;
+}
 
-.form-grid{
+.grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.full{
+  grid-column:1/-1;
 }
 
 label{
   display:block;
-  font-size:13px;
   color:#bbb;
-  margin-bottom:6px
+  font-size:13px;
+  margin-bottom:6px;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
   padding:12px;
-  background:#181818;
-  border:1px solid #333;
-  color:#fff;
   border-radius:9px;
-  outline:none
+  border:1px solid #333;
+  background:#181818;
+  color:#fff;
+  outline:none;
 }
 
-textarea{min-height:100px;resize:vertical}
-
-input:focus,select:focus,textarea:focus{
-  border-color:#e50914
+textarea{
+  min-height:100px;
+  resize:vertical;
 }
 
-.full{grid-column:1/-1}
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#e50914;
+}
 
 button{
   border:0;
   border-radius:9px;
-  padding:11px 16px;
+  padding:12px 18px;
+  font-weight:bold;
   cursor:pointer;
-  font-weight:bold
 }
 
 .primary{
   background:#e50914;
-  color:white
+  color:#fff;
 }
 
 .secondary{
   background:#292929;
-  color:white
+  color:#fff;
 }
 
 .danger{
-  background:#7d1010;
-  color:white
+  background:#781010;
+  color:#fff;
 }
 
-button:disabled{
-  opacity:.5;
-  cursor:not-allowed
-}
-
-.preview{
-  max-width:180px;
-  max-height:130px;
-  border-radius:10px;
+.preview-box{
   margin-top:10px;
-  display:block
+  background:#080808;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:10px;
 }
 
-.hidden{display:none}
-
-.library-search{
-  margin-bottom:15px
+.preview-img{
+  width:100%;
+  max-height:240px;
+  object-fit:contain;
+  border-radius:8px;
 }
 
-.item{
+.preview-video{
+  width:100%;
+  max-height:300px;
+  border-radius:8px;
+}
+
+.hidden{
+  display:none;
+}
+
+.file-name{
+  color:#999;
+  font-size:12px;
+  margin-top:6px;
+  word-break:break-all;
+}
+
+.notice{
+  background:#241d00;
+  border:1px solid #5d4b00;
+  color:#ffe98a;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:15px;
+  line-height:1.5;
+}
+
+.status{
+  display:none;
+  padding:12px;
+  border-radius:9px;
+  margin-bottom:15px;
+}
+
+.success{
+  background:#063d24;
+  color:#8cffbe;
+}
+
+.error{
+  background:#4b0808;
+  color:#ffaaaa;
+}
+
+.search{
+  margin-bottom:15px;
+}
+
+.content{
   background:#171717;
   border:1px solid #292929;
   border-radius:12px;
-  padding:14px;
-  margin-bottom:10px
+  padding:15px;
+  margin-bottom:10px;
 }
 
-.item-title{
+.content-title{
   font-size:17px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .meta{
   color:#999;
   font-size:12px;
-  margin:7px 0
+  margin:7px 0;
 }
 
 .badge{
   display:inline-block;
-  padding:4px 8px;
+  padding:5px 9px;
   border-radius:20px;
   background:#292929;
+  margin-right:5px;
   font-size:11px;
-  margin-right:5px
 }
 
-.badge.free{background:#075b32}
-.badge.premium{background:#8a5a00}
+.free{
+  background:#075c32;
+}
+
+.premium{
+  background:#795000;
+}
 
 .actions{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:10px
+  margin-top:10px;
 }
-
-.status{
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:15px;
-  display:none
-}
-
-.success{background:#063d23;color:#7cffb5}
-.error{background:#4a0808;color:#ff9b9b}
 
 .empty{
   text-align:center;
   color:#777;
-  padding:25px
+  padding:25px;
 }
 
-@media(max-width:800px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .form-grid{grid-template-columns:1fr}
+@media(max-width:750px){
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
 }
 
-@media(max-width:500px){
-  .grid{grid-template-columns:1fr 1fr}
-  .container{width:94%}
-  .panel{padding:14px}
+@media(max-width:450px){
+  .container{
+    width:92%;
+  }
+
+  .panel{
+    padding:14px;
+  }
+
+  .stats{
+    gap:8px;
+  }
+
+  .stat{
+    padding:13px;
+  }
 }
 </style>
 </head>
@@ -202,229 +289,402 @@ button:disabled{
 <body>
 
 <header>
-  <h1>⭐ Koma Star Plus — Admin Panel</h1>
-  <p>Content Management Dashboard</p>
+  <h1>⭐ Koma Star Plus Admin</h1>
+  <p>Content Management</p>
 </header>
 
 <div class="container">
 
   <div id="status" class="status"></div>
 
-  <!-- DASHBOARD -->
-  <div class="grid">
-    <div class="card">
-      <small>Total Content</small>
-      <strong id="totalVideos">0</strong>
-    </div>
-
-    <div class="card">
-      <small>Free Content</small>
-      <strong id="freeVideos">0</strong>
-    </div>
-
-    <div class="card">
-      <small>Premium Content</small>
-      <strong id="premiumVideos">0</strong>
-    </div>
-
-    <div class="card">
-      <small>Total Episodes</small>
-      <strong id="totalEpisodes">0</strong>
-    </div>
+  <div class="notice">
+    <b>Gallery Upload:</b>
+    আপনি Gallery থেকে ছবি ও ভিডিও নির্বাচন করে preview করতে পারবেন।
+    Firebase Spark-এ Storage না থাকায় নির্বাচিত ভিডিওটি permanent online storage-এ
+    আপলোড করা হচ্ছে না।
   </div>
 
+  <!-- STATS -->
+
+  <div class="stats">
+
+    <div class="stat">
+      <small>Total Content</small>
+      <b id="total">0</b>
+    </div>
+
+    <div class="stat">
+      <small>Free Watch</small>
+      <b id="freeCount">0</b>
+    </div>
+
+    <div class="stat">
+      <small>Premium</small>
+      <b id="premiumCount">0</b>
+    </div>
+
+    <div class="stat">
+      <small>Episodes</small>
+      <b id="episodeCount">0</b>
+    </div>
+
+  </div>
+
+
   <!-- ADD CONTENT -->
+
   <div class="panel">
-    <h2>➕ Add Content</h2>
+
+    <h2>➕ Add Movie / Show</h2>
 
     <form id="contentForm">
 
-      <div class="form-grid">
+      <div class="grid">
 
         <div>
           <label>Title</label>
-          <input id="title" required placeholder="Movie / Show name">
+          <input
+            id="title"
+            required
+            placeholder="Movie or Show name">
         </div>
 
         <div>
-          <label>Type</label>
+          <label>Content Type</label>
+
           <select id="type">
-            <option value="movie">Movie</option>
-            <option value="series">Series / Serial</option>
-            <option value="reality">Reality Show</option>
-            <option value="sports">Sports</option>
-            <option value="live">Live TV</option>
+
+            <option value="movie">
+              Movie
+            </option>
+
+            <option value="series">
+              Series / Serial
+            </option>
+
+            <option value="reality">
+              Reality Show
+            </option>
+
+            <option value="sports">
+              Sports
+            </option>
+
+            <option value="live">
+              Live TV
+            </option>
+
           </select>
         </div>
+
 
         <div>
           <label>Category</label>
-          <input id="category" placeholder="Action, Drama, Comedy...">
+
+          <input
+            id="category"
+            placeholder="Drama / Action / Comedy">
         </div>
+
 
         <div>
           <label>Access</label>
+
           <select id="access">
-            <option value="free">Free Watch</option>
-            <option value="premium">Premium</option>
+
+            <option value="free">
+              🆓 Free Watch
+            </option>
+
+            <option value="premium">
+              👑 Premium
+            </option>
+
           </select>
         </div>
 
+
         <div>
-          <label>Year</label>
-          <input id="year" type="number" placeholder="2026">
+          <label>Release Year</label>
+
+          <input
+            id="year"
+            type="number"
+            placeholder="2026">
         </div>
+
 
         <div>
           <label>Duration</label>
-          <input id="duration" placeholder="2h 10m">
+
+          <input
+            id="duration"
+            placeholder="2h 10m">
         </div>
 
-        <div>
-          <label>Thumbnail URL</label>
-          <input id="thumbnail" type="url" placeholder="https://.../poster.jpg">
-        </div>
+
+        <!-- THUMBNAIL -->
 
         <div>
-          <label>Video URL</label>
-          <input id="video" type="url" placeholder="https://.../video.mp4">
+
+          <label>
+            🖼️ Thumbnail From Gallery
+          </label>
+
+          <input
+            id="thumbnailFile"
+            type="file"
+            accept="image/*">
+
+          <div
+            id="imagePreviewBox"
+            class="preview-box hidden">
+
+            <img
+              id="imagePreview"
+              class="preview-img">
+
+            <div
+              id="imageName"
+              class="file-name">
+            </div>
+
+          </div>
+
         </div>
+
+
+        <!-- VIDEO -->
+
+        <div>
+
+          <label>
+            🎬 Video From Gallery
+          </label>
+
+          <input
+            id="videoFile"
+            type="file"
+            accept="video/*">
+
+          <div
+            id="videoPreviewBox"
+            class="preview-box hidden">
+
+            <video
+              id="videoPreview"
+              class="preview-video"
+              controls>
+            </video>
+
+            <div
+              id="videoName"
+              class="file-name">
+            </div>
+
+          </div>
+
+        </div>
+
 
         <div class="full">
+
           <label>Description</label>
-          <textarea id="description"
-          placeholder="Write description..."></textarea>
+
+          <textarea
+            id="description"
+            placeholder="Write movie/show description..."></textarea>
+
         </div>
 
-        <!-- LOCAL THUMBNAIL -->
-        <div>
-          <label>Choose Thumbnail From Gallery</label>
-          <input id="thumbnailFile" type="file" accept="image/*">
-          <img id="thumbnailPreview" class="preview hidden">
-        </div>
-
-        <!-- LOCAL VIDEO -->
-        <div>
-          <label>Choose Video From Gallery</label>
-          <input id="videoFile" type="file" accept="video/*">
-          <video id="videoPreview"
-                 class="preview hidden"
-                 controls></video>
-        </div>
 
         <div class="full">
-          <button class="primary" type="submit">
+
+          <button
+            type="submit"
+            class="primary">
             Publish Content
           </button>
 
-          <button class="secondary"
-                  type="button"
-                  onclick="resetForm()">
+          <button
+            type="button"
+            class="secondary"
+            onclick="clearForm()">
             Clear
           </button>
+
         </div>
 
       </div>
 
     </form>
+
   </div>
 
+
   <!-- CONTENT LIBRARY -->
+
   <div class="panel">
+
     <h2>🎬 Content Library</h2>
 
     <input
       id="search"
-      class="library-search"
-      placeholder="Search movies, series, reality shows..."
-    >
+      class="search"
+      placeholder="Search content...">
 
     <div id="contentList">
-      <div class="empty">Loading...</div>
+      <div class="empty">
+        Loading...
+      </div>
     </div>
+
   </div>
 
+
   <!-- EPISODES -->
+
   <div class="panel">
+
     <h2>📺 Add Episode</h2>
 
     <form id="episodeForm">
 
-      <div class="form-grid">
+      <div class="grid">
 
         <div>
-          <label>Series ID</label>
-          <input id="seriesId"
-                 required
-                 placeholder="Firestore video ID">
+          <label>Series Name</label>
+
+          <input
+            id="episodeSeries"
+            required
+            placeholder="Series name">
         </div>
 
+
         <div>
-          <label>Season Number</label>
-          <input id="season"
-                 type="number"
-                 min="1"
-                 value="1">
+          <label>Season</label>
+
+          <input
+            id="season"
+            type="number"
+            min="1"
+            value="1">
         </div>
+
 
         <div>
           <label>Episode Number</label>
-          <input id="episode"
-                 type="number"
-                 min="1"
-                 value="1">
+
+          <input
+            id="episodeNumber"
+            type="number"
+            min="1"
+            value="1">
         </div>
+
 
         <div>
           <label>Episode Title</label>
-          <input id="episodeTitle"
-                 required
-                 placeholder="Episode title">
+
+          <input
+            id="episodeTitle"
+            required
+            placeholder="Episode title">
         </div>
 
+
         <div>
-          <label>Access</label>
+          <label>Episode Access</label>
+
           <select id="episodeAccess">
-            <option value="free">Free Episode</option>
-            <option value="premium">Premium</option>
+
+            <option value="free">
+              🆓 Free Episode
+            </option>
+
+            <option value="premium">
+              👑 Premium
+            </option>
+
           </select>
         </div>
 
+
         <div>
-          <label>Episode Video URL</label>
-          <input id="episodeVideo"
-                 type="url"
-                 required
-                 placeholder="https://.../episode.mp4">
+          <label>Episode Thumbnail</label>
+
+          <input
+            id="episodeThumbnail"
+            type="file"
+            accept="image/*">
+
         </div>
 
-        <div class="full">
-          <label>Episode Thumbnail URL</label>
-          <input id="episodeThumbnail"
-                 type="url"
-                 placeholder="https://.../episode.jpg">
-        </div>
 
         <div class="full">
-          <button class="primary" type="submit">
+
+          <label>
+            🎬 Episode Video From Gallery
+          </label>
+
+          <input
+            id="episodeVideo"
+            type="file"
+            accept="video/*">
+
+          <div
+            id="episodeVideoPreviewBox"
+            class="preview-box hidden">
+
+            <video
+              id="episodeVideoPreview"
+              class="preview-video"
+              controls>
+            </video>
+
+          </div>
+
+        </div>
+
+
+        <div class="full">
+
+          <button
+            class="primary"
+            type="submit">
+
             Add Episode
+
           </button>
+
         </div>
 
       </div>
 
     </form>
+
   </div>
 
-  <!-- EPISODE LIBRARY -->
+
+  <!-- EPISODE LIST -->
+
   <div class="panel">
+
     <h2>📚 Episode Library</h2>
+
     <div id="episodeList">
-      <div class="empty">Loading...</div>
+
+      <div class="empty">
+        Loading...
+      </div>
+
     </div>
+
   </div>
 
 </div>
+
 
 <script type="module">
 
@@ -437,7 +697,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  updateDoc,
   deleteDoc,
   doc,
   serverTimestamp
@@ -445,43 +704,64 @@ import {
 
 
 /* =========================
-   FIREBASE CONFIG
+   FIREBASE
 ========================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
-  authDomain: "koma-star.firebaseapp.com",
-  projectId: "koma-star",
-  storageBucket: "koma-star.firebasestorage.app",
-  messagingSenderId: "314141087569",
-  appId: "1:314141087569:web:e1861e72db4f9ef5b12570",
-  measurementId: "G-HYF2PZY5GR"
+
+  apiKey:
+    "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+
+  authDomain:
+    "koma-star.firebaseapp.com",
+
+  projectId:
+    "koma-star",
+
+  storageBucket:
+    "koma-star.firebasestorage.app",
+
+  messagingSenderId:
+    "314141087569",
+
+  appId:
+    "1:314141087569:web:e1861e72db4f9ef5b12570",
+
+  measurementId:
+    "G-HYF2PZY5GR"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(app);
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let contents=[];
+let episodes=[];
+
+let imageURL=null;
+let videoURL=null;
+let episodeVideoURL=null;
 
 
 /* =========================
    HELPERS
 ========================= */
 
-const $ = id => document.getElementById(id);
-
-function showStatus(message,type="success"){
-
-  const box=$("status");
-
-  box.textContent=message;
-  box.className="status "+type;
-  box.style.display="block";
-
-  setTimeout(()=>{
-    box.style.display="none";
-  },4000);
+function $(id){
+  return document.getElementById(id);
 }
 
-function escapeHtml(value){
+
+function safe(value){
 
   return String(value ?? "")
     .replaceAll("&","&amp;")
@@ -489,90 +769,248 @@ function escapeHtml(value){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
+}
+
+
+function message(text,type="success"){
+
+  const box=$("status");
+
+  box.textContent=text;
+
+  box.className=
+    "status "+
+    (type==="error" ? "error" : "success");
+
+  box.style.display="block";
+
+  setTimeout(()=>{
+
+    box.style.display="none";
+
+  },4000);
+
 }
 
 
 /* =========================
-   DATA
+   IMAGE GALLERY
 ========================= */
 
-let videos=[];
-let episodes=[];
+$("thumbnailFile").addEventListener(
+  "change",
+  event=>{
 
-let editingVideoId=null;
+    const file=
+      event.target.files[0];
+
+    if(imageURL){
+
+      URL.revokeObjectURL(imageURL);
+
+    }
+
+    if(!file){
+
+      $("imagePreviewBox")
+        .classList.add("hidden");
+
+      return;
+
+    }
+
+    imageURL=
+      URL.createObjectURL(file);
+
+    $("imagePreview").src=
+      imageURL;
+
+    $("imageName").textContent=
+      file.name;
+
+    $("imagePreviewBox")
+      .classList.remove("hidden");
+
+  }
+);
+
+
+/* =========================
+   VIDEO GALLERY
+========================= */
+
+$("videoFile").addEventListener(
+  "change",
+  event=>{
+
+    const file=
+      event.target.files[0];
+
+    if(videoURL){
+
+      URL.revokeObjectURL(videoURL);
+
+    }
+
+    if(!file){
+
+      $("videoPreviewBox")
+        .classList.add("hidden");
+
+      $("videoPreview")
+        .removeAttribute("src");
+
+      return;
+
+    }
+
+    videoURL=
+      URL.createObjectURL(file);
+
+    $("videoPreview").src=
+      videoURL;
+
+    $("videoName").textContent=
+      file.name;
+
+    $("videoPreviewBox")
+      .classList.remove("hidden");
+
+  }
+);
+
+
+/* =========================
+   EPISODE VIDEO
+========================= */
+
+$("episodeVideo").addEventListener(
+  "change",
+  event=>{
+
+    const file=
+      event.target.files[0];
+
+    if(episodeVideoURL){
+
+      URL.revokeObjectURL(
+        episodeVideoURL
+      );
+
+    }
+
+    if(!file){
+
+      $("episodeVideoPreviewBox")
+        .classList.add("hidden");
+
+      return;
+
+    }
+
+    episodeVideoURL=
+      URL.createObjectURL(file);
+
+    $("episodeVideoPreview").src=
+      episodeVideoURL;
+
+    $("episodeVideoPreviewBox")
+      .classList.remove("hidden");
+
+  }
+);
 
 
 /* =========================
    LOAD CONTENT
 ========================= */
 
-async function loadVideos(){
+async function loadContents(){
 
   try{
 
-    const snap=await getDocs(
-      collection(db,"videos")
-    );
+    const snap=
+      await getDocs(
+        collection(db,"videos")
+      );
 
-    videos=[];
+    contents=[];
 
     snap.forEach(item=>{
 
-      videos.push({
+      contents.push({
+
         id:item.id,
+
         ...item.data()
+
       });
 
     });
 
-    renderVideos();
+    renderContents();
+
     updateStats();
 
   }catch(error){
 
     console.error(error);
 
-    showStatus(
-      "Videos load failed: "+error.message,
+    message(
+      "Content load failed: "+
+      error.message,
       "error"
     );
 
   }
+
 }
 
+
+/* =========================
+   LOAD EPISODES
+========================= */
 
 async function loadEpisodes(){
 
   try{
 
-    const snap=await getDocs(
-      collection(db,"episodes")
-    );
+    const snap=
+      await getDocs(
+        collection(db,"episodes")
+      );
 
     episodes=[];
 
     snap.forEach(item=>{
 
       episodes.push({
+
         id:item.id,
+
         ...item.data()
+
       });
 
     });
 
     renderEpisodes();
+
     updateStats();
 
   }catch(error){
 
     console.error(error);
 
-    showStatus(
-      "Episodes load failed: "+error.message,
+    message(
+      "Episode load failed: "+
+      error.message,
       "error"
     );
 
   }
+
 }
 
 
@@ -582,114 +1020,140 @@ async function loadEpisodes(){
 
 function updateStats(){
 
-  $("totalVideos").textContent=videos.length;
+  $("total").textContent=
+    contents.length;
 
-  $("freeVideos").textContent=
-    videos.filter(v=>v.access==="free").length;
+  $("freeCount").textContent=
+    contents.filter(
+      x=>x.access==="free"
+    ).length;
 
-  $("premiumVideos").textContent=
-    videos.filter(v=>v.access==="premium").length;
+  $("premiumCount").textContent=
+    contents.filter(
+      x=>x.access==="premium"
+    ).length;
 
-  $("totalEpisodes").textContent=
+  $("episodeCount").textContent=
     episodes.length;
+
 }
 
 
 /* =========================
-   RENDER VIDEOS
+   RENDER CONTENT
 ========================= */
 
-function renderVideos(){
-
-  const box=$("contentList");
+function renderContents(){
 
   const query=
-    $("search").value.trim().toLowerCase();
+    $("search")
+      .value
+      .trim()
+      .toLowerCase();
 
-  const filtered=videos.filter(v=>{
+  const list=
+    contents.filter(item=>{
 
-    const text=`
-      ${v.title||""}
-      ${v.type||""}
-      ${v.category||""}
-    `.toLowerCase();
+      const text=
+        `${item.title||""}
+         ${item.type||""}
+         ${item.category||""}`
+        .toLowerCase();
 
-    return text.includes(query);
-  });
+      return text.includes(query);
 
-  if(!filtered.length){
+    });
 
-    box.innerHTML=
-      `<div class="empty">No content found.</div>`;
+
+  if(!list.length){
+
+    $("contentList").innerHTML=
+      `<div class="empty">
+        No content found.
+       </div>`;
 
     return;
+
   }
 
-  box.innerHTML=filtered.map(v=>{
 
-    const accessClass=
-      v.access==="premium"
-      ? "premium"
-      : "free";
+  $("contentList").innerHTML=
+    list.map(item=>{
 
-    return `
+      const isPremium=
+        item.access==="premium";
 
-      <div class="item">
+      return `
 
-        <div class="item-title">
-          ${escapeHtml(v.title)}
+        <div class="content">
+
+          <div class="content-title">
+
+            ${safe(item.title)}
+
+          </div>
+
+          <div class="meta">
+
+            <span class="badge">
+
+              ${safe(item.type)}
+
+            </span>
+
+            <span class="badge ${
+              isPremium
+              ?"premium"
+              :"free"
+            }">
+
+              ${
+                isPremium
+                ?"👑 PREMIUM"
+                :"🆓 FREE WATCH"
+              }
+
+            </span>
+
+          </div>
+
+          <div class="meta">
+
+            ${safe(item.category||"")}
+
+            ${
+              item.year
+              ? " • "+safe(item.year)
+              : ""
+            }
+
+          </div>
+
+          <div class="meta">
+
+            ID:
+            ${safe(item.id)}
+
+          </div>
+
+          <div class="actions">
+
+            <button
+              class="danger"
+              onclick="deleteContent('${item.id}')">
+
+              Delete
+
+            </button>
+
+          </div>
+
         </div>
 
-        <div class="meta">
+      `;
 
-          <span class="badge">
-            ${escapeHtml(v.type)}
-          </span>
+    }).join("");
 
-          <span class="badge ${accessClass}">
-            ${v.access==="premium"
-              ?"PREMIUM"
-              :"FREE WATCH"}
-          </span>
-
-          ${v.category
-            ? `<span class="badge">
-                ${escapeHtml(v.category)}
-               </span>`
-            :""
-          }
-
-        </div>
-
-        <div class="meta">
-          ID: ${escapeHtml(v.id)}
-        </div>
-
-        <div class="meta">
-          ${escapeHtml(v.description||"")}
-        </div>
-
-        <div class="actions">
-
-          <button
-            class="secondary"
-            onclick="editVideo('${v.id}')">
-            Edit
-          </button>
-
-          <button
-            class="danger"
-            onclick="removeVideo('${v.id}')">
-            Delete
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }).join("");
 }
 
 
@@ -699,74 +1163,83 @@ function renderVideos(){
 
 function renderEpisodes(){
 
-  const box=$("episodeList");
-
   if(!episodes.length){
 
-    box.innerHTML=
+    $("episodeList").innerHTML=
       `<div class="empty">
         No episodes found.
        </div>`;
 
     return;
+
   }
 
-  box.innerHTML=episodes.map(e=>{
 
-    return `
+  $("episodeList").innerHTML=
+    episodes.map(item=>{
 
-      <div class="item">
+      return `
 
-        <div class="item-title">
-          ${escapeHtml(e.episodeTitle||"Episode")}
+        <div class="content">
+
+          <div class="content-title">
+
+            ${safe(
+              item.episodeTitle ||
+              "Episode"
+            )}
+
+          </div>
+
+          <div class="meta">
+
+            ${safe(item.seriesName||"")}
+
+            • Season
+            ${safe(item.season)}
+
+            • Episode
+            ${safe(item.episodeNumber)}
+
+          </div>
+
+          <span class="badge ${
+            item.access==="premium"
+            ?"premium"
+            :"free"
+          }">
+
+            ${
+              item.access==="premium"
+              ?"👑 PREMIUM"
+              :"🆓 FREE"
+            }
+
+          </span>
+
+          <div class="actions">
+
+            <button
+              class="danger"
+              onclick="deleteEpisode('${item.id}')">
+
+              Delete
+
+            </button>
+
+          </div>
+
         </div>
 
-        <div class="meta">
+      `;
 
-          Season ${escapeHtml(e.season)}
-          • Episode ${escapeHtml(e.episode)}
+    }).join("");
 
-        </div>
-
-        <div class="meta">
-
-          Series ID:
-          ${escapeHtml(e.seriesId)}
-
-        </div>
-
-        <span class="badge ${
-          e.access==="premium"
-          ?"premium"
-          :"free"
-        }">
-
-          ${e.access==="premium"
-            ?"PREMIUM"
-            :"FREE"}
-
-        </span>
-
-        <div class="actions">
-
-          <button
-            class="danger"
-            onclick="removeEpisode('${e.id}')">
-            Delete
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }).join("");
 }
 
 
 /* =========================
-   ADD / UPDATE VIDEO
+   PUBLISH CONTENT
 ========================= */
 
 $("contentForm").addEventListener(
@@ -775,109 +1248,114 @@ $("contentForm").addEventListener(
 
     event.preventDefault();
 
-    const data={
+    const title=
+      $("title").value.trim();
 
-      title:$("title").value.trim(),
+    if(!title){
 
-      type:$("type").value,
-
-      category:$("category").value.trim(),
-
-      access:$("access").value,
-
-      year:$("year").value.trim(),
-
-      duration:$("duration").value.trim(),
-
-      thumbnail:$("thumbnail").value.trim(),
-
-      videoUrl:$("video").value.trim(),
-
-      description:$("description").value.trim(),
-
-      updatedAt:serverTimestamp()
-
-    };
-
-
-    if(!data.title){
-
-      showStatus(
-        "Title required",
+      message(
+        "Title দিন",
         "error"
       );
 
       return;
+
     }
 
 
-    if(!data.thumbnail){
+    const thumbnail=
+      $("thumbnailFile")
+        .files[0];
 
-      showStatus(
-        "Thumbnail URL required",
+    const video=
+      $("videoFile")
+        .files[0];
+
+
+    if(!thumbnail){
+
+      message(
+        "Thumbnail Gallery থেকে নির্বাচন করুন",
         "error"
       );
 
       return;
+
     }
 
 
-    if(!data.videoUrl){
+    if(!video){
 
-      showStatus(
-        "Video URL required",
+      message(
+        "Video Gallery থেকে নির্বাচন করুন",
         "error"
       );
 
       return;
+
     }
 
+
+    /*
+      IMPORTANT:
+      এই browser object URL permanent URL নয়।
+      তাই Firestore-এ সেটি save করা হচ্ছে না।
+    */
 
     try{
 
-      if(editingVideoId){
+      await addDoc(
+        collection(db,"videos"),
+        {
 
-        await updateDoc(
-          doc(
-            db,
-            "videos",
-            editingVideoId
-          ),
-          data
-        );
+          title:title,
 
-        showStatus(
-          "Content updated successfully"
-        );
+          type:$("type").value,
 
-        editingVideoId=null;
+          category:
+            $("category").value.trim(),
 
-      }else{
+          access:
+            $("access").value,
 
-        await addDoc(
-          collection(db,"videos"),
-          {
-            ...data,
-            createdAt:serverTimestamp()
-          }
-        );
+          year:
+            $("year").value.trim(),
 
-        showStatus(
-          "Content published successfully"
-        );
+          duration:
+            $("duration").value.trim(),
 
-      }
+          description:
+            $("description").value.trim(),
 
-      resetForm();
+          thumbnailFileName:
+            thumbnail.name,
 
-      await loadVideos();
+          videoFileName:
+            video.name,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+      message(
+        "Content metadata saved. Video file এখনো permanent online upload হয়নি."
+      );
+
+
+      clearForm();
+
+      await loadContents();
 
     }catch(error){
 
       console.error(error);
 
-      showStatus(
-        "Save failed: "+error.message,
+      message(
+        "Save failed: "+
+        error.message,
         "error"
       );
 
@@ -885,78 +1363,6 @@ $("contentForm").addEventListener(
 
   }
 );
-
-
-/* =========================
-   EDIT VIDEO
-========================= */
-
-window.editVideo=async function(id){
-
-  const item=videos.find(v=>v.id===id);
-
-  if(!item)return;
-
-  editingVideoId=id;
-
-  $("title").value=item.title||"";
-  $("type").value=item.type||"movie";
-  $("category").value=item.category||"";
-  $("access").value=item.access||"free";
-  $("year").value=item.year||"";
-  $("duration").value=item.duration||"";
-  $("thumbnail").value=item.thumbnail||"";
-  $("video").value=item.videoUrl||"";
-  $("description").value=item.description||"";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  showStatus(
-    "Editing: "+item.title
-  );
-};
-
-
-/* =========================
-   DELETE VIDEO
-========================= */
-
-window.removeVideo=async function(id){
-
-  const item=videos.find(v=>v.id===id);
-
-  if(!item)return;
-
-  if(!confirm(
-    `Delete "${item.title}"?`
-  ))return;
-
-  try{
-
-    await deleteDoc(
-      doc(db,"videos",id)
-    );
-
-    showStatus(
-      "Content deleted"
-    );
-
-    await loadVideos();
-
-  }catch(error){
-
-    console.error(error);
-
-    showStatus(
-      "Delete failed: "+error.message,
-      "error"
-    );
-
-  }
-};
 
 
 /* =========================
@@ -969,66 +1375,21 @@ $("episodeForm").addEventListener(
 
     event.preventDefault();
 
-    const data={
 
-      seriesId:$("seriesId").value.trim(),
-
-      season:Number(
-        $("season").value
-      ),
-
-      episode:Number(
-        $("episode").value
-      ),
-
-      episodeTitle:
-        $("episodeTitle").value.trim(),
-
-      access:
-        $("episodeAccess").value,
-
-      videoUrl:
-        $("episodeVideo").value.trim(),
-
-      thumbnail:
-        $("episodeThumbnail").value.trim(),
-
-      createdAt:
-        serverTimestamp()
-
-    };
+    const video=
+      $("episodeVideo")
+        .files[0];
 
 
-    if(!data.seriesId){
+    if(!video){
 
-      showStatus(
-        "Series ID required",
+      message(
+        "Episode video Gallery থেকে নির্বাচন করুন",
         "error"
       );
 
       return;
-    }
 
-
-    if(!data.episodeTitle){
-
-      showStatus(
-        "Episode title required",
-        "error"
-      );
-
-      return;
-    }
-
-
-    if(!data.videoUrl){
-
-      showStatus(
-        "Episode video URL required",
-        "error"
-      );
-
-      return;
     }
 
 
@@ -1036,14 +1397,50 @@ $("episodeForm").addEventListener(
 
       await addDoc(
         collection(db,"episodes"),
-        data
+        {
+
+          seriesName:
+            $("episodeSeries")
+              .value
+              .trim(),
+
+          season:
+            Number(
+              $("season").value
+            ),
+
+          episodeNumber:
+            Number(
+              $("episodeNumber").value
+            ),
+
+          episodeTitle:
+            $("episodeTitle")
+              .value
+              .trim(),
+
+          access:
+            $("episodeAccess").value,
+
+          videoFileName:
+            video.name,
+
+          createdAt:
+            serverTimestamp()
+
+        }
       );
 
-      showStatus(
-        "Episode added successfully"
+
+      message(
+        "Episode metadata saved. Video file এখনো permanent online upload হয়নি."
       );
+
 
       $("episodeForm").reset();
+
+      $("episodeVideoPreviewBox")
+        .classList.add("hidden");
 
       await loadEpisodes();
 
@@ -1051,7 +1448,7 @@ $("episodeForm").addEventListener(
 
       console.error(error);
 
-      showStatus(
+      message(
         "Episode save failed: "+
         error.message,
         "error"
@@ -1064,14 +1461,53 @@ $("episodeForm").addEventListener(
 
 
 /* =========================
+   DELETE CONTENT
+========================= */
+
+window.deleteContent=
+async function(id){
+
+  if(!confirm(
+    "এই content delete করবেন?"
+  ))return;
+
+
+  try{
+
+    await deleteDoc(
+      doc(db,"videos",id)
+    );
+
+    message(
+      "Content deleted"
+    );
+
+    await loadContents();
+
+  }catch(error){
+
+    message(
+      "Delete failed: "+
+      error.message,
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =========================
    DELETE EPISODE
 ========================= */
 
-window.removeEpisode=async function(id){
+window.deleteEpisode=
+async function(id){
 
   if(!confirm(
-    "Delete this episode?"
+    "এই episode delete করবেন?"
   ))return;
+
 
   try{
 
@@ -1079,7 +1515,7 @@ window.removeEpisode=async function(id){
       doc(db,"episodes",id)
     );
 
-    showStatus(
+    message(
       "Episode deleted"
     );
 
@@ -1087,42 +1523,30 @@ window.removeEpisode=async function(id){
 
   }catch(error){
 
-    console.error(error);
-
-    showStatus(
-      "Episode delete failed: "+
+    message(
+      "Delete failed: "+
       error.message,
       "error"
     );
 
   }
+
 };
 
 
 /* =========================
-   SEARCH
+   CLEAR
 ========================= */
 
-$("search").addEventListener(
-  "input",
-  renderVideos
-);
-
-
-/* =========================
-   RESET FORM
-========================= */
-
-window.resetForm=function(){
-
-  editingVideoId=null;
+window.clearForm=
+function(){
 
   $("contentForm").reset();
 
-  $("thumbnailPreview")
+  $("imagePreviewBox")
     .classList.add("hidden");
 
-  $("videoPreview")
+  $("videoPreviewBox")
     .classList.add("hidden");
 
   $("videoPreview")
@@ -1132,86 +1556,12 @@ window.resetForm=function(){
 
 
 /* =========================
-   GALLERY PREVIEW
+   SEARCH
 ========================= */
 
-let thumbnailObjectURL=null;
-
-$("thumbnailFile").addEventListener(
-  "change",
-  event=>{
-
-    const file=
-      event.target.files[0];
-
-    const img=
-      $("thumbnailPreview");
-
-    if(thumbnailObjectURL){
-
-      URL.revokeObjectURL(
-        thumbnailObjectURL
-      );
-
-    }
-
-    if(!file){
-
-      img.classList.add("hidden");
-
-      return;
-    }
-
-    thumbnailObjectURL=
-      URL.createObjectURL(file);
-
-    img.src=
-      thumbnailObjectURL;
-
-    img.classList.remove("hidden");
-
-  }
-);
-
-
-let videoObjectURL=null;
-
-$("videoFile").addEventListener(
-  "change",
-  event=>{
-
-    const file=
-      event.target.files[0];
-
-    const video=
-      $("videoPreview");
-
-    if(videoObjectURL){
-
-      URL.revokeObjectURL(
-        videoObjectURL
-      );
-
-    }
-
-    if(!file){
-
-      video.classList.add("hidden");
-
-      video.removeAttribute("src");
-
-      return;
-    }
-
-    videoObjectURL=
-      URL.createObjectURL(file);
-
-    video.src=
-      videoObjectURL;
-
-    video.classList.remove("hidden");
-
-  }
+$("search").addEventListener(
+  "input",
+  renderContents
 );
 
 
@@ -1219,7 +1569,7 @@ $("videoFile").addEventListener(
    START
 ========================= */
 
-loadVideos();
+loadContents();
 loadEpisodes();
 
 </script>
