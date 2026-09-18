@@ -2,107 +2,72 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Koma Star Plus Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koma Star Plus - Admin Panel</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+}
 
 body{
-  margin:0;
-  background:#070707;
-  color:#fff;
-  font-family:Arial,sans-serif;
+  background:#080808;
+  color:white;
 }
 
 header{
-  background:linear-gradient(135deg,#250006,#080808);
-  padding:18px;
-  border-bottom:1px solid #292929;
-  position:sticky;
-  top:0;
-  z-index:10;
+  background:linear-gradient(135deg,#111,#260000);
+  padding:20px;
+  text-align:center;
+  border-bottom:1px solid #333;
 }
 
 header h1{
-  margin:0;
-  font-size:22px;
+  color:#ff2020;
+  font-size:28px;
 }
 
 header p{
-  color:#999;
-  margin:6px 0 0;
-  font-size:13px;
+  color:#aaa;
+  margin-top:6px;
 }
 
 .container{
-  width:94%;
+  width:95%;
   max-width:1100px;
   margin:20px auto;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.stat{
-  background:#111;
-  border:1px solid #292929;
-  border-radius:14px;
-  padding:18px;
-}
-
-.stat small{
-  color:#999;
-}
-
-.stat b{
-  display:block;
-  font-size:28px;
-  margin-top:8px;
-}
-
-.panel{
-  background:#101010;
+.card{
+  background:#121212;
   border:1px solid #292929;
   border-radius:16px;
   padding:20px;
   margin-bottom:20px;
 }
 
-h2{
-  margin-top:0;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.full{
-  grid-column:1/-1;
+.card h2{
+  margin-bottom:18px;
+  color:#fff;
 }
 
 label{
   display:block;
-  color:#bbb;
-  font-size:13px;
-  margin-bottom:6px;
+  margin:12px 0 7px;
+  color:#ccc;
+  font-size:14px;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
-  padding:12px;
+  padding:13px;
+  background:#1d1d1d;
+  color:white;
+  border:1px solid #444;
   border-radius:9px;
-  border:1px solid #333;
-  background:#181818;
-  color:#fff;
   outline:none;
 }
 
@@ -111,177 +76,121 @@ textarea{
   resize:vertical;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#e50914;
+input:focus,select:focus,textarea:focus{
+  border-color:#ff2020;
 }
 
 button{
   border:0;
+  padding:13px 18px;
   border-radius:9px;
-  padding:12px 18px;
-  font-weight:bold;
   cursor:pointer;
+  font-weight:bold;
 }
 
-.primary{
+.btn{
   background:#e50914;
-  color:#fff;
+  color:white;
+  width:100%;
+  margin-top:18px;
 }
 
-.secondary{
-  background:#292929;
-  color:#fff;
+.btn:hover{
+  background:#ff2630;
 }
 
-.danger{
-  background:#781010;
-  color:#fff;
-}
-
-.preview-box{
+.delete{
+  background:#b00020;
+  color:white;
   margin-top:10px;
-  background:#080808;
-  border:1px solid #292929;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+@media(max-width:650px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.upload-box{
+  border:2px dashed #444;
+  padding:18px;
   border-radius:12px;
-  padding:10px;
+  margin-top:10px;
+  background:#0d0d0d;
 }
 
-.preview-img{
-  width:100%;
-  max-height:240px;
-  object-fit:contain;
-  border-radius:8px;
+.upload-box input{
+  background:transparent;
+  border:0;
+  padding:5px 0;
 }
 
-.preview-video{
-  width:100%;
-  max-height:300px;
-  border-radius:8px;
-}
-
-.hidden{
+.preview{
+  margin-top:15px;
   display:none;
 }
 
-.file-name{
-  color:#999;
-  font-size:12px;
-  margin-top:6px;
-  word-break:break-all;
+.preview img{
+  width:160px;
+  max-width:100%;
+  border-radius:10px;
+  display:block;
 }
 
-.notice{
-  background:#241d00;
-  border:1px solid #5d4b00;
-  color:#ffe98a;
-  padding:12px;
+.preview video{
+  width:100%;
+  max-height:300px;
   border-radius:10px;
-  margin-bottom:15px;
-  line-height:1.5;
+  display:block;
 }
 
 .status{
-  display:none;
+  margin-top:15px;
   padding:12px;
-  border-radius:9px;
-  margin-bottom:15px;
-}
-
-.success{
-  background:#063d24;
-  color:#8cffbe;
-}
-
-.error{
-  background:#4b0808;
-  color:#ffaaaa;
-}
-
-.search{
-  margin-bottom:15px;
-}
-
-.content{
+  border-radius:8px;
+  display:none;
   background:#171717;
-  border:1px solid #292929;
+}
+
+.item{
+  background:#181818;
+  border:1px solid #303030;
   border-radius:12px;
   padding:15px;
-  margin-bottom:10px;
+  margin-top:12px;
 }
 
-.content-title{
-  font-size:17px;
-  font-weight:bold;
-}
-
-.meta{
-  color:#999;
-  font-size:12px;
-  margin:7px 0;
+.item h3{
+  margin-bottom:8px;
 }
 
 .badge{
   display:inline-block;
   padding:5px 9px;
-  border-radius:20px;
-  background:#292929;
-  margin-right:5px;
-  font-size:11px;
+  border-radius:6px;
+  background:#333;
+  font-size:12px;
+  margin:3px;
 }
 
 .free{
-  background:#075c32;
+  background:#087f23;
 }
 
 .premium{
-  background:#795000;
+  background:#8d0909;
 }
 
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-
-.empty{
-  text-align:center;
-  color:#777;
-  padding:25px;
-}
-
-@media(max-width:750px){
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-}
-
-@media(max-width:450px){
-  .container{
-    width:92%;
-  }
-
-  .panel{
-    padding:14px;
-  }
-
-  .stats{
-    gap:8px;
-  }
-
-  .stat{
-    padding:13px;
-  }
+.small{
+  color:#999;
+  font-size:13px;
+  margin-top:5px;
 }
 </style>
 </head>
@@ -289,399 +198,231 @@ button{
 <body>
 
 <header>
-  <h1>⭐ Koma Star Plus Admin</h1>
-  <p>Content Management</p>
+  <h1>⭐ KOMA STAR PLUS</h1>
+  <p>Admin Panel</p>
 </header>
 
 <div class="container">
 
-  <div id="status" class="status"></div>
+<!-- ADD MOVIE / SHOW -->
 
-  <div class="notice">
-    <b>Gallery Upload:</b>
-    আপনি Gallery থেকে ছবি ও ভিডিও নির্বাচন করে preview করতে পারবেন।
-    Firebase Spark-এ Storage না থাকায় নির্বাচিত ভিডিওটি permanent online storage-এ
-    আপলোড করা হচ্ছে না।
-  </div>
+<div class="card">
 
-  <!-- STATS -->
+<h2>🎬 Add Movie / Show</h2>
 
-  <div class="stats">
+<div class="grid">
 
-    <div class="stat">
-      <small>Total Content</small>
-      <b id="total">0</b>
-    </div>
+<div>
+<label>Title</label>
+<input id="title" type="text" placeholder="Enter movie/show name">
+</div>
 
-    <div class="stat">
-      <small>Free Watch</small>
-      <b id="freeCount">0</b>
-    </div>
+<div>
+<label>Content Type</label>
+<select id="type">
+<option value="movie">Movie</option>
+<option value="series">Series</option>
+<option value="reality">Reality Show</option>
+<option value="sports">Sports</option>
+<option value="live">Live TV</option>
+</select>
+</div>
 
-    <div class="stat">
-      <small>Premium</small>
-      <b id="premiumCount">0</b>
-    </div>
+<div>
+<label>Category</label>
+<input id="category" type="text" placeholder="Action, Drama, Comedy...">
+</div>
 
-    <div class="stat">
-      <small>Episodes</small>
-      <b id="episodeCount">0</b>
-    </div>
+<div>
+<label>Access</label>
+<select id="access">
+<option value="free">Free Watch</option>
+<option value="premium">Premium</option>
+</select>
+</div>
 
-  </div>
+<div>
+<label>Release Year</label>
+<input id="year" type="number" placeholder="2026">
+</div>
 
+<div>
+<label>Duration</label>
+<input id="duration" type="text" placeholder="2h 15m">
+</div>
 
-  <!-- ADD CONTENT -->
+</div>
 
-  <div class="panel">
+<label>Description</label>
+<textarea id="description" placeholder="Write description..."></textarea>
 
-    <h2>➕ Add Movie / Show</h2>
 
-    <form id="contentForm">
+<!-- THUMBNAIL -->
 
-      <div class="grid">
+<div class="upload-box">
 
-        <div>
-          <label>Title</label>
-          <input
-            id="title"
-            required
-            placeholder="Movie or Show name">
-        </div>
+<label>🖼️ Gallery থেকে Thumbnail নির্বাচন করুন</label>
 
-        <div>
-          <label>Content Type</label>
+<input
+  id="thumbnailFile"
+  type="file"
+  accept="image/*"
+>
 
-          <select id="type">
+<div id="imagePreview" class="preview">
+<img id="previewImage">
+</div>
 
-            <option value="movie">
-              Movie
-            </option>
+</div>
 
-            <option value="series">
-              Series / Serial
-            </option>
 
-            <option value="reality">
-              Reality Show
-            </option>
+<!-- VIDEO -->
 
-            <option value="sports">
-              Sports
-            </option>
+<div class="upload-box">
 
-            <option value="live">
-              Live TV
-            </option>
+<label>🎥 Gallery থেকে Video নির্বাচন করুন</label>
 
-          </select>
-        </div>
+<input
+  id="videoFile"
+  type="file"
+  accept="video/*"
+>
 
+<div id="videoPreview" class="preview">
 
-        <div>
-          <label>Category</label>
+<video id="previewVideo" controls playsinline></video>
 
-          <input
-            id="category"
-            placeholder="Drama / Action / Comedy">
-        </div>
+</div>
 
+</div>
 
-        <div>
-          <label>Access</label>
+<button class="btn" onclick="addVideo()">
+➕ Add Content
+</button>
 
-          <select id="access">
+<div id="videoStatus" class="status"></div>
 
-            <option value="free">
-              🆓 Free Watch
-            </option>
+</div>
 
-            <option value="premium">
-              👑 Premium
-            </option>
 
-          </select>
-        </div>
+<!-- ADD EPISODE -->
 
+<div class="card">
 
-        <div>
-          <label>Release Year</label>
+<h2>📺 Add Episode</h2>
 
-          <input
-            id="year"
-            type="number"
-            placeholder="2026">
-        </div>
+<div class="grid">
 
+<div>
+<label>Series Name</label>
+<input id="seriesName" type="text" placeholder="Series name">
+</div>
 
-        <div>
-          <label>Duration</label>
+<div>
+<label>Season</label>
+<input id="season" type="number" placeholder="1">
+</div>
 
-          <input
-            id="duration"
-            placeholder="2h 10m">
-        </div>
+<div>
+<label>Episode Number</label>
+<input id="episodeNumber" type="number" placeholder="1">
+</div>
 
+<div>
+<label>Episode Title</label>
+<input id="episodeTitle" type="text" placeholder="Episode title">
+</div>
 
-        <!-- THUMBNAIL -->
+</div>
 
-        <div>
+<label>Episode Access</label>
 
-          <label>
-            🖼️ Thumbnail From Gallery
-          </label>
+<select id="episodeAccess">
 
-          <input
-            id="thumbnailFile"
-            type="file"
-            accept="image/*">
+<option value="free">
+Free Episode
+</option>
 
-          <div
-            id="imagePreviewBox"
-            class="preview-box hidden">
+<option value="premium">
+Premium Episode
+</option>
 
-            <img
-              id="imagePreview"
-              class="preview-img">
+</select>
 
-            <div
-              id="imageName"
-              class="file-name">
-            </div>
 
-          </div>
+<div class="upload-box">
 
-        </div>
+<label>🖼️ Episode Thumbnail</label>
 
+<input
+ id="episodeThumbnail"
+ type="file"
+ accept="image/*"
+>
 
-        <!-- VIDEO -->
+<div id="episodeImagePreview" class="preview">
+<img id="previewEpisodeImage">
+</div>
 
-        <div>
+</div>
 
-          <label>
-            🎬 Video From Gallery
-          </label>
 
-          <input
-            id="videoFile"
-            type="file"
-            accept="video/*">
+<div class="upload-box">
 
-          <div
-            id="videoPreviewBox"
-            class="preview-box hidden">
+<label>🎥 Episode Video</label>
 
-            <video
-              id="videoPreview"
-              class="preview-video"
-              controls>
-            </video>
+<input
+ id="episodeVideo"
+ type="file"
+ accept="video/*"
+>
 
-            <div
-              id="videoName"
-              class="file-name">
-            </div>
+<div id="episodeVideoPreview" class="preview">
 
-          </div>
+<video
+ id="previewEpisodeVideo"
+ controls
+ playsinline>
+</video>
 
-        </div>
+</div>
 
+</div>
 
-        <div class="full">
 
-          <label>Description</label>
+<button class="btn" onclick="addEpisode()">
+➕ Add Episode
+</button>
 
-          <textarea
-            id="description"
-            placeholder="Write movie/show description..."></textarea>
+<div id="episodeStatus" class="status"></div>
 
-        </div>
+</div>
 
 
-        <div class="full">
+<!-- CONTENT LIBRARY -->
 
-          <button
-            type="submit"
-            class="primary">
-            Publish Content
-          </button>
+<div class="card">
 
-          <button
-            type="button"
-            class="secondary"
-            onclick="clearForm()">
-            Clear
-          </button>
+<h2>📚 Content Library</h2>
 
-        </div>
+<div id="contentList">
+Loading...
+</div>
 
-      </div>
+</div>
 
-    </form>
 
-  </div>
+<!-- EPISODE LIBRARY -->
 
+<div class="card">
 
-  <!-- CONTENT LIBRARY -->
+<h2>🎞️ Episode Library</h2>
 
-  <div class="panel">
+<div id="episodeList">
+Loading...
+</div>
 
-    <h2>🎬 Content Library</h2>
-
-    <input
-      id="search"
-      class="search"
-      placeholder="Search content...">
-
-    <div id="contentList">
-      <div class="empty">
-        Loading...
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- EPISODES -->
-
-  <div class="panel">
-
-    <h2>📺 Add Episode</h2>
-
-    <form id="episodeForm">
-
-      <div class="grid">
-
-        <div>
-          <label>Series Name</label>
-
-          <input
-            id="episodeSeries"
-            required
-            placeholder="Series name">
-        </div>
-
-
-        <div>
-          <label>Season</label>
-
-          <input
-            id="season"
-            type="number"
-            min="1"
-            value="1">
-        </div>
-
-
-        <div>
-          <label>Episode Number</label>
-
-          <input
-            id="episodeNumber"
-            type="number"
-            min="1"
-            value="1">
-        </div>
-
-
-        <div>
-          <label>Episode Title</label>
-
-          <input
-            id="episodeTitle"
-            required
-            placeholder="Episode title">
-        </div>
-
-
-        <div>
-          <label>Episode Access</label>
-
-          <select id="episodeAccess">
-
-            <option value="free">
-              🆓 Free Episode
-            </option>
-
-            <option value="premium">
-              👑 Premium
-            </option>
-
-          </select>
-        </div>
-
-
-        <div>
-          <label>Episode Thumbnail</label>
-
-          <input
-            id="episodeThumbnail"
-            type="file"
-            accept="image/*">
-
-        </div>
-
-
-        <div class="full">
-
-          <label>
-            🎬 Episode Video From Gallery
-          </label>
-
-          <input
-            id="episodeVideo"
-            type="file"
-            accept="video/*">
-
-          <div
-            id="episodeVideoPreviewBox"
-            class="preview-box hidden">
-
-            <video
-              id="episodeVideoPreview"
-              class="preview-video"
-              controls>
-            </video>
-
-          </div>
-
-        </div>
-
-
-        <div class="full">
-
-          <button
-            class="primary"
-            type="submit">
-
-            Add Episode
-
-          </button>
-
-        </div>
-
-      </div>
-
-    </form>
-
-  </div>
-
-
-  <!-- EPISODE LIST -->
-
-  <div class="panel">
-
-    <h2>📚 Episode Library</h2>
-
-    <div id="episodeList">
-
-      <div class="empty">
-        Loading...
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </div>
 
@@ -689,887 +430,687 @@ button{
 <script type="module">
 
 import {
-  initializeApp
+ initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  serverTimestamp
+ getFirestore,
+ collection,
+ addDoc,
+ getDocs,
+ deleteDoc,
+ doc,
+ serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE
-========================= */
-
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+ apiKey:
+ "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
 
-  authDomain:
-    "koma-star.firebaseapp.com",
+ authDomain:
+ "koma-star.firebaseapp.com",
 
-  projectId:
-    "koma-star",
+ projectId:
+ "koma-star",
 
-  storageBucket:
-    "koma-star.firebasestorage.app",
+ storageBucket:
+ "koma-star.firebasestorage.app",
 
-  messagingSenderId:
-    "314141087569",
+ messagingSenderId:
+ "314141087569",
 
-  appId:
-    "1:314141087569:web:e1861e72db4f9ef5b12570",
+ appId:
+ "1:314141087569:web:e1861e72db4f9ef5b12570",
 
-  measurementId:
-    "G-HYF2PZY5GR"
+ measurementId:
+ "G-HYF2PZY5GR"
 
 };
 
 
-const app =
-  initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db =
-  getFirestore(app);
+const db = getFirestore(app);
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* -------------------------
+   IMAGE PREVIEW
+------------------------- */
 
-let contents=[];
-let episodes=[];
+document
+.getElementById("thumbnailFile")
+.addEventListener("change", function(){
 
-let imageURL=null;
-let videoURL=null;
-let episodeVideoURL=null;
+ const file=this.files[0];
 
+ if(!file)return;
 
-/* =========================
-   HELPERS
-========================= */
+ const url=URL.createObjectURL(file);
 
-function $(id){
-  return document.getElementById(id);
-}
+ const img=document.getElementById("previewImage");
 
+ img.src=url;
 
-function safe(value){
+ document.getElementById("imagePreview")
+ .style.display="block";
 
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
+});
 
 
-function message(text,type="success"){
+/* -------------------------
+   VIDEO PREVIEW
+------------------------- */
 
-  const box=$("status");
+document
+.getElementById("videoFile")
+.addEventListener("change", function(){
 
-  box.textContent=text;
+ const file=this.files[0];
 
-  box.className=
-    "status "+
-    (type==="error" ? "error" : "success");
+ if(!file)return;
 
-  box.style.display="block";
+ const url=URL.createObjectURL(file);
 
-  setTimeout(()=>{
+ const video=document.getElementById("previewVideo");
 
-    box.style.display="none";
+ video.src=url;
 
-  },4000);
+ document.getElementById("videoPreview")
+ .style.display="block";
 
-}
-
-
-/* =========================
-   IMAGE GALLERY
-========================= */
-
-$("thumbnailFile").addEventListener(
-  "change",
-  event=>{
-
-    const file=
-      event.target.files[0];
-
-    if(imageURL){
-
-      URL.revokeObjectURL(imageURL);
-
-    }
-
-    if(!file){
-
-      $("imagePreviewBox")
-        .classList.add("hidden");
-
-      return;
-
-    }
-
-    imageURL=
-      URL.createObjectURL(file);
-
-    $("imagePreview").src=
-      imageURL;
-
-    $("imageName").textContent=
-      file.name;
-
-    $("imagePreviewBox")
-      .classList.remove("hidden");
-
-  }
-);
+});
 
 
-/* =========================
-   VIDEO GALLERY
-========================= */
+/* -------------------------
+   EPISODE IMAGE
+------------------------- */
 
-$("videoFile").addEventListener(
-  "change",
-  event=>{
+document
+.getElementById("episodeThumbnail")
+.addEventListener("change", function(){
 
-    const file=
-      event.target.files[0];
+ const file=this.files[0];
 
-    if(videoURL){
+ if(!file)return;
 
-      URL.revokeObjectURL(videoURL);
+ const url=URL.createObjectURL(file);
 
-    }
+ document.getElementById("previewEpisodeImage")
+ .src=url;
 
-    if(!file){
+ document.getElementById("episodeImagePreview")
+ .style.display="block";
 
-      $("videoPreviewBox")
-        .classList.add("hidden");
-
-      $("videoPreview")
-        .removeAttribute("src");
-
-      return;
-
-    }
-
-    videoURL=
-      URL.createObjectURL(file);
-
-    $("videoPreview").src=
-      videoURL;
-
-    $("videoName").textContent=
-      file.name;
-
-    $("videoPreviewBox")
-      .classList.remove("hidden");
-
-  }
-);
+});
 
 
-/* =========================
+/* -------------------------
    EPISODE VIDEO
-========================= */
+------------------------- */
 
-$("episodeVideo").addEventListener(
-  "change",
-  event=>{
+document
+.getElementById("episodeVideo")
+.addEventListener("change", function(){
 
-    const file=
-      event.target.files[0];
+ const file=this.files[0];
 
-    if(episodeVideoURL){
+ if(!file)return;
 
-      URL.revokeObjectURL(
-        episodeVideoURL
-      );
+ const url=URL.createObjectURL(file);
 
-    }
+ document.getElementById("previewEpisodeVideo")
+ .src=url;
 
-    if(!file){
+ document.getElementById("episodeVideoPreview")
+ .style.display="block";
 
-      $("episodeVideoPreviewBox")
-        .classList.add("hidden");
+});
 
-      return;
 
-    }
+/* -------------------------
+   ADD VIDEO
+------------------------- */
 
-    episodeVideoURL=
-      URL.createObjectURL(file);
+window.addVideo = async function(){
 
-    $("episodeVideoPreview").src=
-      episodeVideoURL;
+ const title =
+ document.getElementById("title").value.trim();
 
-    $("episodeVideoPreviewBox")
-      .classList.remove("hidden");
+ if(!title){
+
+  alert("Title দিন");
+
+  return;
+
+ }
+
+ const thumbnail =
+ document.getElementById("thumbnailFile").files[0];
+
+ const video =
+ document.getElementById("videoFile").files[0];
+
+
+ const data={
+
+  title:title,
+
+  type:
+  document.getElementById("type").value,
+
+  category:
+  document.getElementById("category").value,
+
+  access:
+  document.getElementById("access").value,
+
+  year:
+  document.getElementById("year").value,
+
+  duration:
+  document.getElementById("duration").value,
+
+  description:
+  document.getElementById("description").value,
+
+  thumbnailFileName:
+  thumbnail ? thumbnail.name : "",
+
+  videoFileName:
+  video ? video.name : "",
+
+  createdAt:
+  serverTimestamp()
+
+ };
+
+
+ try{
+
+  await addDoc(
+   collection(db,"videos"),
+   data
+  );
+
+  showStatus(
+   "videoStatus",
+   "✅ Content successfully added!"
+  );
+
+  clearVideoForm();
+
+  loadVideos();
+
+ }catch(error){
+
+  console.error(error);
+
+  showStatus(
+   "videoStatus",
+   "❌ Error: "+error.message
+  );
+
+ }
+
+};
+
+
+/* -------------------------
+   ADD EPISODE
+------------------------- */
+
+window.addEpisode = async function(){
+
+ const seriesName =
+ document.getElementById("seriesName")
+ .value.trim();
+
+ const episodeTitle =
+ document.getElementById("episodeTitle")
+ .value.trim();
+
+ if(!seriesName){
+
+  alert("Series Name দিন");
+
+  return;
+
+ }
+
+ if(!episodeTitle){
+
+  alert("Episode Title দিন");
+
+  return;
+
+ }
+
+
+ const thumbnail =
+ document.getElementById("episodeThumbnail")
+ .files[0];
+
+ const video =
+ document.getElementById("episodeVideo")
+ .files[0];
+
+
+ const data={
+
+  seriesName:seriesName,
+
+  season:
+  document.getElementById("season").value,
+
+  episodeNumber:
+  document.getElementById("episodeNumber").value,
+
+  episodeTitle:episodeTitle,
+
+  access:
+  document.getElementById("episodeAccess").value,
+
+  thumbnailFileName:
+  thumbnail ? thumbnail.name : "",
+
+  videoFileName:
+  video ? video.name : "",
+
+  createdAt:
+  serverTimestamp()
+
+ };
+
+
+ try{
+
+  await addDoc(
+   collection(db,"episodes"),
+   data
+  );
+
+  showStatus(
+   "episodeStatus",
+   "✅ Episode successfully added!"
+  );
+
+  clearEpisodeForm();
+
+  loadEpisodes();
+
+ }catch(error){
+
+  console.error(error);
+
+  showStatus(
+   "episodeStatus",
+   "❌ Error: "+error.message
+  );
+
+ }
+
+};
+
+
+/* -------------------------
+   LOAD VIDEOS
+------------------------- */
+
+async function loadVideos(){
+
+ const list=
+ document.getElementById("contentList");
+
+ list.innerHTML="Loading...";
+
+ try{
+
+  const snapshot=
+  await getDocs(
+   collection(db,"videos")
+  );
+
+  list.innerHTML="";
+
+  if(snapshot.empty){
+
+   list.innerHTML=
+   "<p>No content added yet.</p>";
+
+   return;
 
   }
-);
 
 
-/* =========================
-   LOAD CONTENT
-========================= */
+  snapshot.forEach(item=>{
 
-async function loadContents(){
+   const data=item.data();
 
-  try{
+   const accessClass=
+   data.access==="premium"
+   ? "premium"
+   : "free";
 
-    const snap=
-      await getDocs(
-        collection(db,"videos")
-      );
+   const div=
+   document.createElement("div");
 
-    contents=[];
+   div.className="item";
 
-    snap.forEach(item=>{
+   div.innerHTML=`
 
-      contents.push({
+   <h3>
+   ${escapeHTML(data.title || "")}
+   </h3>
 
-        id:item.id,
+   <span class="badge">
+   ${escapeHTML(data.type || "")}
+   </span>
 
-        ...item.data()
+   <span class="badge ${accessClass}">
+   ${data.access==="premium"
+   ?"PREMIUM"
+   :"FREE WATCH"}
+   </span>
 
-      });
+   <p class="small">
+   Category:
+   ${escapeHTML(data.category || "-")}
+   </p>
 
-    });
+   <p class="small">
+   Year:
+   ${escapeHTML(data.year || "-")}
+   </p>
 
-    renderContents();
+   <p class="small">
+   Duration:
+   ${escapeHTML(data.duration || "-")}
+   </p>
 
-    updateStats();
+   <p class="small">
+   Thumbnail:
+   ${escapeHTML(data.thumbnailFileName || "None")}
+   </p>
 
-  }catch(error){
+   <p class="small">
+   Video:
+   ${escapeHTML(data.videoFileName || "None")}
+   </p>
 
-    console.error(error);
+   <button
+   class="delete"
+   onclick="deleteVideo('${item.id}')">
+   🗑 Delete
+   </button>
 
-    message(
-      "Content load failed: "+
-      error.message,
-      "error"
-    );
+   `;
 
-  }
+   list.appendChild(div);
+
+  });
+
+
+ }catch(error){
+
+  list.innerHTML=
+  "❌ "+escapeHTML(error.message);
+
+ }
 
 }
 
 
-/* =========================
+/* -------------------------
+   DELETE VIDEO
+------------------------- */
+
+window.deleteVideo =
+async function(id){
+
+ if(!confirm(
+ "এই content delete করতে চান?"
+ ))return;
+
+ try{
+
+  await deleteDoc(
+   doc(db,"videos",id)
+  );
+
+  loadVideos();
+
+ }catch(error){
+
+  alert(error.message);
+
+ }
+
+};
+
+
+/* -------------------------
    LOAD EPISODES
-========================= */
+------------------------- */
 
 async function loadEpisodes(){
 
-  try{
+ const list=
+ document.getElementById("episodeList");
 
-    const snap=
-      await getDocs(
-        collection(db,"episodes")
-      );
+ list.innerHTML="Loading...";
 
-    episodes=[];
+ try{
 
-    snap.forEach(item=>{
+  const snapshot=
+  await getDocs(
+   collection(db,"episodes")
+  );
 
-      episodes.push({
+  list.innerHTML="";
 
-        id:item.id,
+  if(snapshot.empty){
 
-        ...item.data()
+   list.innerHTML=
+   "<p>No episodes added yet.</p>";
 
-      });
-
-    });
-
-    renderEpisodes();
-
-    updateStats();
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "Episode load failed: "+
-      error.message,
-      "error"
-    );
+   return;
 
   }
+
+
+  snapshot.forEach(item=>{
+
+   const data=item.data();
+
+   const div=
+   document.createElement("div");
+
+   div.className="item";
+
+   div.innerHTML=`
+
+   <h3>
+   ${escapeHTML(data.seriesName || "")}
+   </h3>
+
+   <span class="badge">
+   S${escapeHTML(data.season || "1")}
+   </span>
+
+   <span class="badge">
+   EP ${escapeHTML(data.episodeNumber || "1")}
+   </span>
+
+   <span class="badge ${
+   data.access==="premium"
+   ?"premium"
+   :"free"
+   }">
+
+   ${
+   data.access==="premium"
+   ?"PREMIUM"
+   :"FREE EPISODE"
+   }
+
+   </span>
+
+   <p class="small">
+   Episode:
+   ${escapeHTML(data.episodeTitle || "")}
+   </p>
+
+   <p class="small">
+   Video:
+   ${escapeHTML(data.videoFileName || "None")}
+   </p>
+
+   <button
+   class="delete"
+   onclick="deleteEpisode('${item.id}')">
+
+   🗑 Delete
+
+   </button>
+
+   `;
+
+   list.appendChild(div);
+
+  });
+
+
+ }catch(error){
+
+  list.innerHTML=
+  "❌ "+escapeHTML(error.message);
+
+ }
 
 }
 
 
-/* =========================
-   STATS
-========================= */
-
-function updateStats(){
-
-  $("total").textContent=
-    contents.length;
-
-  $("freeCount").textContent=
-    contents.filter(
-      x=>x.access==="free"
-    ).length;
-
-  $("premiumCount").textContent=
-    contents.filter(
-      x=>x.access==="premium"
-    ).length;
-
-  $("episodeCount").textContent=
-    episodes.length;
-
-}
-
-
-/* =========================
-   RENDER CONTENT
-========================= */
-
-function renderContents(){
-
-  const query=
-    $("search")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const list=
-    contents.filter(item=>{
-
-      const text=
-        `${item.title||""}
-         ${item.type||""}
-         ${item.category||""}`
-        .toLowerCase();
-
-      return text.includes(query);
-
-    });
-
-
-  if(!list.length){
-
-    $("contentList").innerHTML=
-      `<div class="empty">
-        No content found.
-       </div>`;
-
-    return;
-
-  }
-
-
-  $("contentList").innerHTML=
-    list.map(item=>{
-
-      const isPremium=
-        item.access==="premium";
-
-      return `
-
-        <div class="content">
-
-          <div class="content-title">
-
-            ${safe(item.title)}
-
-          </div>
-
-          <div class="meta">
-
-            <span class="badge">
-
-              ${safe(item.type)}
-
-            </span>
-
-            <span class="badge ${
-              isPremium
-              ?"premium"
-              :"free"
-            }">
-
-              ${
-                isPremium
-                ?"👑 PREMIUM"
-                :"🆓 FREE WATCH"
-              }
-
-            </span>
-
-          </div>
-
-          <div class="meta">
-
-            ${safe(item.category||"")}
-
-            ${
-              item.year
-              ? " • "+safe(item.year)
-              : ""
-            }
-
-          </div>
-
-          <div class="meta">
-
-            ID:
-            ${safe(item.id)}
-
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="danger"
-              onclick="deleteContent('${item.id}')">
-
-              Delete
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================
-   RENDER EPISODES
-========================= */
-
-function renderEpisodes(){
-
-  if(!episodes.length){
-
-    $("episodeList").innerHTML=
-      `<div class="empty">
-        No episodes found.
-       </div>`;
-
-    return;
-
-  }
-
-
-  $("episodeList").innerHTML=
-    episodes.map(item=>{
-
-      return `
-
-        <div class="content">
-
-          <div class="content-title">
-
-            ${safe(
-              item.episodeTitle ||
-              "Episode"
-            )}
-
-          </div>
-
-          <div class="meta">
-
-            ${safe(item.seriesName||"")}
-
-            • Season
-            ${safe(item.season)}
-
-            • Episode
-            ${safe(item.episodeNumber)}
-
-          </div>
-
-          <span class="badge ${
-            item.access==="premium"
-            ?"premium"
-            :"free"
-          }">
-
-            ${
-              item.access==="premium"
-              ?"👑 PREMIUM"
-              :"🆓 FREE"
-            }
-
-          </span>
-
-          <div class="actions">
-
-            <button
-              class="danger"
-              onclick="deleteEpisode('${item.id}')">
-
-              Delete
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================
-   PUBLISH CONTENT
-========================= */
-
-$("contentForm").addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    const title=
-      $("title").value.trim();
-
-    if(!title){
-
-      message(
-        "Title দিন",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const thumbnail=
-      $("thumbnailFile")
-        .files[0];
-
-    const video=
-      $("videoFile")
-        .files[0];
-
-
-    if(!thumbnail){
-
-      message(
-        "Thumbnail Gallery থেকে নির্বাচন করুন",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!video){
-
-      message(
-        "Video Gallery থেকে নির্বাচন করুন",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    /*
-      IMPORTANT:
-      এই browser object URL permanent URL নয়।
-      তাই Firestore-এ সেটি save করা হচ্ছে না।
-    */
-
-    try{
-
-      await addDoc(
-        collection(db,"videos"),
-        {
-
-          title:title,
-
-          type:$("type").value,
-
-          category:
-            $("category").value.trim(),
-
-          access:
-            $("access").value,
-
-          year:
-            $("year").value.trim(),
-
-          duration:
-            $("duration").value.trim(),
-
-          description:
-            $("description").value.trim(),
-
-          thumbnailFileName:
-            thumbnail.name,
-
-          videoFileName:
-            video.name,
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-
-      message(
-        "Content metadata saved. Video file এখনো permanent online upload হয়নি."
-      );
-
-
-      clearForm();
-
-      await loadContents();
-
-    }catch(error){
-
-      console.error(error);
-
-      message(
-        "Save failed: "+
-        error.message,
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================
-   ADD EPISODE
-========================= */
-
-$("episodeForm").addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-
-    const video=
-      $("episodeVideo")
-        .files[0];
-
-
-    if(!video){
-
-      message(
-        "Episode video Gallery থেকে নির্বাচন করুন",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    try{
-
-      await addDoc(
-        collection(db,"episodes"),
-        {
-
-          seriesName:
-            $("episodeSeries")
-              .value
-              .trim(),
-
-          season:
-            Number(
-              $("season").value
-            ),
-
-          episodeNumber:
-            Number(
-              $("episodeNumber").value
-            ),
-
-          episodeTitle:
-            $("episodeTitle")
-              .value
-              .trim(),
-
-          access:
-            $("episodeAccess").value,
-
-          videoFileName:
-            video.name,
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-
-      message(
-        "Episode metadata saved. Video file এখনো permanent online upload হয়নি."
-      );
-
-
-      $("episodeForm").reset();
-
-      $("episodeVideoPreviewBox")
-        .classList.add("hidden");
-
-      await loadEpisodes();
-
-    }catch(error){
-
-      console.error(error);
-
-      message(
-        "Episode save failed: "+
-        error.message,
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================
-   DELETE CONTENT
-========================= */
-
-window.deleteContent=
-async function(id){
-
-  if(!confirm(
-    "এই content delete করবেন?"
-  ))return;
-
-
-  try{
-
-    await deleteDoc(
-      doc(db,"videos",id)
-    );
-
-    message(
-      "Content deleted"
-    );
-
-    await loadContents();
-
-  }catch(error){
-
-    message(
-      "Delete failed: "+
-      error.message,
-      "error"
-    );
-
-  }
-
-};
-
-
-/* =========================
+/* -------------------------
    DELETE EPISODE
-========================= */
+------------------------- */
 
-window.deleteEpisode=
+window.deleteEpisode =
 async function(id){
 
-  if(!confirm(
-    "এই episode delete করবেন?"
-  ))return;
+ if(!confirm(
+ "এই episode delete করতে চান?"
+ ))return;
 
+ try{
 
-  try{
+  await deleteDoc(
+   doc(db,"episodes",id)
+  );
 
-    await deleteDoc(
-      doc(db,"episodes",id)
-    );
+  loadEpisodes();
 
-    message(
-      "Episode deleted"
-    );
+ }catch(error){
 
-    await loadEpisodes();
+  alert(error.message);
 
-  }catch(error){
-
-    message(
-      "Delete failed: "+
-      error.message,
-      "error"
-    );
-
-  }
+ }
 
 };
 
 
-/* =========================
-   CLEAR
-========================= */
+/* -------------------------
+   STATUS
+------------------------- */
 
-window.clearForm=
-function(){
+function showStatus(id,message){
 
-  $("contentForm").reset();
+ const box=
+ document.getElementById(id);
 
-  $("imagePreviewBox")
-    .classList.add("hidden");
+ box.innerText=message;
 
-  $("videoPreviewBox")
-    .classList.add("hidden");
+ box.style.display="block";
 
-  $("videoPreview")
-    .removeAttribute("src");
+ setTimeout(()=>{
 
-};
+  box.style.display="none";
 
+ },4000);
 
-/* =========================
-   SEARCH
-========================= */
-
-$("search").addEventListener(
-  "input",
-  renderContents
-);
+}
 
 
-/* =========================
-   START
-========================= */
+/* -------------------------
+   CLEAR VIDEO FORM
+------------------------- */
 
-loadContents();
+function clearVideoForm(){
+
+ document.getElementById("title").value="";
+ document.getElementById("category").value="";
+ document.getElementById("year").value="";
+ document.getElementById("duration").value="";
+ document.getElementById("description").value="";
+
+ document.getElementById("thumbnailFile").value="";
+ document.getElementById("videoFile").value="";
+
+ document.getElementById("imagePreview")
+ .style.display="none";
+
+ document.getElementById("videoPreview")
+ .style.display="none";
+
+}
+
+
+/* -------------------------
+   CLEAR EPISODE FORM
+------------------------- */
+
+function clearEpisodeForm(){
+
+ document.getElementById("seriesName").value="";
+ document.getElementById("season").value="";
+ document.getElementById("episodeNumber").value="";
+ document.getElementById("episodeTitle").value="";
+
+ document.getElementById("episodeThumbnail").value="";
+ document.getElementById("episodeVideo").value="";
+
+ document.getElementById("episodeImagePreview")
+ .style.display="none";
+
+ document.getElementById("episodeVideoPreview")
+ .style.display="none";
+
+}
+
+
+/* -------------------------
+   SECURITY DISPLAY HELPER
+------------------------- */
+
+function escapeHTML(value){
+
+ return String(value)
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+
+}
+
+
+/* -------------------------
+   INITIAL LOAD
+------------------------- */
+
+loadVideos();
+
 loadEpisodes();
 
 </script>
