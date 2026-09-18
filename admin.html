@@ -3,1934 +3,1224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Koma Star Plus Admin</title>
+<title>Koma Star Plus — Admin</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#080808;color:#fff}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-
-#loginScreen{
-  min-height:100vh;display:flex;align-items:center;
-  justify-content:center;padding:20px;
-  background:radial-gradient(circle at top,#351010,#080808 55%)
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#070707;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif
 }
-.loginBox{
-  width:100%;max-width:420px;background:#151515;
-  border:1px solid #333;border-radius:22px;padding:30px
+header{
+  background:linear-gradient(135deg,#160000,#080808);
+  padding:18px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid #272727
 }
-.logo{text-align:center;font-size:30px;font-weight:900;margin-bottom:8px}
-.logo span,.brand span{color:#e50914}
-.loginSubtitle{text-align:center;color:#999;margin-bottom:25px}
+header h1{margin:0;font-size:22px}
+header p{margin:5px 0 0;color:#999;font-size:13px}
 
-label{display:block;color:#bbb;font-size:14px;margin-bottom:7px}
-.inputGroup{margin-bottom:16px}
+.container{
+  width:min(1100px,94%);
+  margin:20px auto
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px
+}
+
+.card{
+  background:#111;
+  border:1px solid #292929;
+  border-radius:14px;
+  padding:18px
+}
+.card small{color:#999}
+.card strong{
+  display:block;
+  font-size:28px;
+  margin-top:8px
+}
+
+.panel{
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px
+}
+
+h2{margin-top:0}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px
+}
+
+label{
+  display:block;
+  font-size:13px;
+  color:#bbb;
+  margin-bottom:6px
+}
+
 input,select,textarea{
-  width:100%;padding:13px 14px;border-radius:10px;
-  border:1px solid #333;background:#0e0e0e;color:#fff;outline:0
+  width:100%;
+  padding:12px;
+  background:#181818;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:9px;
+  outline:none
 }
+
 textarea{min-height:100px;resize:vertical}
-input:focus,select:focus,textarea:focus{border-color:#e50914}
 
-.primaryBtn,.saveBtn{
-  border:0;background:#e50914;color:white;
-  padding:13px 18px;border-radius:9px;font-weight:bold
-}
-.primaryBtn{width:100%}
-.message{text-align:center;color:#ff7777;margin-top:14px}
-
-.topbar{
-  height:65px;background:#101010;border-bottom:1px solid #292929;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 18px;position:sticky;top:0;z-index:10
-}
-.brand{font-size:21px;font-weight:900}
-.logoutBtn{
-  background:#222;color:#fff;border:1px solid #444;
-  padding:9px 14px;border-radius:8px
+input:focus,select:focus,textarea:focus{
+  border-color:#e50914
 }
 
-.layout{display:flex;min-height:calc(100vh - 65px)}
-.sidebar{
-  width:235px;background:#101010;border-right:1px solid #292929;
-  padding:15px 12px
-}
-.navBtn{
-  width:100%;text-align:left;border:0;background:transparent;
-  color:#bbb;padding:13px;border-radius:9px;margin-bottom:6px
-}
-.navBtn.active,.navBtn:hover{background:#e50914;color:#fff}
-
-.main{flex:1;padding:22px;min-width:0}
-.pageTitle{font-size:27px;margin-bottom:20px}
-
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:15px;margin-bottom:22px
-}
-.stat,.card{
-  background:#151515;border:1px solid #292929;
-  border-radius:15px;padding:20px
-}
-.statTitle{color:#999;font-size:14px}
-.statValue{font-size:30px;font-weight:900;margin-top:8px}
-
-.card{margin-bottom:20px}
-.cardTitle{font-size:19px;font-weight:bold;margin-bottom:17px}
-
-.formGrid{
-  display:grid;grid-template-columns:1fr 1fr;gap:15px
-}
 .full{grid-column:1/-1}
 
-.notice{
-  background:#171000;border:1px solid #5a4200;
-  color:#e7c76c;border-radius:12px;padding:14px;
-  margin-bottom:18px;line-height:1.6
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 16px;
+  cursor:pointer;
+  font-weight:bold
 }
 
-.fileBox{
-  border:1px dashed #555;background:#0e0e0e;
-  padding:15px;border-radius:10px
+.primary{
+  background:#e50914;
+  color:white
 }
+
+.secondary{
+  background:#292929;
+  color:white
+}
+
+.danger{
+  background:#7d1010;
+  color:white
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed
+}
+
 .preview{
-  width:100%;max-height:260px;object-fit:contain;
-  background:#050505;border-radius:10px;margin-top:12px
+  max-width:180px;
+  max-height:130px;
+  border-radius:10px;
+  margin-top:10px;
+  display:block
 }
 
-.submitRow{display:flex;gap:10px;margin-top:18px}
-.clearBtn{
-  border:0;background:#292929;color:#fff;
-  padding:12px 20px;border-radius:9px
+.hidden{display:none}
+
+.library-search{
+  margin-bottom:15px
 }
 
-.toolbar{display:flex;gap:10px;margin-bottom:15px}
-.toolbar input{flex:1}
+.item{
+  background:#171717;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:10px
+}
 
-.contentGrid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:15px
+.item-title{
+  font-size:17px;
+  font-weight:bold
 }
-.contentCard{
-  background:#111;border:1px solid #292929;
-  border-radius:14px;overflow:hidden
+
+.meta{
+  color:#999;
+  font-size:12px;
+  margin:7px 0
 }
-.contentCard img{
-  width:100%;height:180px;object-fit:cover;background:#222
-}
-.contentInfo{padding:14px}
-.contentTitle{font-weight:bold;font-size:17px;margin-bottom:7px}
-.meta{color:#999;font-size:13px;line-height:1.6}
+
 .badge{
-  display:inline-block;padding:5px 8px;border-radius:6px;
-  font-size:11px;margin-top:8px;font-weight:bold
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  background:#292929;
+  font-size:11px;
+  margin-right:5px
 }
-.free{background:#123d20;color:#5cff85}
-.premium{background:#47350b;color:#ffd45c}
 
-.cardActions{display:flex;gap:8px;margin-top:12px}
-.cardActions button{
-  flex:1;border:0;border-radius:7px;padding:9px
-}
-.editBtn{background:#292929;color:#fff}
-.deleteBtn{background:#5b1117;color:#ff8790}
+.badge.free{background:#075b32}
+.badge.premium{background:#8a5a00}
 
-.episodeRow{
-  padding:14px 0;border-bottom:1px solid #292929
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px
 }
-.episodeTitle{font-weight:bold}
-.episodeMeta{color:#999;font-size:13px;margin-top:5px}
-.episodeActions{display:flex;gap:8px;margin-top:10px}
-.episodeActions button{
-  border:0;border-radius:7px;padding:8px 12px
-}
-.smallEdit{background:#292929;color:#fff}
-.smallDelete{background:#5b1117;color:#ff8790}
 
-@media(max-width:900px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .contentGrid{grid-template-columns:repeat(2,1fr)}
+.status{
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:15px;
+  display:none
 }
-@media(max-width:700px){
-  .layout{display:block}
-  .sidebar{
-    width:100%;display:flex;overflow-x:auto;
-    border-right:0;border-bottom:1px solid #292929;padding:8px
-  }
-  .navBtn{width:auto;min-width:max-content;margin:0 4px 0 0}
-  .main{padding:15px}
-  .formGrid{grid-template-columns:1fr}
-  .full{grid-column:auto}
-  .contentGrid{grid-template-columns:1fr}
-  .submitRow{flex-direction:column}
-  .brand{font-size:18px}
+
+.success{background:#063d23;color:#7cffb5}
+.error{background:#4a0808;color:#ff9b9b}
+
+.empty{
+  text-align:center;
+  color:#777;
+  padding:25px
+}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .form-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:500px){
+  .grid{grid-template-columns:1fr 1fr}
+  .container{width:94%}
+  .panel{padding:14px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<section id="loginScreen">
-<div class="loginBox">
-
-  <div class="logo">
-    Koma <span>Star Plus</span>
-  </div>
-
-  <div class="loginSubtitle">Admin Panel</div>
-
-  <div class="inputGroup">
-    <label>Admin Email</label>
-    <input id="email" type="email" placeholder="Enter admin email">
-  </div>
-
-  <div class="inputGroup">
-    <label>Password</label>
-    <input id="password" type="password" placeholder="Enter password">
-  </div>
-
-  <button class="primaryBtn" id="loginBtn">Login</button>
-
-  <div id="loginMessage" class="message"></div>
-</div>
-</section>
-
-
-<!-- APP -->
-<section id="adminApp" class="hidden">
-
-<header class="topbar">
-  <div class="brand">
-    Koma <span>Star Plus</span> Admin
-  </div>
-
-  <button class="logoutBtn" id="logoutBtn">
-    Logout
-  </button>
+<header>
+  <h1>⭐ Koma Star Plus — Admin Panel</h1>
+  <p>Content Management Dashboard</p>
 </header>
 
-
-<div class="layout">
-
-<aside class="sidebar">
-
-  <button class="navBtn active" data-page="dashboard">
-    📊 Dashboard
-  </button>
-
-  <button class="navBtn" data-page="add">
-    ➕ Add Content
-  </button>
-
-  <button class="navBtn" data-page="content">
-    🎬 Content
-  </button>
-
-  <button class="navBtn" data-page="episodes">
-    📚 Episodes
-  </button>
-
-</aside>
-
-
-<main class="main">
-
-
-<!-- DASHBOARD -->
-<section id="dashboardPage">
-
-<h1 class="pageTitle">Dashboard</h1>
-
-<div class="stats">
-
-<div class="stat">
-<div class="statTitle">Total Content</div>
-<div class="statValue" id="totalContent">0</div>
-</div>
-
-<div class="stat">
-<div class="statTitle">Free Watch</div>
-<div class="statValue" id="freeContent">0</div>
-</div>
-
-<div class="stat">
-<div class="statTitle">Premium</div>
-<div class="statValue" id="premiumContent">0</div>
-</div>
-
-<div class="stat">
-<div class="statTitle">Episodes</div>
-<div class="statValue" id="totalEpisodes">0</div>
-</div>
-
-</div>
-
-<div class="card">
-<div class="cardTitle">Koma Star Plus Content System</div>
-
-<p style="color:#aaa;line-height:1.7">
-Admin Panel থেকে Movie, Serial, Reality Show,
-Sports, Live TV এবং Episodes পরিচালনা করতে পারবে।
-</p>
-</div>
-
-</section>
-
-
-<!-- ADD -->
-<section id="addPage" class="hidden">
-
-<h1 class="pageTitle">Add Content</h1>
-
-<div class="notice">
-<b>📱 Gallery Upload / Preview</b><br>
-Gallery থেকে Movie বা Thumbnail নির্বাচন করে
-আগে Preview করতে পারবে।<br><br>
-
-⚠️ Firebase Storage ব্যবহার না করায় Gallery-এর
-ফাইলটি নিজে থেকে online permanent upload হবে না।
-Publish করার জন্য নিচে একটি বৈধ direct video URL
-দিতে হবে।
-</div>
-
-
-<div class="card">
-
-<div class="cardTitle">Content Information</div>
-
-<div class="formGrid">
-
-<div class="inputGroup">
-<label>Title *</label>
-<input id="title" placeholder="Movie / Show name">
-</div>
-
-
-<div class="inputGroup">
-<label>Content Type *</label>
-
-<select id="type">
-<option value="Movie">Movie</option>
-<option value="Serial">Serial</option>
-<option value="Reality Show">Reality Show</option>
-<option value="Sports">Sports</option>
-<option value="Live TV">Live TV</option>
-</select>
-</div>
-
-
-<div class="inputGroup">
-<label>Category</label>
-<input id="category" placeholder="Action, Comedy, Drama">
-</div>
-
-
-<div class="inputGroup">
-<label>Access</label>
-
-<select id="access">
-<option value="free">🆓 Free Watch</option>
-<option value="premium">⭐ Premium</option>
-</select>
-</div>
-
-
-<div class="inputGroup">
-<label>Year</label>
-<input id="year" type="number" placeholder="2026">
-</div>
-
-
-<div class="inputGroup">
-<label>Duration</label>
-<input id="duration" placeholder="2h 10m">
-</div>
-
-
-<!-- GALLERY THUMBNAIL -->
-<div class="inputGroup">
-
-<label>🖼️ Thumbnail from Gallery</label>
-
-<div class="fileBox">
-
-<input
- id="thumbnailFile"
- type="file"
- accept="image/*"
->
-
-<img
- id="thumbnailPreview"
- class="preview hidden"
- alt="Thumbnail Preview"
->
-
-</div>
-
-</div>
-
-
-<!-- GALLERY VIDEO -->
-<div class="inputGroup">
-
-<label>🎥 Video from Gallery</label>
-
-<div class="fileBox">
-
-<input
- id="videoFile"
- type="file"
- accept="video/*"
->
-
-<video
- id="videoPreview"
- class="preview hidden"
- controls
-></video>
-
-</div>
-
-</div>
-
-
-<div class="inputGroup full">
-
-<label>🖼️ Thumbnail URL *</label>
-
-<input
- id="thumbnail"
- type="url"
- placeholder="https://example.com/poster.jpg"
->
-
-</div>
-
-
-<div class="inputGroup full">
-
-<label>🎥 Direct Video URL *</label>
-
-<input
- id="video"
- type="url"
- placeholder="https://example.com/video.mp4"
->
-
-</div>
-
-
-<div class="inputGroup full">
-
-<label>Description</label>
-
-<textarea
- id="description"
- placeholder="Write description..."
-></textarea>
+<div class="container">
+
+  <div id="status" class="status"></div>
+
+  <!-- DASHBOARD -->
+  <div class="grid">
+    <div class="card">
+      <small>Total Content</small>
+      <strong id="totalVideos">0</strong>
+    </div>
+
+    <div class="card">
+      <small>Free Content</small>
+      <strong id="freeVideos">0</strong>
+    </div>
+
+    <div class="card">
+      <small>Premium Content</small>
+      <strong id="premiumVideos">0</strong>
+    </div>
+
+    <div class="card">
+      <small>Total Episodes</small>
+      <strong id="totalEpisodes">0</strong>
+    </div>
+  </div>
+
+  <!-- ADD CONTENT -->
+  <div class="panel">
+    <h2>➕ Add Content</h2>
+
+    <form id="contentForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Title</label>
+          <input id="title" required placeholder="Movie / Show name">
+        </div>
+
+        <div>
+          <label>Type</label>
+          <select id="type">
+            <option value="movie">Movie</option>
+            <option value="series">Series / Serial</option>
+            <option value="reality">Reality Show</option>
+            <option value="sports">Sports</option>
+            <option value="live">Live TV</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Category</label>
+          <input id="category" placeholder="Action, Drama, Comedy...">
+        </div>
+
+        <div>
+          <label>Access</label>
+          <select id="access">
+            <option value="free">Free Watch</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Year</label>
+          <input id="year" type="number" placeholder="2026">
+        </div>
+
+        <div>
+          <label>Duration</label>
+          <input id="duration" placeholder="2h 10m">
+        </div>
+
+        <div>
+          <label>Thumbnail URL</label>
+          <input id="thumbnail" type="url" placeholder="https://.../poster.jpg">
+        </div>
+
+        <div>
+          <label>Video URL</label>
+          <input id="video" type="url" placeholder="https://.../video.mp4">
+        </div>
+
+        <div class="full">
+          <label>Description</label>
+          <textarea id="description"
+          placeholder="Write description..."></textarea>
+        </div>
+
+        <!-- LOCAL THUMBNAIL -->
+        <div>
+          <label>Choose Thumbnail From Gallery</label>
+          <input id="thumbnailFile" type="file" accept="image/*">
+          <img id="thumbnailPreview" class="preview hidden">
+        </div>
+
+        <!-- LOCAL VIDEO -->
+        <div>
+          <label>Choose Video From Gallery</label>
+          <input id="videoFile" type="file" accept="video/*">
+          <video id="videoPreview"
+                 class="preview hidden"
+                 controls></video>
+        </div>
+
+        <div class="full">
+          <button class="primary" type="submit">
+            Publish Content
+          </button>
+
+          <button class="secondary"
+                  type="button"
+                  onclick="resetForm()">
+            Clear
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+
+  <!-- CONTENT LIBRARY -->
+  <div class="panel">
+    <h2>🎬 Content Library</h2>
+
+    <input
+      id="search"
+      class="library-search"
+      placeholder="Search movies, series, reality shows..."
+    >
+
+    <div id="contentList">
+      <div class="empty">Loading...</div>
+    </div>
+  </div>
+
+  <!-- EPISODES -->
+  <div class="panel">
+    <h2>📺 Add Episode</h2>
+
+    <form id="episodeForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Series ID</label>
+          <input id="seriesId"
+                 required
+                 placeholder="Firestore video ID">
+        </div>
+
+        <div>
+          <label>Season Number</label>
+          <input id="season"
+                 type="number"
+                 min="1"
+                 value="1">
+        </div>
+
+        <div>
+          <label>Episode Number</label>
+          <input id="episode"
+                 type="number"
+                 min="1"
+                 value="1">
+        </div>
+
+        <div>
+          <label>Episode Title</label>
+          <input id="episodeTitle"
+                 required
+                 placeholder="Episode title">
+        </div>
+
+        <div>
+          <label>Access</label>
+          <select id="episodeAccess">
+            <option value="free">Free Episode</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Episode Video URL</label>
+          <input id="episodeVideo"
+                 type="url"
+                 required
+                 placeholder="https://.../episode.mp4">
+        </div>
+
+        <div class="full">
+          <label>Episode Thumbnail URL</label>
+          <input id="episodeThumbnail"
+                 type="url"
+                 placeholder="https://.../episode.jpg">
+        </div>
+
+        <div class="full">
+          <button class="primary" type="submit">
+            Add Episode
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+
+  <!-- EPISODE LIBRARY -->
+  <div class="panel">
+    <h2>📚 Episode Library</h2>
+    <div id="episodeList">
+      <div class="empty">Loading...</div>
+    </div>
+  </div>
 
 </div>
-
-</div>
-
-
-<div id="saveStatus"
-style="color:#999;margin-top:10px">
-</div>
-
-
-<div class="submitRow">
-
-<button class="saveBtn" id="saveBtn">
-🚀 Publish Content
-</button>
-
-<button class="clearBtn" id="clearBtn">
-Clear
-</button>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- CONTENT -->
-<section id="contentPage" class="hidden">
-
-<h1 class="pageTitle">Content Library</h1>
-
-<div class="toolbar">
-
-<input
- id="searchContent"
- placeholder="Search movies, shows..."
->
-
-</div>
-
-<div id="contentGrid" class="contentGrid"></div>
-
-</section>
-
-
-<!-- EPISODES -->
-<section id="episodesPage" class="hidden">
-
-<h1 class="pageTitle">Seasons & Episodes</h1>
-
-<div class="card">
-
-<div class="cardTitle">Add Episode</div>
-
-<div class="formGrid">
-
-<div class="inputGroup">
-
-<label>Series *</label>
-
-<select id="episodeSeries">
-<option value="">Loading...</option>
-</select>
-
-</div>
-
-
-<div class="inputGroup">
-
-<label>Season Number</label>
-
-<input
- id="seasonNumber"
- type="number"
- value="1"
- min="1"
->
-
-</div>
-
-
-<div class="inputGroup">
-
-<label>Episode Number</label>
-
-<input
- id="episodeNumber"
- type="number"
- value="1"
- min="1"
->
-
-</div>
-
-
-<div class="inputGroup">
-
-<label>Episode Title *</label>
-
-<input
- id="episodeTitle"
- placeholder="Episode title"
->
-
-</div>
-
-
-<div class="inputGroup">
-
-<label>Access</label>
-
-<select id="episodeAccess">
-<option value="free">🆓 Free Watch</option>
-<option value="premium">⭐ Premium</option>
-</select>
-
-</div>
-
-
-<div class="inputGroup full">
-
-<label>Episode Thumbnail URL</label>
-
-<input
- id="episodeThumbnail"
- type="url"
- placeholder="https://example.com/episode.jpg"
->
-
-</div>
-
-
-<div class="inputGroup full">
-
-<label>Episode Video URL *</label>
-
-<input
- id="episodeVideo"
- type="url"
- placeholder="https://example.com/episode.mp4"
->
-
-</div>
-
-</div>
-
-
-<div
- id="episodeStatus"
- style="color:#999;margin-top:10px">
-</div>
-
-<br>
-
-<button
- class="saveBtn"
- id="saveEpisodeBtn">
-🚀 Publish Episode
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="cardTitle">
-Episode List
-</div>
-
-<div id="episodeList">
-Loading...
-</div>
-
-</div>
-
-</section>
-
-</main>
-</div>
-</section>
-
 
 <script type="module">
 
 import {
- initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
- getAuth,
- signInWithEmailAndPassword,
- onAuthStateChanged,
- signOut
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-import {
- getFirestore,
- collection,
- addDoc,
- getDocs,
- doc,
- updateDoc,
- deleteDoc,
- serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
-
-/* FIREBASE */
-
-const firebaseConfig={
-
- apiKey:
- "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
-
- authDomain:
- "koma-star.firebaseapp.com",
-
- projectId:
- "koma-star",
-
- storageBucket:
- "koma-star.firebasestorage.app",
-
- messagingSenderId:
- "314141087569",
-
- appId:
- "1:314141087569:web:e1861e72db4f9ef5b12570",
-
- measurementId:
- "G-HYF2PZY5GR"
-
+const firebaseConfig = {
+  apiKey: "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+  authDomain: "koma-star.firebaseapp.com",
+  projectId: "koma-star",
+  storageBucket: "koma-star.firebasestorage.app",
+  messagingSenderId: "314141087569",
+  appId: "1:314141087569:web:e1861e72db4f9ef5b12570",
+  measurementId: "G-HYF2PZY5GR"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const app=initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
+/* =========================
+   HELPERS
+========================= */
 
-const db=getFirestore(app);
+const $ = id => document.getElementById(id);
 
+function showStatus(message,type="success"){
 
-/* ADMIN UID */
+  const box=$("status");
 
-const ADMIN_UID=
-"U0zwU0uKWuMER6t2xc5V65bD4xk2";
+  box.textContent=message;
+  box.className="status "+type;
+  box.style.display="block";
 
-
-/* LOGIN */
-
-document
-.getElementById("loginBtn")
-.addEventListener("click",async()=>{
-
- const email=
- document.getElementById("email").value.trim();
-
- const password=
- document.getElementById("password").value;
-
- const message=
- document.getElementById("loginMessage");
-
-
- if(!email||!password){
-
-   message.textContent=
-   "Email and password required.";
-
-   return;
- }
-
- message.textContent="Logging in...";
-
- try{
-
-   await signInWithEmailAndPassword(
-     auth,
-     email,
-     password
-   );
-
- }catch(error){
-
-   console.error(error);
-
-   message.textContent=
-   firebaseError(error);
-
- }
-
-});
-
-
-/* AUTH */
-
-onAuthStateChanged(auth,async user=>{
-
- if(user && user.uid===ADMIN_UID){
-
-   document
-   .getElementById("loginScreen")
-   .classList.add("hidden");
-
-   document
-   .getElementById("adminApp")
-   .classList.remove("hidden");
-
-   await loadDashboard();
-
- }else{
-
-   document
-   .getElementById("adminApp")
-   .classList.add("hidden");
-
-   document
-   .getElementById("loginScreen")
-   .classList.remove("hidden");
-
-   if(user){
-
-     await signOut(auth);
-
-     document
-     .getElementById("loginMessage")
-     .textContent=
-     "This account is not an authorized admin.";
-
-   }
-
- }
-
-});
-
-
-/* LOGOUT */
-
-document
-.getElementById("logoutBtn")
-.addEventListener(
- "click",
- ()=>signOut(auth)
-);
-
-
-/* NAVIGATION */
-
-document
-.querySelectorAll(".navBtn")
-.forEach(button=>{
-
- button.addEventListener("click",()=>{
-
-   document
-   .querySelectorAll(".navBtn")
-   .forEach(
-     b=>b.classList.remove("active")
-   );
-
-   button.classList.add("active");
-
-   showPage(button.dataset.page);
-
- });
-
-});
-
-
-function showPage(page){
-
- const pages={
-   dashboard:"dashboardPage",
-   add:"addPage",
-   content:"contentPage",
-   episodes:"episodesPage"
- };
-
- Object
- .values(pages)
- .forEach(id=>
-   document
-   .getElementById(id)
-   .classList.add("hidden")
- );
-
- document
- .getElementById(pages[page])
- .classList.remove("hidden");
-
-
- if(page==="dashboard")
- loadDashboard();
-
- if(page==="content")
- loadContent();
-
- if(page==="episodes"){
-
-   loadEpisodes();
-   loadSeries();
-
- }
-
+  setTimeout(()=>{
+    box.style.display="none";
+  },4000);
 }
-
-
-/* GALLERY THUMBNAIL PREVIEW */
-
-let thumbnailObjectURL=null;
-
-document
-.getElementById("thumbnailFile")
-.addEventListener("change",event=>{
-
- const file=event.target.files[0];
-
- const img=
- document.getElementById("thumbnailPreview");
-
- if(thumbnailObjectURL)
- URL.revokeObjectURL(thumbnailObjectURL);
-
- if(!file){
-
-   img.classList.add("hidden");
-   return;
-
- }
-
- thumbnailObjectURL=
- URL.createObjectURL(file);
-
- img.src=thumbnailObjectURL;
-
- img.classList.remove("hidden");
-
-});
-
-
-/* GALLERY VIDEO PREVIEW */
-
-let videoObjectURL=null;
-
-document
-.getElementById("videoFile")
-.addEventListener("change",event=>{
-
- const file=event.target.files[0];
-
- const video=
- document.getElementById("videoPreview");
-
- if(videoObjectURL)
- URL.revokeObjectURL(videoObjectURL);
-
- if(!file){
-
-   video.classList.add("hidden");
-   video.removeAttribute("src");
-   return;
-
- }
-
- videoObjectURL=
- URL.createObjectURL(file);
-
- video.src=videoObjectURL;
-
- video.classList.remove("hidden");
-
-});
-
-
-/* DASHBOARD */
-
-async function loadDashboard(){
-
- try{
-
-   const videos=
-   await getDocs(
-     collection(db,"videos")
-   );
-
-   const episodes=
-   await getDocs(
-     collection(db,"episodes")
-   );
-
-   let free=0;
-   let premium=0;
-
-   videos.forEach(item=>{
-
-     const data=item.data();
-
-     if(data.access==="free")
-     free++;
-     else
-     premium++;
-
-   });
-
-
-   document
-   .getElementById("totalContent")
-   .textContent=videos.size;
-
-   document
-   .getElementById("freeContent")
-   .textContent=free;
-
-   document
-   .getElementById("premiumContent")
-   .textContent=premium;
-
-   document
-   .getElementById("totalEpisodes")
-   .textContent=episodes.size;
-
- }catch(error){
-
-   console.error(error);
-
- }
-
-}
-
-
-/* ADD CONTENT */
-
-document
-.getElementById("saveBtn")
-.addEventListener("click",saveContent);
-
-
-async function saveContent(){
-
- const title=
- document.getElementById("title")
- .value.trim();
-
- const type=
- document.getElementById("type")
- .value;
-
- const category=
- document.getElementById("category")
- .value.trim();
-
- const access=
- document.getElementById("access")
- .value;
-
- const year=
- document.getElementById("year")
- .value;
-
- const duration=
- document.getElementById("duration")
- .value.trim();
-
- const thumbnail=
- document.getElementById("thumbnail")
- .value.trim();
-
- const video=
- document.getElementById("video")
- .value.trim();
-
- const description=
- document.getElementById("description")
- .value.trim();
-
- const galleryVideo=
- document.getElementById("videoFile")
- .files[0];
-
- const galleryThumbnail=
- document.getElementById("thumbnailFile")
- .files[0];
-
- const status=
- document.getElementById("saveStatus");
-
-
- if(!title){
-
-   alert("Enter content title.");
-   return;
-
- }
-
-
- /*
-   Gallery file exists only in browser memory.
-   Without Storage/hosting it cannot be permanently
-   saved online.
- */
-
- if(galleryVideo){
-
-   status.textContent=
-   "📱 Gallery video selected. For permanent online publishing, enter a direct Video URL below.";
-
- }
-
-
- if(!thumbnail){
-
-   alert(
-     "Enter Thumbnail URL. Gallery preview does not permanently upload the image."
-   );
-
-   return;
-
- }
-
-
- if(!video){
-
-   alert(
-     "Enter Direct Video URL. Gallery video cannot be permanently stored without hosting."
-   );
-
-   return;
-
- }
-
-
- const user=auth.currentUser;
-
- if(
-   !user ||
-   user.uid!==ADMIN_UID
- ){
-
-   alert("Admin authentication required.");
-   return;
-
- }
-
-
- const button=
- document.getElementById("saveBtn");
-
- button.disabled=true;
- button.textContent="Publishing...";
-
- status.textContent=
- "Saving content to Firestore...";
-
-
- try{
-
-   await addDoc(
-     collection(db,"videos"),
-     {
-
-       title:title,
-
-       type:type,
-
-       category:category,
-
-       access:access,
-
-       isFree:
-       access==="free",
-
-       year:
-       year||"",
-
-       duration:
-       duration||"",
-
-       thumbnail:
-       thumbnail,
-
-       video:
-       video,
-
-       description:
-       description,
-
-       uid:
-       user.uid,
-
-       published:true,
-
-       createdAt:
-       serverTimestamp()
-
-     }
-   );
-
-
-   status.textContent=
-   "✅ Content published successfully!";
-
-
-   clearForm();
-
-   await loadDashboard();
-
- }catch(error){
-
-   console.error(error);
-
-   status.textContent=
-   "Error: "+firebaseError(error);
-
- }
-
-
- button.disabled=false;
- button.textContent=
- "🚀 Publish Content";
-
-}
-
-
-/* CLEAR */
-
-document
-.getElementById("clearBtn")
-.addEventListener(
- "click",
- clearForm
-);
-
-
-function clearForm(){
-
- document.getElementById("title").value="";
- document.getElementById("category").value="";
- document.getElementById("year").value="";
- document.getElementById("duration").value="";
- document.getElementById("thumbnail").value="";
- document.getElementById("video").value="";
- document.getElementById("description").value="";
-
- document.getElementById("thumbnailFile").value="";
- document.getElementById("videoFile").value="";
-
- const img=
- document.getElementById("thumbnailPreview");
-
- img.src="";
- img.classList.add("hidden");
-
- const vid=
- document.getElementById("videoPreview");
-
- vid.pause();
- vid.removeAttribute("src");
- vid.load();
- vid.classList.add("hidden");
-
- document.getElementById("saveStatus")
- .textContent="";
-
-}
-
-
-/* CONTENT */
-
-let allContent=[];
-
-
-async function loadContent(){
-
- const grid=
- document.getElementById("contentGrid");
-
- grid.innerHTML="Loading...";
-
- try{
-
-   const snap=
-   await getDocs(
-     collection(db,"videos")
-   );
-
-   allContent=[];
-
-   snap.forEach(item=>{
-
-     allContent.push({
-       id:item.id,
-       ...item.data()
-     });
-
-   });
-
-   renderContent(allContent);
-
- }catch(error){
-
-   console.error(error);
-
-   grid.innerHTML=
-   "<p>Unable to load content.</p>";
-
- }
-
-}
-
-
-function renderContent(list){
-
- const grid=
- document.getElementById("contentGrid");
-
- if(!list.length){
-
-   grid.innerHTML=
-   "<p style='color:#888'>No content found.</p>";
-
-   return;
-
- }
-
-
- grid.innerHTML=
- list.map(item=>`
-
- <div class="contentCard">
-
-   <img
-     src="${safe(item.thumbnail||"")}"
-     alt=""
-   >
-
-   <div class="contentInfo">
-
-     <div class="contentTitle">
-       ${escapeHtml(item.title||"Untitled")}
-     </div>
-
-     <div class="meta">
-       ${escapeHtml(item.type||"")}
-       ${item.category?
-       " • "+escapeHtml(item.category):""}
-       ${item.year?
-       " • "+escapeHtml(item.year):""}
-     </div>
-
-     <span class="badge ${
-       item.access==="free"
-       ?"free":"premium"
-     }">
-
-       ${
-         item.access==="free"
-         ?"🆓 FREE WATCH"
-         :"⭐ PREMIUM"
-       }
-
-     </span>
-
-     <div class="cardActions">
-
-       <button
-         class="editBtn"
-         onclick="editContent('${item.id}')"
-       >
-         ✏️ Edit
-       </button>
-
-       <button
-         class="deleteBtn"
-         onclick="deleteContent('${item.id}')"
-       >
-         🗑️ Delete
-       </button>
-
-     </div>
-
-   </div>
-
- </div>
-
- `).join("");
-
-}
-
-
-/* SEARCH */
-
-document
-.getElementById("searchContent")
-.addEventListener("input",event=>{
-
- const value=
- event.target.value.toLowerCase();
-
- renderContent(
-   allContent.filter(item=>
-
-     (item.title||"")
-     .toLowerCase()
-     .includes(value)
-
-     ||
-
-     (item.type||"")
-     .toLowerCase()
-     .includes(value)
-
-     ||
-
-     (item.category||"")
-     .toLowerCase()
-     .includes(value)
-
-   )
- );
-
-});
-
-
-/* DELETE */
-
-window.deleteContent=
-async function(id){
-
- if(!confirm("Delete this content?"))
- return;
-
- try{
-
-   await deleteDoc(
-     doc(db,"videos",id)
-   );
-
-   alert("Content deleted.");
-
-   await loadContent();
-   await loadDashboard();
-
- }catch(error){
-
-   alert(firebaseError(error));
-
- }
-
-};
-
-
-/* EDIT */
-
-window.editContent=
-async function(id){
-
- const item=
- allContent.find(x=>x.id===id);
-
- if(!item)
- return;
-
-
- const title=
- prompt(
-   "Content title:",
-   item.title||""
- );
-
- if(title===null)
- return;
-
-
- const access=
- prompt(
-   "Access: free or premium",
-   item.access||"free"
- );
-
-
- if(
-   access!=="free" &&
-   access!=="premium"
- ){
-
-   alert("Use free or premium.");
-   return;
-
- }
-
-
- try{
-
-   await updateDoc(
-     doc(db,"videos",id),
-     {
-
-       title:title.trim(),
-
-       access:access,
-
-       isFree:
-       access==="free",
-
-       updatedAt:
-       serverTimestamp()
-
-     }
-   );
-
-   alert("Content updated.");
-
-   await loadContent();
-   await loadDashboard();
-
- }catch(error){
-
-   alert(firebaseError(error));
-
- }
-
-};
-
-
-/* SERIES */
-
-async function loadSeries(){
-
- const select=
- document.getElementById("episodeSeries");
-
- select.innerHTML=
- "<option value=''>Loading...</option>";
-
-
- try{
-
-   const snap=
-   await getDocs(
-     collection(db,"videos")
-   );
-
-   const series=[];
-
-   snap.forEach(item=>{
-
-     const data=item.data();
-
-     if(
-       data.type==="Serial" ||
-       data.type==="Series"
-     ){
-
-       series.push({
-         id:item.id,
-         ...data
-       });
-
-     }
-
-   });
-
-
-   if(!series.length){
-
-     select.innerHTML=
-     "<option value=''>No Serial found</option>";
-
-     return;
-
-   }
-
-
-   select.innerHTML=
-   series.map(item=>`
-
-     <option value="${item.id}">
-       ${escapeHtml(item.title)}
-     </option>
-
-   `).join("");
-
- }catch(error){
-
-   console.error(error);
-
- }
-
-}
-
-
-/* EPISODE SAVE */
-
-document
-.getElementById("saveEpisodeBtn")
-.addEventListener(
- "click",
- saveEpisode
-);
-
-
-async function saveEpisode(){
-
- const seriesId=
- document.getElementById("episodeSeries")
- .value;
-
- const season=
- Number(
-   document.getElementById("seasonNumber")
-   .value
- );
-
- const episode=
- Number(
-   document.getElementById("episodeNumber")
-   .value
- );
-
- const title=
- document.getElementById("episodeTitle")
- .value.trim();
-
- const access=
- document.getElementById("episodeAccess")
- .value;
-
- const thumbnail=
- document.getElementById("episodeThumbnail")
- .value.trim();
-
- const video=
- document.getElementById("episodeVideo")
- .value.trim();
-
- const status=
- document.getElementById("episodeStatus");
-
-
- if(!seriesId){
-
-   alert("Create a Serial first.");
-   return;
-
- }
-
- if(!title){
-
-   alert("Enter episode title.");
-   return;
-
- }
-
- if(!video){
-
-   alert("Enter episode video URL.");
-   return;
-
- }
-
-
- const user=auth.currentUser;
-
- if(
-   !user ||
-   user.uid!==ADMIN_UID
- ){
-
-   alert("Admin authentication required.");
-   return;
-
- }
-
-
- try{
-
-   await addDoc(
-     collection(db,"episodes"),
-     {
-
-       seriesId:seriesId,
-
-       seasonNumber:season,
-
-       episodeNumber:episode,
-
-       title:title,
-
-       access:access,
-
-       isFree:
-       access==="free",
-
-       thumbnail:thumbnail,
-
-       video:video,
-
-       uid:user.uid,
-
-       published:true,
-
-       createdAt:
-       serverTimestamp()
-
-     }
-   );
-
-
-   status.textContent=
-   "✅ Episode published successfully!";
-
-
-   document
-   .getElementById("episodeTitle")
-   .value="";
-
-   document
-   .getElementById("episodeThumbnail")
-   .value="";
-
-   document
-   .getElementById("episodeVideo")
-   .value="";
-
-
-   await loadEpisodes();
-   await loadDashboard();
-
- }catch(error){
-
-   status.textContent=
-   firebaseError(error);
-
- }
-
-}
-
-
-/* LOAD EPISODES */
-
-async function loadEpisodes(){
-
- const box=
- document.getElementById("episodeList");
-
- box.innerHTML="Loading...";
-
-
- try{
-
-   const snap=
-   await getDocs(
-     collection(db,"episodes")
-   );
-
-   if(snap.empty){
-
-     box.innerHTML=
-     "<span style='color:#888'>No episodes yet.</span>";
-
-     return;
-
-   }
-
-
-   const rows=[];
-
-   snap.forEach(item=>{
-
-     rows.push({
-       id:item.id,
-       ...item.data()
-     });
-
-   });
-
-
-   rows.sort((a,b)=>
-     (a.seasonNumber||0)-
-     (b.seasonNumber||0)
-     ||
-     (a.episodeNumber||0)-
-     (b.episodeNumber||0)
-   );
-
-
-   box.innerHTML=
-   rows.map(item=>`
-
-     <div class="episodeRow">
-
-       <div class="episodeTitle">
-
-         S${item.seasonNumber||1}
-         E${item.episodeNumber||1}
-         — ${escapeHtml(item.title||"")}
-
-       </div>
-
-       <div class="episodeMeta">
-
-         ${
-           item.access==="free"
-           ?"🆓 Free Watch"
-           :"⭐ Premium"
-         }
-
-       </div>
-
-       <div class="episodeActions">
-
-         <button
-           class="smallEdit"
-           onclick="editEpisode('${item.id}')"
-         >
-           ✏️ Edit
-         </button>
-
-         <button
-           class="smallDelete"
-           onclick="deleteEpisode('${item.id}')"
-         >
-           🗑️ Delete
-         </button>
-
-       </div>
-
-     </div>
-
-   `).join("");
-
- }catch(error){
-
-   console.error(error);
-
-   box.innerHTML=
-   "Unable to load episodes.";
-
- }
-
-}
-
-
-/* DELETE EPISODE */
-
-window.deleteEpisode=
-async function(id){
-
- if(!confirm("Delete this episode?"))
- return;
-
- try{
-
-   await deleteDoc(
-     doc(db,"episodes",id)
-   );
-
-   alert("Episode deleted.");
-
-   await loadEpisodes();
-   await loadDashboard();
-
- }catch(error){
-
-   alert(firebaseError(error));
-
- }
-
-};
-
-
-/* EDIT EPISODE */
-
-window.editEpisode=
-async function(id){
-
- const title=
- prompt("New episode title:");
-
- if(title===null)
- return;
-
-
- const access=
- prompt(
-   "Access: free or premium",
-   "free"
- );
-
-
- if(
-   access!=="free" &&
-   access!=="premium"
- ){
-
-   alert("Use free or premium.");
-   return;
-
- }
-
-
- try{
-
-   await updateDoc(
-     doc(db,"episodes",id),
-     {
-
-       title:title.trim(),
-
-       access:access,
-
-       isFree:
-       access==="free",
-
-       updatedAt:
-       serverTimestamp()
-
-     }
-   );
-
-
-   alert("Episode updated.");
-
-   await loadEpisodes();
-
- }catch(error){
-
-   alert(firebaseError(error));
-
- }
-
-};
-
-
-/* HELPERS */
 
 function escapeHtml(value){
 
- return String(value??"")
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
-
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
-function safe(value){
+/* =========================
+   DATA
+========================= */
 
- const text=String(value||"");
+let videos=[];
+let episodes=[];
 
- if(
-   text.startsWith("https://") ||
-   text.startsWith("http://")
- )
- return escapeHtml(text);
+let editingVideoId=null;
 
- return "";
 
+/* =========================
+   LOAD CONTENT
+========================= */
+
+async function loadVideos(){
+
+  try{
+
+    const snap=await getDocs(
+      collection(db,"videos")
+    );
+
+    videos=[];
+
+    snap.forEach(item=>{
+
+      videos.push({
+        id:item.id,
+        ...item.data()
+      });
+
+    });
+
+    renderVideos();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "Videos load failed: "+error.message,
+      "error"
+    );
+
+  }
 }
 
 
-function firebaseError(error){
+async function loadEpisodes(){
 
- const code=error?.code||"";
+  try{
 
- const messages={
+    const snap=await getDocs(
+      collection(db,"episodes")
+    );
 
-   "auth/invalid-credential":
-   "Invalid email or password.",
+    episodes=[];
 
-   "auth/wrong-password":
-   "Wrong password.",
+    snap.forEach(item=>{
 
-   "auth/user-not-found":
-   "Admin account not found.",
+      episodes.push({
+        id:item.id,
+        ...item.data()
+      });
 
-   "permission-denied":
-   "Firestore permission denied.",
+    });
 
-   "unauthenticated":
-   "Please login again."
+    renderEpisodes();
+    updateStats();
 
- };
+  }catch(error){
 
- return messages[code]||
- error?.message||
- "Something went wrong.";
+    console.error(error);
 
+    showStatus(
+      "Episodes load failed: "+error.message,
+      "error"
+    );
+
+  }
 }
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(){
+
+  $("totalVideos").textContent=videos.length;
+
+  $("freeVideos").textContent=
+    videos.filter(v=>v.access==="free").length;
+
+  $("premiumVideos").textContent=
+    videos.filter(v=>v.access==="premium").length;
+
+  $("totalEpisodes").textContent=
+    episodes.length;
+}
+
+
+/* =========================
+   RENDER VIDEOS
+========================= */
+
+function renderVideos(){
+
+  const box=$("contentList");
+
+  const query=
+    $("search").value.trim().toLowerCase();
+
+  const filtered=videos.filter(v=>{
+
+    const text=`
+      ${v.title||""}
+      ${v.type||""}
+      ${v.category||""}
+    `.toLowerCase();
+
+    return text.includes(query);
+  });
+
+  if(!filtered.length){
+
+    box.innerHTML=
+      `<div class="empty">No content found.</div>`;
+
+    return;
+  }
+
+  box.innerHTML=filtered.map(v=>{
+
+    const accessClass=
+      v.access==="premium"
+      ? "premium"
+      : "free";
+
+    return `
+
+      <div class="item">
+
+        <div class="item-title">
+          ${escapeHtml(v.title)}
+        </div>
+
+        <div class="meta">
+
+          <span class="badge">
+            ${escapeHtml(v.type)}
+          </span>
+
+          <span class="badge ${accessClass}">
+            ${v.access==="premium"
+              ?"PREMIUM"
+              :"FREE WATCH"}
+          </span>
+
+          ${v.category
+            ? `<span class="badge">
+                ${escapeHtml(v.category)}
+               </span>`
+            :""
+          }
+
+        </div>
+
+        <div class="meta">
+          ID: ${escapeHtml(v.id)}
+        </div>
+
+        <div class="meta">
+          ${escapeHtml(v.description||"")}
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="secondary"
+            onclick="editVideo('${v.id}')">
+            Edit
+          </button>
+
+          <button
+            class="danger"
+            onclick="removeVideo('${v.id}')">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+}
+
+
+/* =========================
+   RENDER EPISODES
+========================= */
+
+function renderEpisodes(){
+
+  const box=$("episodeList");
+
+  if(!episodes.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No episodes found.
+       </div>`;
+
+    return;
+  }
+
+  box.innerHTML=episodes.map(e=>{
+
+    return `
+
+      <div class="item">
+
+        <div class="item-title">
+          ${escapeHtml(e.episodeTitle||"Episode")}
+        </div>
+
+        <div class="meta">
+
+          Season ${escapeHtml(e.season)}
+          • Episode ${escapeHtml(e.episode)}
+
+        </div>
+
+        <div class="meta">
+
+          Series ID:
+          ${escapeHtml(e.seriesId)}
+
+        </div>
+
+        <span class="badge ${
+          e.access==="premium"
+          ?"premium"
+          :"free"
+        }">
+
+          ${e.access==="premium"
+            ?"PREMIUM"
+            :"FREE"}
+
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="danger"
+            onclick="removeEpisode('${e.id}')">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+}
+
+
+/* =========================
+   ADD / UPDATE VIDEO
+========================= */
+
+$("contentForm").addEventListener(
+  "submit",
+  async event=>{
+
+    event.preventDefault();
+
+    const data={
+
+      title:$("title").value.trim(),
+
+      type:$("type").value,
+
+      category:$("category").value.trim(),
+
+      access:$("access").value,
+
+      year:$("year").value.trim(),
+
+      duration:$("duration").value.trim(),
+
+      thumbnail:$("thumbnail").value.trim(),
+
+      videoUrl:$("video").value.trim(),
+
+      description:$("description").value.trim(),
+
+      updatedAt:serverTimestamp()
+
+    };
+
+
+    if(!data.title){
+
+      showStatus(
+        "Title required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if(!data.thumbnail){
+
+      showStatus(
+        "Thumbnail URL required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if(!data.videoUrl){
+
+      showStatus(
+        "Video URL required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    try{
+
+      if(editingVideoId){
+
+        await updateDoc(
+          doc(
+            db,
+            "videos",
+            editingVideoId
+          ),
+          data
+        );
+
+        showStatus(
+          "Content updated successfully"
+        );
+
+        editingVideoId=null;
+
+      }else{
+
+        await addDoc(
+          collection(db,"videos"),
+          {
+            ...data,
+            createdAt:serverTimestamp()
+          }
+        );
+
+        showStatus(
+          "Content published successfully"
+        );
+
+      }
+
+      resetForm();
+
+      await loadVideos();
+
+    }catch(error){
+
+      console.error(error);
+
+      showStatus(
+        "Save failed: "+error.message,
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   EDIT VIDEO
+========================= */
+
+window.editVideo=async function(id){
+
+  const item=videos.find(v=>v.id===id);
+
+  if(!item)return;
+
+  editingVideoId=id;
+
+  $("title").value=item.title||"";
+  $("type").value=item.type||"movie";
+  $("category").value=item.category||"";
+  $("access").value=item.access||"free";
+  $("year").value=item.year||"";
+  $("duration").value=item.duration||"";
+  $("thumbnail").value=item.thumbnail||"";
+  $("video").value=item.videoUrl||"";
+  $("description").value=item.description||"";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  showStatus(
+    "Editing: "+item.title
+  );
+};
+
+
+/* =========================
+   DELETE VIDEO
+========================= */
+
+window.removeVideo=async function(id){
+
+  const item=videos.find(v=>v.id===id);
+
+  if(!item)return;
+
+  if(!confirm(
+    `Delete "${item.title}"?`
+  ))return;
+
+  try{
+
+    await deleteDoc(
+      doc(db,"videos",id)
+    );
+
+    showStatus(
+      "Content deleted"
+    );
+
+    await loadVideos();
+
+  }catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "Delete failed: "+error.message,
+      "error"
+    );
+
+  }
+};
+
+
+/* =========================
+   ADD EPISODE
+========================= */
+
+$("episodeForm").addEventListener(
+  "submit",
+  async event=>{
+
+    event.preventDefault();
+
+    const data={
+
+      seriesId:$("seriesId").value.trim(),
+
+      season:Number(
+        $("season").value
+      ),
+
+      episode:Number(
+        $("episode").value
+      ),
+
+      episodeTitle:
+        $("episodeTitle").value.trim(),
+
+      access:
+        $("episodeAccess").value,
+
+      videoUrl:
+        $("episodeVideo").value.trim(),
+
+      thumbnail:
+        $("episodeThumbnail").value.trim(),
+
+      createdAt:
+        serverTimestamp()
+
+    };
+
+
+    if(!data.seriesId){
+
+      showStatus(
+        "Series ID required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if(!data.episodeTitle){
+
+      showStatus(
+        "Episode title required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if(!data.videoUrl){
+
+      showStatus(
+        "Episode video URL required",
+        "error"
+      );
+
+      return;
+    }
+
+
+    try{
+
+      await addDoc(
+        collection(db,"episodes"),
+        data
+      );
+
+      showStatus(
+        "Episode added successfully"
+      );
+
+      $("episodeForm").reset();
+
+      await loadEpisodes();
+
+    }catch(error){
+
+      console.error(error);
+
+      showStatus(
+        "Episode save failed: "+
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   DELETE EPISODE
+========================= */
+
+window.removeEpisode=async function(id){
+
+  if(!confirm(
+    "Delete this episode?"
+  ))return;
+
+  try{
+
+    await deleteDoc(
+      doc(db,"episodes",id)
+    );
+
+    showStatus(
+      "Episode deleted"
+    );
+
+    await loadEpisodes();
+
+  }catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "Episode delete failed: "+
+      error.message,
+      "error"
+    );
+
+  }
+};
+
+
+/* =========================
+   SEARCH
+========================= */
+
+$("search").addEventListener(
+  "input",
+  renderVideos
+);
+
+
+/* =========================
+   RESET FORM
+========================= */
+
+window.resetForm=function(){
+
+  editingVideoId=null;
+
+  $("contentForm").reset();
+
+  $("thumbnailPreview")
+    .classList.add("hidden");
+
+  $("videoPreview")
+    .classList.add("hidden");
+
+  $("videoPreview")
+    .removeAttribute("src");
+
+};
+
+
+/* =========================
+   GALLERY PREVIEW
+========================= */
+
+let thumbnailObjectURL=null;
+
+$("thumbnailFile").addEventListener(
+  "change",
+  event=>{
+
+    const file=
+      event.target.files[0];
+
+    const img=
+      $("thumbnailPreview");
+
+    if(thumbnailObjectURL){
+
+      URL.revokeObjectURL(
+        thumbnailObjectURL
+      );
+
+    }
+
+    if(!file){
+
+      img.classList.add("hidden");
+
+      return;
+    }
+
+    thumbnailObjectURL=
+      URL.createObjectURL(file);
+
+    img.src=
+      thumbnailObjectURL;
+
+    img.classList.remove("hidden");
+
+  }
+);
+
+
+let videoObjectURL=null;
+
+$("videoFile").addEventListener(
+  "change",
+  event=>{
+
+    const file=
+      event.target.files[0];
+
+    const video=
+      $("videoPreview");
+
+    if(videoObjectURL){
+
+      URL.revokeObjectURL(
+        videoObjectURL
+      );
+
+    }
+
+    if(!file){
+
+      video.classList.add("hidden");
+
+      video.removeAttribute("src");
+
+      return;
+    }
+
+    videoObjectURL=
+      URL.createObjectURL(file);
+
+    video.src=
+      videoObjectURL;
+
+    video.classList.remove("hidden");
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+loadVideos();
+loadEpisodes();
 
 </script>
 
