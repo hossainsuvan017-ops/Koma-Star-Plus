@@ -10,18 +10,18 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
 }
 
 body{
-  background:#080808;
-  color:white;
+  background:#070707;
+  color:#fff;
 }
 
 header{
-  background:linear-gradient(135deg,#111,#260000);
-  padding:20px;
+  padding:22px 15px;
   text-align:center;
+  background:linear-gradient(135deg,#090909,#280000);
   border-bottom:1px solid #333;
 }
 
@@ -32,18 +32,18 @@ header h1{
 
 header p{
   color:#aaa;
-  margin-top:6px;
+  margin-top:7px;
 }
 
 .container{
-  width:95%;
+  width:94%;
   max-width:1100px;
   margin:20px auto;
 }
 
 .card{
   background:#121212;
-  border:1px solid #292929;
+  border:1px solid #2c2c2c;
   border-radius:16px;
   padding:20px;
   margin-bottom:20px;
@@ -51,63 +51,11 @@ header p{
 
 .card h2{
   margin-bottom:18px;
-  color:#fff;
-}
-
-label{
-  display:block;
-  margin:12px 0 7px;
-  color:#ccc;
-  font-size:14px;
-}
-
-input,select,textarea{
-  width:100%;
-  padding:13px;
-  background:#1d1d1d;
-  color:white;
-  border:1px solid #444;
-  border-radius:9px;
-  outline:none;
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:#ff2020;
-}
-
-button{
-  border:0;
-  padding:13px 18px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.btn{
-  background:#e50914;
-  color:white;
-  width:100%;
-  margin-top:18px;
-}
-
-.btn:hover{
-  background:#ff2630;
-}
-
-.delete{
-  background:#b00020;
-  color:white;
-  margin-top:10px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:15px;
 }
 
@@ -117,66 +65,127 @@ button{
   }
 }
 
+label{
+  display:block;
+  color:#ccc;
+  font-size:14px;
+  margin:10px 0 7px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  border:1px solid #444;
+  background:#1d1d1d;
+  color:#fff;
+  outline:none;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#ff2020;
+}
+
 .upload-box{
+  margin-top:16px;
+  padding:17px;
   border:2px dashed #444;
-  padding:18px;
   border-radius:12px;
-  margin-top:10px;
   background:#0d0d0d;
 }
 
-.upload-box input{
-  background:transparent;
-  border:0;
-  padding:5px 0;
-}
-
-.preview{
-  margin-top:15px;
+.file-input{
   display:none;
 }
 
+.gallery-btn{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:10px;
+  background:#e50914;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.gallery-btn:active{
+  transform:scale(.98);
+}
+
+.file-name{
+  margin-top:10px;
+  color:#aaa;
+  font-size:13px;
+  word-break:break-all;
+}
+
+.preview{
+  display:none;
+  margin-top:15px;
+}
+
 .preview img{
-  width:160px;
+  width:180px;
   max-width:100%;
   border-radius:10px;
-  display:block;
 }
 
 .preview video{
   width:100%;
-  max-height:300px;
+  max-height:320px;
   border-radius:10px;
-  display:block;
+  background:#000;
+}
+
+.main-btn{
+  width:100%;
+  margin-top:18px;
+  padding:15px;
+  border:0;
+  border-radius:10px;
+  background:#e50914;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .status{
+  display:none;
   margin-top:15px;
   padding:12px;
   border-radius:8px;
-  display:none;
-  background:#171717;
+  background:#1d1d1d;
 }
 
 .item{
   background:#181818;
-  border:1px solid #303030;
-  border-radius:12px;
+  border:1px solid #333;
   padding:15px;
+  border-radius:12px;
   margin-top:12px;
 }
 
 .item h3{
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
 .badge{
   display:inline-block;
   padding:5px 9px;
+  margin:2px;
   border-radius:6px;
   background:#333;
   font-size:12px;
-  margin:3px;
 }
 
 .free{
@@ -190,7 +199,17 @@ button{
 .small{
   color:#999;
   font-size:13px;
-  margin-top:5px;
+  margin-top:6px;
+}
+
+.delete{
+  background:#b00020;
+  color:#fff;
+  border:0;
+  padding:10px 13px;
+  border-radius:8px;
+  margin-top:12px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -204,7 +223,9 @@ button{
 
 <div class="container">
 
-<!-- ADD MOVIE / SHOW -->
+<!-- =====================================================
+     MOVIE / SHOW
+====================================================== -->
 
 <div class="card">
 
@@ -214,7 +235,7 @@ button{
 
 <div>
 <label>Title</label>
-<input id="title" type="text" placeholder="Enter movie/show name">
+<input id="title" type="text" placeholder="Movie / Show name">
 </div>
 
 <div>
@@ -254,58 +275,109 @@ button{
 </div>
 
 <label>Description</label>
-<textarea id="description" placeholder="Write description..."></textarea>
+<textarea id="description"
+placeholder="Write description..."></textarea>
 
 
-<!-- THUMBNAIL -->
+<!-- MOVIE THUMBNAIL -->
 
 <div class="upload-box">
 
-<label>🖼️ Gallery থেকে Thumbnail নির্বাচন করুন</label>
+<label>🖼️ Movie / Show Thumbnail</label>
 
 <input
   id="thumbnailFile"
+  class="file-input"
   type="file"
   accept="image/*"
 >
 
-<div id="imagePreview" class="preview">
+<button
+  type="button"
+  class="gallery-btn"
+  onclick="openFile('thumbnailFile')"
+>
+📁 Choose Image from Gallery
+</button>
+
+<div
+  id="thumbnailName"
+  class="file-name"
+>
+No image selected
+</div>
+
+<div
+  id="imagePreview"
+  class="preview"
+>
 <img id="previewImage">
 </div>
 
 </div>
 
 
-<!-- VIDEO -->
+<!-- MOVIE VIDEO -->
 
 <div class="upload-box">
 
-<label>🎥 Gallery থেকে Video নির্বাচন করুন</label>
+<label>🎥 Movie / Show Video</label>
 
 <input
   id="videoFile"
+  class="file-input"
   type="file"
-  accept="video/*"
+  accept="video/*,.mp4,.mkv,.webm,.mov"
 >
 
-<div id="videoPreview" class="preview">
-
-<video id="previewVideo" controls playsinline></video>
-
-</div>
-
-</div>
-
-<button class="btn" onclick="addVideo()">
-➕ Add Content
+<button
+  type="button"
+  class="gallery-btn"
+  onclick="openFile('videoFile')"
+>
+📁 Choose Video from Gallery
 </button>
 
-<div id="videoStatus" class="status"></div>
+<div
+  id="videoName"
+  class="file-name"
+>
+No video selected
+</div>
+
+<div
+  id="videoPreview"
+  class="preview"
+>
+<video
+  id="previewVideo"
+  controls
+  playsinline
+></video>
+</div>
 
 </div>
 
 
-<!-- ADD EPISODE -->
+<button
+  type="button"
+  class="main-btn"
+  onclick="addVideo()"
+>
+➕ Add Movie / Show
+</button>
+
+<div
+  id="videoStatus"
+  class="status"
+></div>
+
+</div>
+
+
+<!-- =====================================================
+     EPISODE
+====================================================== -->
 
 <div class="card">
 
@@ -315,25 +387,44 @@ button{
 
 <div>
 <label>Series Name</label>
-<input id="seriesName" type="text" placeholder="Series name">
+<input
+  id="seriesName"
+  type="text"
+  placeholder="Series name"
+>
 </div>
 
 <div>
 <label>Season</label>
-<input id="season" type="number" placeholder="1">
+<input
+  id="season"
+  type="number"
+  min="1"
+  placeholder="1"
+>
 </div>
 
 <div>
 <label>Episode Number</label>
-<input id="episodeNumber" type="number" placeholder="1">
+<input
+  id="episodeNumber"
+  type="number"
+  min="1"
+  placeholder="1"
+>
 </div>
 
 <div>
 <label>Episode Title</label>
-<input id="episodeTitle" type="text" placeholder="Episode title">
+<input
+  id="episodeTitle"
+  type="text"
+  placeholder="Episode title"
+>
 </div>
 
 </div>
+
 
 <label>Episode Access</label>
 
@@ -350,56 +441,105 @@ Premium Episode
 </select>
 
 
+<!-- EPISODE THUMBNAIL -->
+
 <div class="upload-box">
 
 <label>🖼️ Episode Thumbnail</label>
 
 <input
- id="episodeThumbnail"
- type="file"
- accept="image/*"
+  id="episodeThumbnail"
+  class="file-input"
+  type="file"
+  accept="image/*"
 >
 
-<div id="episodeImagePreview" class="preview">
+<button
+  type="button"
+  class="gallery-btn"
+  onclick="openFile('episodeThumbnail')"
+>
+📁 Choose Episode Image from Gallery
+</button>
+
+<div
+  id="episodeThumbnailName"
+  class="file-name"
+>
+No image selected
+</div>
+
+<div
+  id="episodeImagePreview"
+  class="preview"
+>
 <img id="previewEpisodeImage">
 </div>
 
 </div>
 
 
+<!-- EPISODE VIDEO -->
+
 <div class="upload-box">
 
 <label>🎥 Episode Video</label>
 
 <input
- id="episodeVideo"
- type="file"
- accept="video/*"
+  id="episodeVideo"
+  class="file-input"
+  type="file"
+  accept="video/*,.mp4,.mkv,.webm,.mov"
 >
 
-<div id="episodeVideoPreview" class="preview">
+<button
+  type="button"
+  class="gallery-btn"
+  onclick="openFile('episodeVideo')"
+>
+📁 Choose Episode Video from Gallery
+</button>
 
+<div
+  id="episodeVideoName"
+  class="file-name"
+>
+No video selected
+</div>
+
+<div
+  id="episodeVideoPreview"
+  class="preview"
+>
 <video
- id="previewEpisodeVideo"
- controls
- playsinline>
-</video>
-
+  id="previewEpisodeVideo"
+  controls
+  playsinline
+></video>
 </div>
 
 </div>
 
 
-<button class="btn" onclick="addEpisode()">
+<button
+  type="button"
+  class="main-btn"
+  onclick="addEpisode()"
+>
 ➕ Add Episode
 </button>
 
-<div id="episodeStatus" class="status"></div>
+<div
+  id="episodeStatus"
+  class="status"
+></div>
 
 </div>
 
 
-<!-- CONTENT LIBRARY -->
+<!-- =====================================================
+     CONTENT LIBRARY
+====================================================== -->
 
 <div class="card">
 
@@ -412,7 +552,9 @@ Loading...
 </div>
 
 
-<!-- EPISODE LIBRARY -->
+<!-- =====================================================
+     EPISODE LIBRARY
+====================================================== -->
 
 <div class="card">
 
@@ -430,684 +572,874 @@ Loading...
 <script type="module">
 
 import {
- initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
- getFirestore,
- collection,
- addDoc,
- getDocs,
- deleteDoc,
- doc,
- serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 const firebaseConfig = {
 
- apiKey:
- "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
+  apiKey:
+  "AIzaSyD9Qt5x69KsB3VxOuvTbrDXYJHF3nN5acs",
 
- authDomain:
- "koma-star.firebaseapp.com",
+  authDomain:
+  "koma-star.firebaseapp.com",
 
- projectId:
- "koma-star",
+  projectId:
+  "koma-star",
 
- storageBucket:
- "koma-star.firebasestorage.app",
+  storageBucket:
+  "koma-star.firebasestorage.app",
 
- messagingSenderId:
- "314141087569",
+  messagingSenderId:
+  "314141087569",
 
- appId:
- "1:314141087569:web:e1861e72db4f9ef5b12570",
+  appId:
+  "1:314141087569:web:e1861e72db4f9ef5b12570",
 
- measurementId:
- "G-HYF2PZY5GR"
+  measurementId:
+  "G-HYF2PZY5GR"
 
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const db =
+getFirestore(app);
 
 
-/* -------------------------
-   IMAGE PREVIEW
-------------------------- */
+/* =====================================================
+   OPEN GALLERY / FILE PICKER
+===================================================== */
+
+window.openFile =
+function(id){
+
+  const input =
+  document.getElementById(id);
+
+  if(!input){
+    return;
+  }
+
+  input.click();
+
+};
+
+
+/* =====================================================
+   MOVIE THUMBNAIL PREVIEW
+===================================================== */
 
 document
 .getElementById("thumbnailFile")
-.addEventListener("change", function(){
+.addEventListener("change",function(){
 
- const file=this.files[0];
+  const file =
+  this.files[0];
 
- if(!file)return;
+  if(!file){
+    return;
+  }
 
- const url=URL.createObjectURL(file);
+  document
+  .getElementById("thumbnailName")
+  .textContent =
+  "Selected: " + file.name;
 
- const img=document.getElementById("previewImage");
+  const url =
+  URL.createObjectURL(file);
 
- img.src=url;
+  document
+  .getElementById("previewImage")
+  .src = url;
 
- document.getElementById("imagePreview")
- .style.display="block";
+  document
+  .getElementById("imagePreview")
+  .style.display =
+  "block";
 
 });
 
 
-/* -------------------------
-   VIDEO PREVIEW
-------------------------- */
+/* =====================================================
+   MOVIE VIDEO PREVIEW
+===================================================== */
 
 document
 .getElementById("videoFile")
-.addEventListener("change", function(){
+.addEventListener("change",function(){
 
- const file=this.files[0];
+  const file =
+  this.files[0];
 
- if(!file)return;
+  if(!file){
+    return;
+  }
 
- const url=URL.createObjectURL(file);
+  document
+  .getElementById("videoName")
+  .textContent =
+  "Selected: " + file.name;
 
- const video=document.getElementById("previewVideo");
+  const url =
+  URL.createObjectURL(file);
 
- video.src=url;
+  const video =
+  document.getElementById("previewVideo");
 
- document.getElementById("videoPreview")
- .style.display="block";
+  video.src = url;
+
+  document
+  .getElementById("videoPreview")
+  .style.display =
+  "block";
 
 });
 
 
-/* -------------------------
-   EPISODE IMAGE
-------------------------- */
+/* =====================================================
+   EPISODE THUMBNAIL PREVIEW
+===================================================== */
 
 document
 .getElementById("episodeThumbnail")
-.addEventListener("change", function(){
+.addEventListener("change",function(){
 
- const file=this.files[0];
+  const file =
+  this.files[0];
 
- if(!file)return;
+  if(!file){
+    return;
+  }
 
- const url=URL.createObjectURL(file);
+  document
+  .getElementById("episodeThumbnailName")
+  .textContent =
+  "Selected: " + file.name;
 
- document.getElementById("previewEpisodeImage")
- .src=url;
+  const url =
+  URL.createObjectURL(file);
 
- document.getElementById("episodeImagePreview")
- .style.display="block";
+  document
+  .getElementById("previewEpisodeImage")
+  .src = url;
+
+  document
+  .getElementById("episodeImagePreview")
+  .style.display =
+  "block";
 
 });
 
 
-/* -------------------------
-   EPISODE VIDEO
-------------------------- */
+/* =====================================================
+   EPISODE VIDEO PREVIEW
+===================================================== */
 
 document
 .getElementById("episodeVideo")
-.addEventListener("change", function(){
+.addEventListener("change",function(){
 
- const file=this.files[0];
+  const file =
+  this.files[0];
 
- if(!file)return;
+  if(!file){
+    return;
+  }
 
- const url=URL.createObjectURL(file);
+  document
+  .getElementById("episodeVideoName")
+  .textContent =
+  "Selected: " + file.name;
 
- document.getElementById("previewEpisodeVideo")
- .src=url;
+  const url =
+  URL.createObjectURL(file);
 
- document.getElementById("episodeVideoPreview")
- .style.display="block";
+  const video =
+  document.getElementById("previewEpisodeVideo");
+
+  video.src = url;
+
+  document
+  .getElementById("episodeVideoPreview")
+  .style.display =
+  "block";
 
 });
 
 
-/* -------------------------
-   ADD VIDEO
-------------------------- */
+/* =====================================================
+   ADD MOVIE / SHOW
+===================================================== */
 
-window.addVideo = async function(){
+window.addVideo =
+async function(){
 
- const title =
- document.getElementById("title").value.trim();
+  const title =
+  document
+  .getElementById("title")
+  .value
+  .trim();
 
- if(!title){
+  if(!title){
 
-  alert("Title দিন");
+    alert("Movie / Show Title দিন");
 
-  return;
-
- }
-
- const thumbnail =
- document.getElementById("thumbnailFile").files[0];
-
- const video =
- document.getElementById("videoFile").files[0];
-
-
- const data={
-
-  title:title,
-
-  type:
-  document.getElementById("type").value,
-
-  category:
-  document.getElementById("category").value,
-
-  access:
-  document.getElementById("access").value,
-
-  year:
-  document.getElementById("year").value,
-
-  duration:
-  document.getElementById("duration").value,
-
-  description:
-  document.getElementById("description").value,
-
-  thumbnailFileName:
-  thumbnail ? thumbnail.name : "",
-
-  videoFileName:
-  video ? video.name : "",
-
-  createdAt:
-  serverTimestamp()
-
- };
-
-
- try{
-
-  await addDoc(
-   collection(db,"videos"),
-   data
-  );
-
-  showStatus(
-   "videoStatus",
-   "✅ Content successfully added!"
-  );
-
-  clearVideoForm();
-
-  loadVideos();
-
- }catch(error){
-
-  console.error(error);
-
-  showStatus(
-   "videoStatus",
-   "❌ Error: "+error.message
-  );
-
- }
-
-};
-
-
-/* -------------------------
-   ADD EPISODE
-------------------------- */
-
-window.addEpisode = async function(){
-
- const seriesName =
- document.getElementById("seriesName")
- .value.trim();
-
- const episodeTitle =
- document.getElementById("episodeTitle")
- .value.trim();
-
- if(!seriesName){
-
-  alert("Series Name দিন");
-
-  return;
-
- }
-
- if(!episodeTitle){
-
-  alert("Episode Title দিন");
-
-  return;
-
- }
-
-
- const thumbnail =
- document.getElementById("episodeThumbnail")
- .files[0];
-
- const video =
- document.getElementById("episodeVideo")
- .files[0];
-
-
- const data={
-
-  seriesName:seriesName,
-
-  season:
-  document.getElementById("season").value,
-
-  episodeNumber:
-  document.getElementById("episodeNumber").value,
-
-  episodeTitle:episodeTitle,
-
-  access:
-  document.getElementById("episodeAccess").value,
-
-  thumbnailFileName:
-  thumbnail ? thumbnail.name : "",
-
-  videoFileName:
-  video ? video.name : "",
-
-  createdAt:
-  serverTimestamp()
-
- };
-
-
- try{
-
-  await addDoc(
-   collection(db,"episodes"),
-   data
-  );
-
-  showStatus(
-   "episodeStatus",
-   "✅ Episode successfully added!"
-  );
-
-  clearEpisodeForm();
-
-  loadEpisodes();
-
- }catch(error){
-
-  console.error(error);
-
-  showStatus(
-   "episodeStatus",
-   "❌ Error: "+error.message
-  );
-
- }
-
-};
-
-
-/* -------------------------
-   LOAD VIDEOS
-------------------------- */
-
-async function loadVideos(){
-
- const list=
- document.getElementById("contentList");
-
- list.innerHTML="Loading...";
-
- try{
-
-  const snapshot=
-  await getDocs(
-   collection(db,"videos")
-  );
-
-  list.innerHTML="";
-
-  if(snapshot.empty){
-
-   list.innerHTML=
-   "<p>No content added yet.</p>";
-
-   return;
+    return;
 
   }
 
 
-  snapshot.forEach(item=>{
+  const thumbnail =
+  document
+  .getElementById("thumbnailFile")
+  .files[0];
 
-   const data=item.data();
-
-   const accessClass=
-   data.access==="premium"
-   ? "premium"
-   : "free";
-
-   const div=
-   document.createElement("div");
-
-   div.className="item";
-
-   div.innerHTML=`
-
-   <h3>
-   ${escapeHTML(data.title || "")}
-   </h3>
-
-   <span class="badge">
-   ${escapeHTML(data.type || "")}
-   </span>
-
-   <span class="badge ${accessClass}">
-   ${data.access==="premium"
-   ?"PREMIUM"
-   :"FREE WATCH"}
-   </span>
-
-   <p class="small">
-   Category:
-   ${escapeHTML(data.category || "-")}
-   </p>
-
-   <p class="small">
-   Year:
-   ${escapeHTML(data.year || "-")}
-   </p>
-
-   <p class="small">
-   Duration:
-   ${escapeHTML(data.duration || "-")}
-   </p>
-
-   <p class="small">
-   Thumbnail:
-   ${escapeHTML(data.thumbnailFileName || "None")}
-   </p>
-
-   <p class="small">
-   Video:
-   ${escapeHTML(data.videoFileName || "None")}
-   </p>
-
-   <button
-   class="delete"
-   onclick="deleteVideo('${item.id}')">
-   🗑 Delete
-   </button>
-
-   `;
-
-   list.appendChild(div);
-
-  });
+  const video =
+  document
+  .getElementById("videoFile")
+  .files[0];
 
 
- }catch(error){
+  const data = {
 
-  list.innerHTML=
-  "❌ "+escapeHTML(error.message);
+    title: title,
 
- }
+    type:
+    document
+    .getElementById("type")
+    .value,
+
+    category:
+    document
+    .getElementById("category")
+    .value
+    .trim(),
+
+    access:
+    document
+    .getElementById("access")
+    .value,
+
+    year:
+    document
+    .getElementById("year")
+    .value,
+
+    duration:
+    document
+    .getElementById("duration")
+    .value
+    .trim(),
+
+    description:
+    document
+    .getElementById("description")
+    .value
+    .trim(),
+
+    thumbnailFileName:
+    thumbnail
+    ? thumbnail.name
+    : "",
+
+    videoFileName:
+    video
+    ? video.name
+    : "",
+
+    createdAt:
+    serverTimestamp()
+
+  };
+
+
+  try{
+
+    await addDoc(
+      collection(db,"videos"),
+      data
+    );
+
+
+    showStatus(
+      "videoStatus",
+      "✅ Movie / Show added successfully!"
+    );
+
+
+    clearVideoForm();
+
+    loadVideos();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "videoStatus",
+      "❌ " + error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   ADD EPISODE
+===================================================== */
+
+window.addEpisode =
+async function(){
+
+  const seriesName =
+  document
+  .getElementById("seriesName")
+  .value
+  .trim();
+
+  const episodeTitle =
+  document
+  .getElementById("episodeTitle")
+  .value
+  .trim();
+
+
+  if(!seriesName){
+
+    alert("Series Name দিন");
+
+    return;
+
+  }
+
+
+  if(!episodeTitle){
+
+    alert("Episode Title দিন");
+
+    return;
+
+  }
+
+
+  const thumbnail =
+  document
+  .getElementById("episodeThumbnail")
+  .files[0];
+
+  const video =
+  document
+  .getElementById("episodeVideo")
+  .files[0];
+
+
+  const data = {
+
+    seriesName:
+    seriesName,
+
+    season:
+    document
+    .getElementById("season")
+    .value,
+
+    episodeNumber:
+    document
+    .getElementById("episodeNumber")
+    .value,
+
+    episodeTitle:
+    episodeTitle,
+
+    access:
+    document
+    .getElementById("episodeAccess")
+    .value,
+
+    thumbnailFileName:
+    thumbnail
+    ? thumbnail.name
+    : "",
+
+    videoFileName:
+    video
+    ? video.name
+    : "",
+
+    createdAt:
+    serverTimestamp()
+
+  };
+
+
+  try{
+
+    await addDoc(
+      collection(db,"episodes"),
+      data
+    );
+
+
+    showStatus(
+      "episodeStatus",
+      "✅ Episode added successfully!"
+    );
+
+
+    clearEpisodeForm();
+
+    loadEpisodes();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "episodeStatus",
+      "❌ " + error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   LOAD MOVIES
+===================================================== */
+
+async function loadVideos(){
+
+  const list =
+  document
+  .getElementById("contentList");
+
+  list.innerHTML =
+  "Loading...";
+
+
+  try{
+
+    const snapshot =
+    await getDocs(
+      collection(db,"videos")
+    );
+
+
+    list.innerHTML = "";
+
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+      "<p>No content added yet.</p>";
+
+      return;
+
+    }
+
+
+    snapshot.forEach(item=>{
+
+      const data =
+      item.data();
+
+
+      const accessClass =
+      data.access === "premium"
+      ? "premium"
+      : "free";
+
+
+      const div =
+      document.createElement("div");
+
+      div.className =
+      "item";
+
+
+      div.innerHTML = `
+
+        <h3>
+        ${escapeHTML(data.title || "")}
+        </h3>
+
+        <span class="badge">
+        ${escapeHTML(data.type || "")}
+        </span>
+
+        <span class="badge ${accessClass}">
+        ${
+          data.access === "premium"
+          ? "PREMIUM"
+          : "FREE WATCH"
+        }
+        </span>
+
+        <p class="small">
+        Category:
+        ${escapeHTML(data.category || "-")}
+        </p>
+
+        <p class="small">
+        Year:
+        ${escapeHTML(data.year || "-")}
+        </p>
+
+        <p class="small">
+        Duration:
+        ${escapeHTML(data.duration || "-")}
+        </p>
+
+        <p class="small">
+        Thumbnail:
+        ${escapeHTML(data.thumbnailFileName || "None")}
+        </p>
+
+        <p class="small">
+        Video:
+        ${escapeHTML(data.videoFileName || "None")}
+        </p>
+
+        <button
+        class="delete"
+        onclick="deleteVideo('${item.id}')">
+        🗑 Delete
+        </button>
+
+      `;
+
+
+      list.appendChild(div);
+
+    });
+
+  }
+  catch(error){
+
+    list.innerHTML =
+    "❌ " +
+    escapeHTML(error.message);
+
+  }
 
 }
 
 
-/* -------------------------
-   DELETE VIDEO
-------------------------- */
+/* =====================================================
+   DELETE MOVIE
+===================================================== */
 
 window.deleteVideo =
 async function(id){
 
- if(!confirm(
- "এই content delete করতে চান?"
- ))return;
+  if(!confirm(
+    "এই content delete করতে চান?"
+  )){
+    return;
+  }
 
- try{
 
-  await deleteDoc(
-   doc(db,"videos",id)
-  );
+  try{
 
-  loadVideos();
+    await deleteDoc(
+      doc(db,"videos",id)
+    );
 
- }catch(error){
+    loadVideos();
 
-  alert(error.message);
+  }
+  catch(error){
 
- }
+    alert(error.message);
+
+  }
 
 };
 
 
-/* -------------------------
+/* =====================================================
    LOAD EPISODES
-------------------------- */
+===================================================== */
 
 async function loadEpisodes(){
 
- const list=
- document.getElementById("episodeList");
+  const list =
+  document
+  .getElementById("episodeList");
 
- list.innerHTML="Loading...";
+  list.innerHTML =
+  "Loading...";
 
- try{
 
-  const snapshot=
-  await getDocs(
-   collection(db,"episodes")
-  );
+  try{
 
-  list.innerHTML="";
+    const snapshot =
+    await getDocs(
+      collection(db,"episodes")
+    );
 
-  if(snapshot.empty){
 
-   list.innerHTML=
-   "<p>No episodes added yet.</p>";
+    list.innerHTML = "";
 
-   return;
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+      "<p>No episodes added yet.</p>";
+
+      return;
+
+    }
+
+
+    snapshot.forEach(item=>{
+
+      const data =
+      item.data();
+
+
+      const div =
+      document.createElement("div");
+
+      div.className =
+      "item";
+
+
+      div.innerHTML = `
+
+        <h3>
+        ${escapeHTML(data.seriesName || "")}
+        </h3>
+
+        <span class="badge">
+        S${escapeHTML(data.season || "1")}
+        </span>
+
+        <span class="badge">
+        EP ${escapeHTML(data.episodeNumber || "1")}
+        </span>
+
+        <span class="badge ${
+          data.access === "premium"
+          ? "premium"
+          : "free"
+        }">
+
+        ${
+          data.access === "premium"
+          ? "PREMIUM"
+          : "FREE EPISODE"
+        }
+
+        </span>
+
+        <p class="small">
+        Episode:
+        ${escapeHTML(data.episodeTitle || "-")}
+        </p>
+
+        <p class="small">
+        Thumbnail:
+        ${escapeHTML(data.thumbnailFileName || "None")}
+        </p>
+
+        <p class="small">
+        Video:
+        ${escapeHTML(data.videoFileName || "None")}
+        </p>
+
+        <button
+        class="delete"
+        onclick="deleteEpisode('${item.id}')">
+        🗑 Delete
+        </button>
+
+      `;
+
+
+      list.appendChild(div);
+
+    });
+
+  }
+  catch(error){
+
+    list.innerHTML =
+    "❌ " +
+    escapeHTML(error.message);
 
   }
 
-
-  snapshot.forEach(item=>{
-
-   const data=item.data();
-
-   const div=
-   document.createElement("div");
-
-   div.className="item";
-
-   div.innerHTML=`
-
-   <h3>
-   ${escapeHTML(data.seriesName || "")}
-   </h3>
-
-   <span class="badge">
-   S${escapeHTML(data.season || "1")}
-   </span>
-
-   <span class="badge">
-   EP ${escapeHTML(data.episodeNumber || "1")}
-   </span>
-
-   <span class="badge ${
-   data.access==="premium"
-   ?"premium"
-   :"free"
-   }">
-
-   ${
-   data.access==="premium"
-   ?"PREMIUM"
-   :"FREE EPISODE"
-   }
-
-   </span>
-
-   <p class="small">
-   Episode:
-   ${escapeHTML(data.episodeTitle || "")}
-   </p>
-
-   <p class="small">
-   Video:
-   ${escapeHTML(data.videoFileName || "None")}
-   </p>
-
-   <button
-   class="delete"
-   onclick="deleteEpisode('${item.id}')">
-
-   🗑 Delete
-
-   </button>
-
-   `;
-
-   list.appendChild(div);
-
-  });
+};
 
 
- }catch(error){
-
-  list.innerHTML=
-  "❌ "+escapeHTML(error.message);
-
- }
-
-}
-
-
-/* -------------------------
+/* =====================================================
    DELETE EPISODE
-------------------------- */
+===================================================== */
 
 window.deleteEpisode =
 async function(id){
 
- if(!confirm(
- "এই episode delete করতে চান?"
- ))return;
+  if(!confirm(
+    "এই episode delete করতে চান?"
+  )){
+    return;
+  }
 
- try{
 
-  await deleteDoc(
-   doc(db,"episodes",id)
-  );
+  try{
 
-  loadEpisodes();
+    await deleteDoc(
+      doc(db,"episodes",id)
+    );
 
- }catch(error){
+    loadEpisodes();
 
-  alert(error.message);
+  }
+  catch(error){
 
- }
+    alert(error.message);
+
+  }
 
 };
 
 
-/* -------------------------
+/* =====================================================
    STATUS
-------------------------- */
+===================================================== */
 
 function showStatus(id,message){
 
- const box=
- document.getElementById(id);
+  const box =
+  document
+  .getElementById(id);
 
- box.innerText=message;
+  box.textContent =
+  message;
 
- box.style.display="block";
+  box.style.display =
+  "block";
 
- setTimeout(()=>{
 
-  box.style.display="none";
+  setTimeout(()=>{
 
- },4000);
+    box.style.display =
+    "none";
+
+  },4000);
 
 }
 
 
-/* -------------------------
-   CLEAR VIDEO FORM
-------------------------- */
+/* =====================================================
+   CLEAR MOVIE FORM
+===================================================== */
 
 function clearVideoForm(){
 
- document.getElementById("title").value="";
- document.getElementById("category").value="";
- document.getElementById("year").value="";
- document.getElementById("duration").value="";
- document.getElementById("description").value="";
+  document.getElementById("title").value="";
+  document.getElementById("category").value="";
+  document.getElementById("year").value="";
+  document.getElementById("duration").value="";
+  document.getElementById("description").value="";
 
- document.getElementById("thumbnailFile").value="";
- document.getElementById("videoFile").value="";
+  document.getElementById("thumbnailFile").value="";
+  document.getElementById("videoFile").value="";
 
- document.getElementById("imagePreview")
- .style.display="none";
+  document.getElementById("thumbnailName")
+  .textContent="No image selected";
 
- document.getElementById("videoPreview")
- .style.display="none";
+  document.getElementById("videoName")
+  .textContent="No video selected";
+
+  document.getElementById("imagePreview")
+  .style.display="none";
+
+  document.getElementById("videoPreview")
+  .style.display="none";
 
 }
 
 
-/* -------------------------
+/* =====================================================
    CLEAR EPISODE FORM
-------------------------- */
+===================================================== */
 
 function clearEpisodeForm(){
 
- document.getElementById("seriesName").value="";
- document.getElementById("season").value="";
- document.getElementById("episodeNumber").value="";
- document.getElementById("episodeTitle").value="";
+  document.getElementById("seriesName").value="";
+  document.getElementById("season").value="";
+  document.getElementById("episodeNumber").value="";
+  document.getElementById("episodeTitle").value="";
 
- document.getElementById("episodeThumbnail").value="";
- document.getElementById("episodeVideo").value="";
+  document.getElementById("episodeThumbnail").value="";
+  document.getElementById("episodeVideo").value="";
 
- document.getElementById("episodeImagePreview")
- .style.display="none";
+  document.getElementById("episodeThumbnailName")
+  .textContent="No image selected";
 
- document.getElementById("episodeVideoPreview")
- .style.display="none";
+  document.getElementById("episodeVideoName")
+  .textContent="No video selected";
+
+  document.getElementById("episodeImagePreview")
+  .style.display="none";
+
+  document.getElementById("episodeVideoPreview")
+  .style.display="none";
 
 }
 
 
-/* -------------------------
-   SECURITY DISPLAY HELPER
-------------------------- */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHTML(value){
 
- return String(value)
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
+  return String(value)
+
+  .replaceAll("&","&amp;")
+
+  .replaceAll("<","&lt;")
+
+  .replaceAll(">","&gt;")
+
+  .replaceAll('"',"&quot;")
+
+  .replaceAll("'","&#039;");
 
 }
 
 
-/* -------------------------
-   INITIAL LOAD
-------------------------- */
+/* =====================================================
+   START
+===================================================== */
 
 loadVideos();
 
