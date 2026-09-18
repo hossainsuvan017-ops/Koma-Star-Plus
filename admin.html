@@ -19,9 +19,9 @@ body{
 }
 
 header{
+  background:linear-gradient(135deg,#080808,#300000);
   padding:22px 15px;
   text-align:center;
-  background:linear-gradient(135deg,#090909,#280000);
   border-bottom:1px solid #333;
 }
 
@@ -37,13 +37,13 @@ header p{
 
 .container{
   width:94%;
-  max-width:1100px;
+  max-width:1050px;
   margin:20px auto;
 }
 
 .card{
   background:#121212;
-  border:1px solid #2c2c2c;
+  border:1px solid #303030;
   border-radius:16px;
   padding:20px;
   margin-bottom:20px;
@@ -69,22 +69,19 @@ label{
   display:block;
   color:#ccc;
   font-size:14px;
-  margin:10px 0 7px;
+  margin:11px 0 7px;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
   padding:13px;
-  border-radius:9px;
-  border:1px solid #444;
-  background:#1d1d1d;
+  background:#1c1c1c;
   color:#fff;
+  border:1px solid #444;
+  border-radius:9px;
   outline:none;
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
 }
 
 input:focus,
@@ -93,38 +90,34 @@ textarea:focus{
   border-color:#ff2020;
 }
 
-.upload-box{
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* REAL VISIBLE FILE INPUT */
+
+.file-area{
   margin-top:16px;
-  padding:17px;
+  padding:16px;
+  background:#0d0d0d;
   border:2px dashed #444;
   border-radius:12px;
-  background:#0d0d0d;
 }
 
-.file-input{
-  display:none;
-}
-
-.gallery-btn{
+.file-area input[type="file"]{
+  display:block;
   width:100%;
-  padding:15px;
+  padding:12px 5px;
+  background:transparent;
   border:0;
-  border-radius:10px;
-  background:#e50914;
   color:#fff;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
 }
 
-.gallery-btn:active{
-  transform:scale(.98);
-}
-
-.file-name{
-  margin-top:10px;
+.file-info{
   color:#aaa;
   font-size:13px;
+  margin-top:8px;
   word-break:break-all;
 }
 
@@ -140,23 +133,23 @@ textarea:focus{
 }
 
 .preview video{
+  display:block;
   width:100%;
-  max-height:320px;
-  border-radius:10px;
+  max-height:330px;
   background:#000;
+  border-radius:10px;
 }
 
 .main-btn{
   width:100%;
-  margin-top:18px;
   padding:15px;
+  margin-top:18px;
   border:0;
   border-radius:10px;
   background:#e50914;
   color:#fff;
   font-size:16px;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .status{
@@ -170,13 +163,13 @@ textarea:focus{
 .item{
   background:#181818;
   border:1px solid #333;
-  padding:15px;
   border-radius:12px;
+  padding:15px;
   margin-top:12px;
 }
 
 .item h3{
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 .badge{
@@ -204,12 +197,11 @@ textarea:focus{
 
 .delete{
   background:#b00020;
-  color:#fff;
+  color:white;
   border:0;
-  padding:10px 13px;
+  padding:10px 14px;
   border-radius:8px;
   margin-top:12px;
-  cursor:pointer;
 }
 </style>
 </head>
@@ -225,7 +217,7 @@ textarea:focus{
 
 <!-- =====================================================
      MOVIE / SHOW
-====================================================== -->
+===================================================== -->
 
 <div class="card">
 
@@ -235,7 +227,10 @@ textarea:focus{
 
 <div>
 <label>Title</label>
-<input id="title" type="text" placeholder="Movie / Show name">
+<input
+  id="title"
+  type="text"
+  placeholder="Movie / Show name">
 </div>
 
 <div>
@@ -251,7 +246,10 @@ textarea:focus{
 
 <div>
 <label>Category</label>
-<input id="category" type="text" placeholder="Action, Drama, Comedy...">
+<input
+  id="category"
+  type="text"
+  placeholder="Action, Drama, Comedy">
 </div>
 
 <div>
@@ -264,54 +262,52 @@ textarea:focus{
 
 <div>
 <label>Release Year</label>
-<input id="year" type="number" placeholder="2026">
+<input
+  id="year"
+  type="number"
+  placeholder="2026">
 </div>
 
 <div>
 <label>Duration</label>
-<input id="duration" type="text" placeholder="2h 15m">
+<input
+  id="duration"
+  type="text"
+  placeholder="2h 15m">
 </div>
 
 </div>
 
 <label>Description</label>
-<textarea id="description"
-placeholder="Write description..."></textarea>
+
+<textarea
+  id="description"
+  placeholder="Write description..."></textarea>
 
 
 <!-- MOVIE THUMBNAIL -->
 
-<div class="upload-box">
+<div class="file-area">
 
 <label>🖼️ Movie / Show Thumbnail</label>
 
 <input
   id="thumbnailFile"
-  class="file-input"
   type="file"
-  accept="image/*"
->
-
-<button
-  type="button"
-  class="gallery-btn"
-  onclick="openFile('thumbnailFile')"
->
-📁 Choose Image from Gallery
-</button>
+  accept="image/*">
 
 <div
-  id="thumbnailName"
-  class="file-name"
->
+  id="thumbnailInfo"
+  class="file-info">
 No image selected
 </div>
 
 <div
   id="imagePreview"
-  class="preview"
->
+  class="preview">
+
 <img id="previewImage">
+
 </div>
 
 </div>
@@ -319,65 +315,56 @@ No image selected
 
 <!-- MOVIE VIDEO -->
 
-<div class="upload-box">
+<div class="file-area">
 
 <label>🎥 Movie / Show Video</label>
 
 <input
   id="videoFile"
-  class="file-input"
   type="file"
-  accept="video/*,.mp4,.mkv,.webm,.mov"
->
-
-<button
-  type="button"
-  class="gallery-btn"
-  onclick="openFile('videoFile')"
->
-📁 Choose Video from Gallery
-</button>
+  accept="video/*">
 
 <div
-  id="videoName"
-  class="file-name"
->
+  id="videoInfo"
+  class="file-info">
 No video selected
 </div>
 
 <div
   id="videoPreview"
-  class="preview"
->
+  class="preview">
+
 <video
   id="previewVideo"
   controls
-  playsinline
-></video>
+  playsinline>
+</video>
+
 </div>
 
 </div>
 
 
 <button
-  type="button"
   class="main-btn"
-  onclick="addVideo()"
->
+  type="button"
+  onclick="addVideo()">
+
 ➕ Add Movie / Show
+
 </button>
 
 <div
   id="videoStatus"
-  class="status"
-></div>
+  class="status">
+</div>
 
 </div>
 
 
 <!-- =====================================================
      EPISODE
-====================================================== -->
+===================================================== -->
 
 <div class="card">
 
@@ -390,8 +377,7 @@ No video selected
 <input
   id="seriesName"
   type="text"
-  placeholder="Series name"
->
+  placeholder="Series name">
 </div>
 
 <div>
@@ -400,8 +386,7 @@ No video selected
   id="season"
   type="number"
   min="1"
-  placeholder="1"
->
+  placeholder="1">
 </div>
 
 <div>
@@ -410,8 +395,7 @@ No video selected
   id="episodeNumber"
   type="number"
   min="1"
-  placeholder="1"
->
+  placeholder="1">
 </div>
 
 <div>
@@ -419,8 +403,7 @@ No video selected
 <input
   id="episodeTitle"
   type="text"
-  placeholder="Episode title"
->
+  placeholder="Episode title">
 </div>
 
 </div>
@@ -443,37 +426,27 @@ Premium Episode
 
 <!-- EPISODE THUMBNAIL -->
 
-<div class="upload-box">
+<div class="file-area">
 
 <label>🖼️ Episode Thumbnail</label>
 
 <input
   id="episodeThumbnail"
-  class="file-input"
   type="file"
-  accept="image/*"
->
-
-<button
-  type="button"
-  class="gallery-btn"
-  onclick="openFile('episodeThumbnail')"
->
-📁 Choose Episode Image from Gallery
-</button>
+  accept="image/*">
 
 <div
-  id="episodeThumbnailName"
-  class="file-name"
->
+  id="episodeThumbnailInfo"
+  class="file-info">
 No image selected
 </div>
 
 <div
   id="episodeImagePreview"
-  class="preview"
->
+  class="preview">
+
 <img id="previewEpisodeImage">
+
 </div>
 
 </div>
@@ -481,65 +454,56 @@ No image selected
 
 <!-- EPISODE VIDEO -->
 
-<div class="upload-box">
+<div class="file-area">
 
 <label>🎥 Episode Video</label>
 
 <input
   id="episodeVideo"
-  class="file-input"
   type="file"
-  accept="video/*,.mp4,.mkv,.webm,.mov"
->
-
-<button
-  type="button"
-  class="gallery-btn"
-  onclick="openFile('episodeVideo')"
->
-📁 Choose Episode Video from Gallery
-</button>
+  accept="video/*">
 
 <div
-  id="episodeVideoName"
-  class="file-name"
->
+  id="episodeVideoInfo"
+  class="file-info">
 No video selected
 </div>
 
 <div
   id="episodeVideoPreview"
-  class="preview"
->
+  class="preview">
+
 <video
   id="previewEpisodeVideo"
   controls
-  playsinline
-></video>
+  playsinline>
+</video>
+
 </div>
 
 </div>
 
 
 <button
-  type="button"
   class="main-btn"
-  onclick="addEpisode()"
->
+  type="button"
+  onclick="addEpisode()">
+
 ➕ Add Episode
+
 </button>
 
 <div
   id="episodeStatus"
-  class="status"
-></div>
+  class="status">
+</div>
 
 </div>
 
 
 <!-- =====================================================
      CONTENT LIBRARY
-====================================================== -->
+===================================================== -->
 
 <div class="card">
 
@@ -554,7 +518,7 @@ Loading...
 
 <!-- =====================================================
      EPISODE LIBRARY
-====================================================== -->
+===================================================== -->
 
 <div class="card">
 
@@ -591,7 +555,7 @@ from
 
 
 /* =====================================================
-   FIREBASE
+   FIREBASE CONFIG
 ===================================================== */
 
 const firebaseConfig = {
@@ -628,162 +592,145 @@ getFirestore(app);
 
 
 /* =====================================================
-   OPEN GALLERY / FILE PICKER
-===================================================== */
-
-window.openFile =
-function(id){
-
-  const input =
-  document.getElementById(id);
-
-  if(!input){
-    return;
-  }
-
-  input.click();
-
-};
-
-
-/* =====================================================
-   MOVIE THUMBNAIL PREVIEW
+   MOVIE IMAGE
 ===================================================== */
 
 document
 .getElementById("thumbnailFile")
 .addEventListener("change",function(){
 
-  const file =
-  this.files[0];
+  const file=this.files[0];
 
   if(!file){
     return;
   }
 
   document
-  .getElementById("thumbnailName")
+  .getElementById("thumbnailInfo")
   .textContent =
   "Selected: " + file.name;
+
 
   const url =
   URL.createObjectURL(file);
 
+
   document
   .getElementById("previewImage")
-  .src = url;
+  .src=url;
+
 
   document
   .getElementById("imagePreview")
-  .style.display =
-  "block";
+  .style.display="block";
 
 });
 
 
 /* =====================================================
-   MOVIE VIDEO PREVIEW
+   MOVIE VIDEO
 ===================================================== */
 
 document
 .getElementById("videoFile")
 .addEventListener("change",function(){
 
-  const file =
-  this.files[0];
+  const file=this.files[0];
 
   if(!file){
     return;
   }
 
   document
-  .getElementById("videoName")
+  .getElementById("videoInfo")
   .textContent =
   "Selected: " + file.name;
+
 
   const url =
   URL.createObjectURL(file);
 
-  const video =
-  document.getElementById("previewVideo");
 
-  video.src = url;
+  document
+  .getElementById("previewVideo")
+  .src=url;
+
 
   document
   .getElementById("videoPreview")
-  .style.display =
-  "block";
+  .style.display="block";
 
 });
 
 
 /* =====================================================
-   EPISODE THUMBNAIL PREVIEW
+   EPISODE IMAGE
 ===================================================== */
 
 document
 .getElementById("episodeThumbnail")
 .addEventListener("change",function(){
 
-  const file =
-  this.files[0];
+  const file=this.files[0];
 
   if(!file){
     return;
   }
 
   document
-  .getElementById("episodeThumbnailName")
+  .getElementById("episodeThumbnailInfo")
   .textContent =
   "Selected: " + file.name;
+
 
   const url =
   URL.createObjectURL(file);
 
+
   document
   .getElementById("previewEpisodeImage")
-  .src = url;
+  .src=url;
+
 
   document
   .getElementById("episodeImagePreview")
-  .style.display =
-  "block";
+  .style.display="block";
 
 });
 
 
 /* =====================================================
-   EPISODE VIDEO PREVIEW
+   EPISODE VIDEO
 ===================================================== */
 
 document
 .getElementById("episodeVideo")
 .addEventListener("change",function(){
 
-  const file =
-  this.files[0];
+  const file=this.files[0];
 
   if(!file){
     return;
   }
 
   document
-  .getElementById("episodeVideoName")
+  .getElementById("episodeVideoInfo")
   .textContent =
   "Selected: " + file.name;
+
 
   const url =
   URL.createObjectURL(file);
 
-  const video =
-  document.getElementById("previewEpisodeVideo");
 
-  video.src = url;
+  document
+  .getElementById("previewEpisodeVideo")
+  .src=url;
+
 
   document
   .getElementById("episodeVideoPreview")
-  .style.display =
-  "block";
+  .style.display="block";
 
 });
 
@@ -801,6 +748,7 @@ async function(){
   .value
   .trim();
 
+
   if(!title){
 
     alert("Movie / Show Title দিন");
@@ -815,15 +763,16 @@ async function(){
   .getElementById("thumbnailFile")
   .files[0];
 
+
   const video =
   document
   .getElementById("videoFile")
   .files[0];
 
 
-  const data = {
+  const data={
 
-    title: title,
+    title:title,
 
     type:
     document
@@ -920,6 +869,7 @@ async function(){
   .value
   .trim();
 
+
   const episodeTitle =
   document
   .getElementById("episodeTitle")
@@ -950,16 +900,16 @@ async function(){
   .getElementById("episodeThumbnail")
   .files[0];
 
+
   const video =
   document
   .getElementById("episodeVideo")
   .files[0];
 
 
-  const data = {
+  const data={
 
-    seriesName:
-    seriesName,
+    seriesName:seriesName,
 
     season:
     document
@@ -971,8 +921,7 @@ async function(){
     .getElementById("episodeNumber")
     .value,
 
-    episodeTitle:
-    episodeTitle,
+    episodeTitle:episodeTitle,
 
     access:
     document
@@ -1029,7 +978,7 @@ async function(){
 
 
 /* =====================================================
-   LOAD MOVIES
+   LOAD VIDEOS
 ===================================================== */
 
 async function loadVideos(){
@@ -1038,8 +987,8 @@ async function loadVideos(){
   document
   .getElementById("contentList");
 
-  list.innerHTML =
-  "Loading...";
+
+  list.innerHTML="Loading...";
 
 
   try{
@@ -1050,12 +999,12 @@ async function loadVideos(){
     );
 
 
-    list.innerHTML = "";
+    list.innerHTML="";
 
 
     if(snapshot.empty){
 
-      list.innerHTML =
+      list.innerHTML=
       "<p>No content added yet.</p>";
 
       return;
@@ -1065,12 +1014,11 @@ async function loadVideos(){
 
     snapshot.forEach(item=>{
 
-      const data =
-      item.data();
+      const data=item.data();
 
 
       const accessClass =
-      data.access === "premium"
+      data.access==="premium"
       ? "premium"
       : "free";
 
@@ -1078,58 +1026,60 @@ async function loadVideos(){
       const div =
       document.createElement("div");
 
-      div.className =
-      "item";
+
+      div.className="item";
 
 
-      div.innerHTML = `
+      div.innerHTML=`
 
-        <h3>
-        ${escapeHTML(data.title || "")}
-        </h3>
+      <h3>
+      ${escapeHTML(data.title || "")}
+      </h3>
 
-        <span class="badge">
-        ${escapeHTML(data.type || "")}
-        </span>
+      <span class="badge">
+      ${escapeHTML(data.type || "")}
+      </span>
 
-        <span class="badge ${accessClass}">
-        ${
-          data.access === "premium"
-          ? "PREMIUM"
-          : "FREE WATCH"
-        }
-        </span>
+      <span class="badge ${accessClass}">
+      ${
+        data.access==="premium"
+        ? "PREMIUM"
+        : "FREE WATCH"
+      }
+      </span>
 
-        <p class="small">
-        Category:
-        ${escapeHTML(data.category || "-")}
-        </p>
+      <p class="small">
+      Category:
+      ${escapeHTML(data.category || "-")}
+      </p>
 
-        <p class="small">
-        Year:
-        ${escapeHTML(data.year || "-")}
-        </p>
+      <p class="small">
+      Year:
+      ${escapeHTML(data.year || "-")}
+      </p>
 
-        <p class="small">
-        Duration:
-        ${escapeHTML(data.duration || "-")}
-        </p>
+      <p class="small">
+      Duration:
+      ${escapeHTML(data.duration || "-")}
+      </p>
 
-        <p class="small">
-        Thumbnail:
-        ${escapeHTML(data.thumbnailFileName || "None")}
-        </p>
+      <p class="small">
+      Thumbnail:
+      ${escapeHTML(data.thumbnailFileName || "None")}
+      </p>
 
-        <p class="small">
-        Video:
-        ${escapeHTML(data.videoFileName || "None")}
-        </p>
+      <p class="small">
+      Video:
+      ${escapeHTML(data.videoFileName || "None")}
+      </p>
 
-        <button
-        class="delete"
-        onclick="deleteVideo('${item.id}')">
-        🗑 Delete
-        </button>
+      <button
+      class="delete"
+      onclick="deleteVideo('${item.id}')">
+
+      🗑 Delete
+
+      </button>
 
       `;
 
@@ -1141,9 +1091,8 @@ async function loadVideos(){
   }
   catch(error){
 
-    list.innerHTML =
-    "❌ " +
-    escapeHTML(error.message);
+    list.innerHTML=
+    "❌ "+escapeHTML(error.message);
 
   }
 
@@ -1151,7 +1100,7 @@ async function loadVideos(){
 
 
 /* =====================================================
-   DELETE MOVIE
+   DELETE VIDEO
 ===================================================== */
 
 window.deleteVideo =
@@ -1169,6 +1118,7 @@ async function(id){
     await deleteDoc(
       doc(db,"videos",id)
     );
+
 
     loadVideos();
 
@@ -1192,8 +1142,8 @@ async function loadEpisodes(){
   document
   .getElementById("episodeList");
 
-  list.innerHTML =
-  "Loading...";
+
+  list.innerHTML="Loading...";
 
 
   try{
@@ -1204,12 +1154,12 @@ async function loadEpisodes(){
     );
 
 
-    list.innerHTML = "";
+    list.innerHTML="";
 
 
     if(snapshot.empty){
 
-      list.innerHTML =
+      list.innerHTML=
       "<p>No episodes added yet.</p>";
 
       return;
@@ -1219,65 +1169,66 @@ async function loadEpisodes(){
 
     snapshot.forEach(item=>{
 
-      const data =
-      item.data();
+      const data=item.data();
 
 
       const div =
       document.createElement("div");
 
-      div.className =
-      "item";
+
+      div.className="item";
 
 
-      div.innerHTML = `
+      div.innerHTML=`
 
-        <h3>
-        ${escapeHTML(data.seriesName || "")}
-        </h3>
+      <h3>
+      ${escapeHTML(data.seriesName || "")}
+      </h3>
 
-        <span class="badge">
-        S${escapeHTML(data.season || "1")}
-        </span>
+      <span class="badge">
+      S${escapeHTML(data.season || "1")}
+      </span>
 
-        <span class="badge">
-        EP ${escapeHTML(data.episodeNumber || "1")}
-        </span>
+      <span class="badge">
+      EP ${escapeHTML(data.episodeNumber || "1")}
+      </span>
 
-        <span class="badge ${
-          data.access === "premium"
-          ? "premium"
-          : "free"
-        }">
+      <span class="badge ${
+        data.access==="premium"
+        ? "premium"
+        : "free"
+      }">
 
-        ${
-          data.access === "premium"
-          ? "PREMIUM"
-          : "FREE EPISODE"
-        }
+      ${
+        data.access==="premium"
+        ? "PREMIUM"
+        : "FREE EPISODE"
+      }
 
-        </span>
+      </span>
 
-        <p class="small">
-        Episode:
-        ${escapeHTML(data.episodeTitle || "-")}
-        </p>
+      <p class="small">
+      Episode:
+      ${escapeHTML(data.episodeTitle || "-")}
+      </p>
 
-        <p class="small">
-        Thumbnail:
-        ${escapeHTML(data.thumbnailFileName || "None")}
-        </p>
+      <p class="small">
+      Thumbnail:
+      ${escapeHTML(data.thumbnailFileName || "None")}
+      </p>
 
-        <p class="small">
-        Video:
-        ${escapeHTML(data.videoFileName || "None")}
-        </p>
+      <p class="small">
+      Video:
+      ${escapeHTML(data.videoFileName || "None")}
+      </p>
 
-        <button
-        class="delete"
-        onclick="deleteEpisode('${item.id}')">
-        🗑 Delete
-        </button>
+      <button
+      class="delete"
+      onclick="deleteEpisode('${item.id}')">
+
+      🗑 Delete
+
+      </button>
 
       `;
 
@@ -1289,13 +1240,12 @@ async function loadEpisodes(){
   }
   catch(error){
 
-    list.innerHTML =
-    "❌ " +
-    escapeHTML(error.message);
+    list.innerHTML=
+    "❌ "+escapeHTML(error.message);
 
   }
 
-};
+}
 
 
 /* =====================================================
@@ -1317,6 +1267,7 @@ async function(id){
     await deleteDoc(
       doc(db,"episodes",id)
     );
+
 
     loadEpisodes();
 
@@ -1340,17 +1291,15 @@ function showStatus(id,message){
   document
   .getElementById(id);
 
-  box.textContent =
-  message;
 
-  box.style.display =
-  "block";
+  box.textContent=message;
+
+  box.style.display="block";
 
 
   setTimeout(()=>{
 
-    box.style.display =
-    "none";
+    box.style.display="none";
 
   },4000);
 
@@ -1372,10 +1321,10 @@ function clearVideoForm(){
   document.getElementById("thumbnailFile").value="";
   document.getElementById("videoFile").value="";
 
-  document.getElementById("thumbnailName")
+  document.getElementById("thumbnailInfo")
   .textContent="No image selected";
 
-  document.getElementById("videoName")
+  document.getElementById("videoInfo")
   .textContent="No video selected";
 
   document.getElementById("imagePreview")
@@ -1401,10 +1350,10 @@ function clearEpisodeForm(){
   document.getElementById("episodeThumbnail").value="";
   document.getElementById("episodeVideo").value="";
 
-  document.getElementById("episodeThumbnailName")
+  document.getElementById("episodeThumbnailInfo")
   .textContent="No image selected";
 
-  document.getElementById("episodeVideoName")
+  document.getElementById("episodeVideoInfo")
   .textContent="No video selected";
 
   document.getElementById("episodeImagePreview")
@@ -1423,15 +1372,10 @@ function clearEpisodeForm(){
 function escapeHTML(value){
 
   return String(value)
-
   .replaceAll("&","&amp;")
-
   .replaceAll("<","&lt;")
-
   .replaceAll(">","&gt;")
-
   .replaceAll('"',"&quot;")
-
   .replaceAll("'","&#039;");
 
 }
@@ -1442,7 +1386,6 @@ function escapeHTML(value){
 ===================================================== */
 
 loadVideos();
-
 loadEpisodes();
 
 </script>
